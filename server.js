@@ -18,13 +18,7 @@ app.use(
 );
 
 
-if(process.env.NODE_ENV !== 'production'){
-  app.use(express.static("client/build"))
 
-  app.get('*',(req,res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  })
-}
 
 // DEFINE ROUTES
 
@@ -34,7 +28,13 @@ app.use("/post", require("./routes/post"));
 app.use("/library", require("./routes/library"));
 app.use("/timetable", require("./routes/timetable"));
 
+if(process.env.NODE_ENV !== 'production'){
+  app.use(express.static("client/build"))
 
+  app.get('*',(req,res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  })
+}
 
 const PORT = process.env.PORT || 5000;
 
