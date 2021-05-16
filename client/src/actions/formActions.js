@@ -13,7 +13,7 @@ import {
   COMMENT_ADDED,
 } from "../actions/types";
 
-import API from "../api";
+import axios from "axios";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory({
@@ -36,7 +36,7 @@ export const loadForms = () => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.get("/post", config);
+    const res = await axios.get("/post", config);
 
     dispatch({
       type: FORMS_LOADED,
@@ -64,7 +64,7 @@ export const filterForm = (filters) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post("/post/filter", filters, config);
+    const res = await axios.post("/post/filter", filters, config);
 
     dispatch({
       type: FORMS_LOADED,
@@ -92,7 +92,7 @@ export const addForm = (formData) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post("/post", formData, config);
+    const res = await axios.post("/post", formData, config);
     if (res.data.errors) {
       dispatch({
         type: FORM_ADDED_FAIL
@@ -129,7 +129,7 @@ export const loadForm = (id) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.get(`/post/${id}`, config);
+    const res = await axios.get(`/post/${id}`, config);
 
     dispatch({
       type: FORM_LOADED,
@@ -176,7 +176,7 @@ export const postComment = (comment , id) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post(`/post/${id}`, comment={comment}, config);
+    const res = await axios.post(`/post/${id}`, comment={comment}, config);
 
     dispatch({
       type: COMMENT_ADDED,
@@ -208,7 +208,7 @@ export const upvotePost = (id) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post(`/post/upvote`, id={id}, config);
+    const res = await axios.post(`/post/upvote`, id={id}, config);
 
     return res;
   } catch (error) {
@@ -232,7 +232,7 @@ export const favouritePost = (id) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post(`/post/favourite`, id={id}, config);
+    const res = await axios.post(`/post/favourite`, id={id}, config);
 
     return res;
   } catch (error) {
@@ -258,7 +258,7 @@ export const getfavouritePost = () => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.get(`/post/favourite`, config);
+    const res = await axios.get(`/post/favourite`, config);
 
     return res;
   } catch (error) {
@@ -285,7 +285,7 @@ export const searchPost = (filter , type) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post(`/post/search`, {filter,type},config);
+    const res = await axios.post(`/post/search`, {filter,type},config);
 
     return res;
   } catch (error) {

@@ -1,5 +1,4 @@
 import React from "react";
-import API from "../../../api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setAlert } from "../../../actions/alertActions";
@@ -7,6 +6,7 @@ import Alert from "../../layout/Alert";
 
 import "../../../css/auth/Verify.css";
 import Header from "../../layout/Header";
+import axios from "axios";
 
 
 const token = localStorage.getItem("token");
@@ -27,7 +27,7 @@ const Verify = ({  setAlert }) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post("/user/verify", null, config);
+    const res = await axios.post("/user/verify", null, config);
 
     if (res.data.errors) {
       setAlert(res.data.errors[0].msg, "warning");
