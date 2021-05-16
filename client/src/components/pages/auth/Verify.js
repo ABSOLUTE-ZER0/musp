@@ -6,7 +6,7 @@ import Alert from "../../layout/Alert";
 
 import "../../../css/auth/Verify.css";
 import Header from "../../layout/Header";
-import axios from "axios";
+import API from "../../../api";
 
 
 const token = localStorage.getItem("token");
@@ -27,7 +27,7 @@ const Verify = ({  setAlert }) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await axios.post("/user/verify", null, config);
+    const res = await API.post("/user/verify", null, config);
 
     if (res.data.errors) {
       setAlert(res.data.errors[0].msg, "warning");

@@ -60,8 +60,9 @@ const Home = ({
 
   const searchForm = async (e) => {
     setSearch(e.target.value);
-    const res = await searchPost(search, type);
-    res && setForms(res.data);
+    const filter = e.target.value
+    const res = await searchPost(filter, type);
+    res && await setForms(res.data);
     if (res && res.data.length === 0) {
       setAlert(
         "No such post found! Create a new question with your query",
