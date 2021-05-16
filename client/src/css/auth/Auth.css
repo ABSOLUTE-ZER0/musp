@@ -1,0 +1,117 @@
+.auth__main-div {
+  display: flex;
+  height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+  user-select: none;
+}
+
+.auth__background {
+  background: url("../../images/auth/violet.jpg");
+  height: 100%;
+  width: 65vw;
+  background-position: top;
+  background-size: cover;
+  position: relative;
+  padding-left: 15rem;
+  font-family: "Exo 2";
+  cursor: default;
+}
+
+.auth__background:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30rem;
+  height: 50rem;
+  background: url("../../images/auth/login-2.png");
+  background-size: cover;
+}
+
+.auth__background:after:hover {
+  transform: scale(2);
+}
+
+.auth__welcometext {
+  font-size: 5rem;
+  font-weight: 100;
+  color: white;
+  width: 100%;
+  margin-top: 25rem;
+  opacity: 0;
+  animation: down-hidden-animation 700ms ease-in-out forwards;
+  animation-delay: 700ms;
+}
+
+.auth__brand-name {
+  font-size: 5rem;
+  font-weight: 600;
+  color: white;
+  width: 100%;
+  margin: 1.5rem 0 0;
+  opacity: 0;
+  animation: scale-hidden-animation 700ms ease-in-out forwards;
+  animation-delay: 1500ms;
+}
+
+.auth__brand-text {
+  font-size: 2rem;
+  font-weight: 200;
+  color: white;
+  width: 100%;
+  margin-top: -0.5rem;
+  font-weight: 300;
+  opacity: 0;
+  animation: left-hidden-animation 700ms ease-in-out forwards;
+  animation-delay: 2200ms;
+}
+
+.auth__routes {
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__conditional-page {
+  height: 100%;
+  width: 35vw;
+}
+
+.auth__button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.auth__button:nth-child(1) {
+  cursor: default;
+}
+
+.auth__button.active {
+  background-color: white;
+  color: black;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  box-shadow: 0 8px 6px -6px black;
+  position: relative;
+  border-right: 1px solid rgb(121, 121, 121);
+}
+
+button.auth__button.active:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  right: 0rem;
+  top: 5.7rem;
+  border-top: 1rem solid #222222;
+  border-right: 1rem solid transparent;
+}

@@ -1,0 +1,60 @@
+.verify__main-div {
+  font-family: "exo 2";
+  cursor: default;
+}
+
+.verify__sub-div {
+  display: flex;
+}
+.verify__text-div {
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.verify__title {
+  font-size: 5rem;
+  margin-top: 17rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.verify__sub {
+  font-size: 2rem;
+  width: 70%;
+}
+
+.verify__image-div {
+  background: url("../../images/auth/verify.png");
+  width: auto;
+  height: 50rem;
+  background-position-x: center;
+  background-size: cover;
+}
+
+.verify__resend-text {
+  font-size: 2rem;
+  margin-top: 20vh;
+  width: 100%;
+  text-align: center;
+}
+
+.verify__resend-button {
+  background-color: blueviolet;
+  border: 1px solid blueviolet;
+  box-shadow: none;
+  padding: 1rem 2rem;
+  width: 100%;
+  font-size: 3rem;
+  margin: 5rem auto;
+  border-radius: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.verify__resend-button:hover,
+.verify__resend-button:active,
+.verify__resend-button:focus {
+  background-color: rgb(255, 255, 255);
+  color: blueviolet;
+}

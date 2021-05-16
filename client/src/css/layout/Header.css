@@ -1,0 +1,201 @@
+.header__background {
+  background: radial-gradient(circle, #750fbc 72%, rgba(0, 0, 0, 1) 100%);
+  background-position: left;
+  background-size: cover;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  font-family: "Exo 2";
+  overflow: hidden;
+  max-height: 9rem;
+  user-select: none;
+}
+
+.header__main-div {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* brand */
+
+.header__brand-div {
+  flex: 35%;
+  width: 100%;
+  font-size: 3rem;
+  display: flex;
+}
+
+.header__brand {
+  text-align: left;
+  padding: 2rem;
+  color: #f3f7f7;
+}
+
+.header__brand:hover,
+.header__brand:focus {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+/* main */
+
+.header__main-nav-div {
+  flex: 40%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header__main-nav-div > a > button {
+  animation: header__button-animation 300ms 30ms ease-in-out forwards;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 0.5rem;
+}
+
+.header__main-nav > button > div > i {
+  pointer-events: none;
+  width: 100%;
+  font-size: 2.3rem;
+}
+
+.header__main-nav {
+  font-size: 1.7rem;
+  font-weight: 300;
+  flex: 1;
+  color: #f3f3f3;
+  position: relative;
+}
+
+/* sub */
+
+.header__sub-nav-div {
+  flex: 25%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.header__sub-nav-div > button {
+  border: none;
+  text-align: center;
+  padding: 1rem;
+  background-color: transparent;
+  color: white;
+}
+
+.header__sub-nav > i {
+  pointer-events: none;
+  width: 100%;
+  font-size: 2.2rem;
+}
+
+.header__sub-nav {
+  color: #f3f3f3;
+  flex: 1;
+  font-size: 1.2rem;
+}
+.header__sub-nav:hover,
+.header__sub-nav:focus {
+  color: white;
+  text-decoration: none;
+}
+
+/* active  */
+
+.header__main-nav-div > a > button.active {
+  color: #750fbc;
+  font-size: 2rem;
+  font-weight: bolder;
+  padding: 0.5rem 0;
+  border-top-left-radius: 2rem;
+  font-weight: 900;
+  border-top-right-radius: 2rem;
+  animation: header__active-button-animation 300ms 30ms ease-in-out forwards;
+}
+
+.header__main-nav-div > a > button.active > div {
+  pointer-events: none;
+}
+
+.header__main-nav-div > a > button.active > div > i {
+  font-size: 3.5rem;
+}
+
+/* fancy  */
+
+.header__main-nav-div > a > button.active::after,
+.header__main-nav-div > a > button.active::before {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  width: 2em;
+  height: 2em;
+  background: #750fbc;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.header__main-nav-div > a > button.active::after {
+  left: -2em;
+}
+
+.header__main-nav-div > a > button.active::before {
+  right: -2em;
+}
+
+.header__main-nav-div > a > button.active > div::after,
+.header__main-nav-div > a > button.active > div::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 1em;
+  height: 1em;
+  pointer-events: none;
+  z-index: 9;
+  animation: header__active-button-animation 300ms 30ms ease-in-out forwards;
+}
+
+.header__main-nav-div > a > button.active > div::after {
+  left: -0.9em;
+}
+
+.header__main-nav-div > a > button.active > div::before {
+  right: -0.9em;
+}
+
+@keyframes header__active-button-animation {
+  0% {
+    transform: translateY(100%);
+  }
+  80% {
+    transform: translateY(0%);
+    background-color: white;
+  }
+  100% {
+    transform: translateY(0);
+    background-color: white;
+  }
+}
+
+@keyframes header__button-animation {
+  0% {
+    transform: translateY(-100%);
+  }
+  80% {
+    transform: translateY(0%);
+    background-color: transparent;
+    color: white;
+  }
+  100% {
+    transform: translateY(0);
+    background-color: transparent;
+    color: white;
+  }
+}

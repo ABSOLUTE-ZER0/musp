@@ -1,0 +1,8 @@
+.alert__main-div {
+  margin: 1rem;
+}
+
+.alert__main-div > i {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+}

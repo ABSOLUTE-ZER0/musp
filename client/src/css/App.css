@@ -1,0 +1,108 @@
+:root {
+  --general: rgba(0, 128, 255, 0.15);
+  --management: rgba(0, 0, 0, 0.15);
+  --homework: rgba(43, 255, 0, 0.15);
+  --frustration: rgba(255, 174, 0, 0.15);
+  --casual: rgba(212, 0, 255, 0.15);
+
+  --generalSolid: rgb(0, 128, 255);
+  --managementSolid: rgb(99, 99, 99);
+  --homeworkSolid: rgb(33, 199, 0);
+  --frustrationSolid: rgb(255, 174, 0);
+  --casualSolid: rgb(212, 0, 255);
+}
+
+html {
+  background-color: #ffffff;
+  font-size: 0.625em;
+}
+
+textarea {
+  resize: none;
+  overflow-y: auto;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.box-shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.418);
+}
+
+.one-edge-shadow {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.705);
+}
+
+.one-edge-shadow-1 {
+  box-shadow: 0 5px 3px -3px rgba(0, 0, 0, 0.445);
+}
+
+.text-shadow {
+  background-clip: text;
+  text-shadow: 0px 3px 3px rgb(0, 0, 0);
+}
+
+.text-shadow-smooth {
+  text-shadow: 1px 0px 1px #ccc, 0px 1px 1px #eee, 2px 1px 1px #ccc,
+    1px 2px 1px #eee, 3px 2px 1px #ccc;
+}
+
+/* fancy  */
+
+@keyframes zoom-in-animation {
+  0% {
+    transform: scaleY(1.8);
+  }
+  80% {
+    transform: scaleY(0.7);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes down-hidden-animation {
+  0% {
+    transform: translateY(-300%);
+    opacity: 0;
+  }
+  80% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-hidden-animation {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes left-hidden-animation {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}

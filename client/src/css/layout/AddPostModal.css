@@ -1,0 +1,135 @@
+.addPostModal__modal {
+  margin-top: 10rem;
+  cursor: default;
+  user-select: none;
+}
+
+.modal {
+  overflow: visible !important;
+}
+
+.appPostModalContent {
+  border-radius: 1rem;
+}
+
+.addPostModal__header {
+  width: 90%;
+  color: rgb(0, 0, 0);
+  font-size: 2.2rem;
+  text-align: center;
+  margin: auto;
+  padding: 2rem 0 0;
+  position: relative;
+  top: -2rem;
+  border-radius: 1rem;
+  font-weight: 900;
+  border: 0;
+}
+
+.addPostModal__header > p {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal-header .close {
+  color: rgba(212, 0, 0, 0.801);
+  font-size: 3rem;
+  padding-top: 0.5rem;
+  opacity: 1;
+}
+
+.addPostModal__body {
+  padding: 2rem 4rem;
+  margin-bottom: 2rem;
+}
+
+.addPostModal__body > div {
+  display: flex;
+}
+
+.addPostModal__body > div > p {
+  flex: 15%;
+  margin-top: 3.2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+.addPostModal__input-div {
+  position: relative;
+  border-bottom: 2px solid #a3a3a38e;
+  display: flex;
+  transform: scale(0.98);
+  flex: 85%;
+}
+
+.addPostModal__input-div:focus-within {
+  border-bottom: 2px solid #750fbc;
+  transform: scale(1);
+  transition: transform 150ms;
+}
+
+.addPostModal__body > div > i {
+  font-size: 2rem;
+  position: relative;
+  top: 3.2rem;
+  left: 0;
+}
+
+.addPostModal__formControl-div > div {
+  flex: 85%;
+  margin-top: 1rem;
+  margin-right: auto;
+}
+
+.addPostModal__input {
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem 1rem 0.5rem;
+  border: 0;
+  margin: 2rem 0 0;
+}
+
+.addPostModal__input:focus {
+  outline: none;
+}
+
+.addPostModal__input::placeholder {
+  color: #a3a3a3;
+}
+
+.addPostModal__formControl {
+  margin: 2rem 0.5rem 0;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.addPostModal__formControl:focus {
+  border: 1px solid rgb(172, 172, 172);
+  box-shadow: none;
+}
+
+.addPostModal__button {
+  margin: 3rem 4rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: 0;
+  box-shadow: 0 2px 5px 0 rgb(55 161 255 / 26%),
+    0 4px 12px 0 rgb(121 155 254 / 25%);
+  background: linear-gradient(40deg, #45cafc, #303f9f);
+  border-radius: 10em;
+  color: white;
+  width: 40%;
+  margin-left: auto;
+}
+
+.addPostModal__button:hover {
+  box-shadow: 0 5px 11px 0 rgb(85 182 255 / 28%),
+    0 4px 15px 0 rgb(36 133 255 / 15%);
+  color: #fff;
+  transition: 0.5s ease;
+}

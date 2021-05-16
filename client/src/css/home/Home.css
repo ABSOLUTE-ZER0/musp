@@ -1,0 +1,155 @@
+.home__main-div {
+  margin-top: 13rem;
+  display: flex;
+  font-family: "Exo 2";
+}
+
+.home__tool-div {
+  flex: 30%;
+  position: relative;
+  background-color: white;
+  border-radius: 1rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-flow: column;
+  height: fit-content;
+  user-select: none;
+}
+
+.home__tool-div > div {
+  display: flex;
+  flex-flow: column;
+  margin: 2rem;
+}
+
+.home__form-div {
+  flex: 70%;
+  position: relative;
+  position: relative;
+  background-color: white;
+  margin: 0 1rem;
+  border-radius: 1rem;
+  height: fit-content;
+}
+
+.home__add-btn {
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #292929;
+  background-color: #292929;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.home__add-btn:hover {
+  background-color: white;
+  color: #292929;
+  transform: scale(1.02);
+  transition: transform 100ms;
+}
+
+.home__favourite-form > i {
+  color: gold;
+}
+
+.home__favourite-form:hover,
+.home__favourite-form:focus {
+  text-decoration: none;
+  color: gold;
+}
+
+.home__button:hover,
+.home__button:focus {
+  text-decoration: none;
+  color: #000000;
+}
+
+.home__all-form > i,
+.home__button > i {
+  margin-right: 1.5rem;
+}
+
+.home__button {
+  background-color: transparent;
+  font-size: 1.5rem;
+  border: 0;
+  text-align: left;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+#home__general.active {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--generalSolid);
+}
+
+#home__management.active {
+  font-weight: 900;
+  font-size: 1.7rem;
+  color: var(--managementSolid);
+}
+
+#home__homework.active {
+  font-weight: 900;
+  font-size: 1.7rem;
+  color: var(--homeworkSolid);
+}
+
+#home__frustration.active {
+  font-weight: 900;
+  font-size: 1.7rem;
+  color: var(--frustrationSolid);
+}
+
+#home__casual.active {
+  font-weight: 900;
+  font-size: 1.7rem;
+  color: var(--casualSolid);
+}
+
+.home__link {
+  color: rgb(0, 0, 0);
+}
+
+.home__link:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.home__search-div {
+  margin: 2rem;
+  margin-top: 0;
+  margin-left: 1rem;
+  display: flex;
+}
+
+.home__search {
+  flex: 90%;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border: 0;
+  background-color: #740fbc33;
+}
+
+.home__search::placeholder {
+  color: #292929;
+}
+
+.home__search:focus {
+  outline: 0;
+}
+
+.home__search-button {
+  flex: 10%;
+  font-size: 1.5rem;
+  background-color: #740fbc;
+  color: white;
+  border: 0;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}

@@ -1,0 +1,82 @@
+.login__main-div {
+  margin: 5rem 8rem;
+  color: #750fbc;
+  font-family: cursive;
+  position: relative;
+  cursor: default;
+}
+
+.login__brand {
+  margin-left: 90%;
+  font-size: 2.5rem;
+  text-align: center;
+  transition: transform 300ms;
+}
+
+.login__brand:hover {
+  transform: scale(1.1);
+  transition: transform 300ms;
+}
+
+.login__title {
+  text-transform: uppercase;
+  font-size: 3rem;
+  margin-top: 15rem;
+  margin-bottom: 2rem;
+  animation: zoom-in-animation 300ms 30ms ease-in-out forwards;
+}
+
+.login__input-div {
+  position: relative;
+  border-bottom: 2px solid #a3a3a38e;
+  display: flex;
+  transform: scale(0.98);
+}
+
+.login__input-div:focus-within {
+  border-bottom: 2px solid #750fbc;
+  transform: scale(1);
+  transition: transform 150ms;
+}
+
+.login__input-div > i {
+  font-size: 2rem;
+  position: relative;
+  top: 3.2rem;
+}
+
+.login__input {
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem 1rem 0.5rem;
+  border: 0;
+  margin: 2rem 0 0;
+}
+
+.login__input:focus {
+  outline: none;
+}
+
+.login__input::placeholder {
+  color: #a3a3a3;
+}
+
+.login__button {
+  width: 100%;
+  background-color: #750fbc;
+  border: 1px solid #750fbc;
+  font-size: 2rem;
+  margin-top: 4rem;
+  color: white;
+  padding: 1rem;
+  border-radius: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.login__button:hover,
+.login__button:active,
+.login__button:focus {
+  background-color: rgb(255, 255, 255);
+  color: #750fbc;
+}

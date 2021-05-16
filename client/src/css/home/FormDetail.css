@@ -1,0 +1,145 @@
+.formDetail__top-type-bar {
+  height: fit-content;
+  width: 100%;
+  padding-top: 10rem;
+  color: white;
+  pointer-events: none;
+  cursor: default;
+  font-family: "Exo 2";
+}
+
+.formDetail__top-type-bar > div {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-bottom: 5rem;
+}
+
+.formDetail__top-type-bar > p {
+  text-transform: capitalize;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.formDetail__tag {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.formDetail__quetion-div {
+  display: flex;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.formDetail__profile-img {
+  border-radius: 50%;
+  height: 6rem;
+  width: 6rem;
+  margin: 2rem;
+  font-size: 4rem;
+  color: white;
+  text-align: center;
+  font-weight: 500;
+  user-select: none;
+}
+
+.formDetail__profile-img > p {
+  margin-top: -0.5rem;
+}
+
+.formDetail__start-date {
+  margin: 1.5rem 0;
+}
+
+.formDetail__start-date > h1 {
+  font-size: 2rem;
+}
+
+.formDetail__start-date > p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(105, 105, 105);
+  margin-top: -0.5rem;
+}
+
+.formDetail__desc {
+  font-size: 1.5rem;
+  margin: 2rem 0 7rem;
+  white-space: pre-line;
+}
+
+.formDetail__upvote-div {
+  font-size: 2rem;
+  color: black;
+  margin-left: 5rem;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.formDetail__upvote-div.upvoted {
+  color: rgb(0, 4, 255);
+}
+
+.formDetail__favourite-div {
+  font-size: 2rem;
+  color: black;
+  margin-left: 5rem;
+  width: fit-content;
+  cursor: pointer;
+  white-space: pre-line;
+}
+
+.formDetail__favourite-div.favourite {
+  color: rgb(255, 208, 0);
+}
+
+.formDetail__comment-div {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.formDetail__comment {
+  flex: 1;
+}
+
+textarea.formDetail__comment-box {
+  width: 100%;
+  height: fit-content;
+  font-size: 1.5rem;
+  resize: vertical;
+  border: 0;
+  border: 1px dashed grey;
+  margin-top: 2rem;
+}
+
+textarea.formDetail__comment-box:focus,
+textarea.formDetail__comment-box:hover {
+  border: 1px dashed rgb(0, 0, 0);
+  outline: 0;
+}
+
+textarea.formDetail__comment-box::placeholder {
+  font-size: 1.5rem;
+}
+
+.formDetail__comment > button {
+  border: 0;
+  font-size: 1.8rem;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  color: white;
+  margin-left: 85%;
+  margin-top: 2rem;
+}
+
+.formDetail__all-comments-div {
+  margin-top: 2rem;
+}

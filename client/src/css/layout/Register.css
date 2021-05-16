@@ -1,0 +1,81 @@
+.register__main-div {
+  margin: 5rem 8rem;
+  color: #750fbc;
+  font-family: cursive;
+  position: relative;
+  cursor: default;
+}
+
+.register__brand {
+  margin-left: 90%;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.register__brand:hover {
+  transform: scale(1.1);
+  transition: transform 300ms;
+}
+
+.register__title {
+  text-transform: uppercase;
+  font-size: 3rem;
+  margin-top: 15rem;
+  margin-bottom: 2rem;
+  animation: zoom-in-animation 300ms 30ms ease-in-out forwards;
+}
+
+.register__input-div {
+  position: relative;
+  border-bottom: 2px solid #a3a3a38e;
+  transform: scale(0.98);
+  display: flex;
+}
+
+.register__input-div:focus-within {
+  border-bottom: 2px solid #750fbc;
+  transform: scale(1);
+  transition: transform 150ms;
+}
+
+.register__input-div > i {
+  font-size: 2rem;
+  position: relative;
+  top: 3.2rem;
+}
+
+.register__input {
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem 1rem 0.5rem;
+  border: 0;
+  margin: 2rem 0 0;
+}
+
+.register__input:focus {
+  outline: none;
+}
+
+.register__input::placeholder {
+  color: #a3a3a3;
+}
+
+.register__button {
+  width: 100%;
+  background-color: #750fbc;
+  border: 1px solid #750fbc;
+  font-size: 2rem;
+  margin-top: 4rem;
+  color: white;
+  padding: 1rem;
+  border-radius: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.register__button:hover,
+.register__button:active,
+.register__button:focus {
+  background-color: rgb(255, 255, 255);
+  color: #750fbc;
+}

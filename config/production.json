@@ -1,0 +1,7 @@
+{
+  "mongoURI": "mongodb+srv://admin:pQtFsvIbhVfXwbUs@cluster0.v9mog.mongodb.net/mainDB?retryWrites=true&w=majority",
+  "jwtSecret": "TryGuessingThisSucker",
+  "appMailId": "mec.studentportal@gmail.com",
+  "appMailPassword": "absolute0",
+  "apiURL": "https://boiling-headland-01485.herokuapp.com"
+}
