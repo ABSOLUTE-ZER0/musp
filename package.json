@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +21,8 @@
     "express-validator": "^6.10.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.7",
-    "nodemailer": "^6.6.0"
+    "nodemailer": "^6.6.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "concurrently": "^6.0.2"
