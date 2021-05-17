@@ -51,9 +51,10 @@ const Form = ({ form , getUserById }) => {
           </p>
           <div className='form__tags'>
             {form.tags &&
-              form.tags.slice(0, 6).map((tags) => (
+              form.tags.slice(0, 6).map((tags,index) => (
                 <div
                   className='form__tag'
+                  key={index}
                   style={{
                     backgroundColor: `${form.post_color
                       .substring(0, form.post_color.length - 1)

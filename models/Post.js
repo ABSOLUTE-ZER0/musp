@@ -7,31 +7,31 @@ const postSchema = mongoose.Schema({
   },
   author_name: {
     type: String,
-    require: true,
+    required: true,
   },
   author_color: {
     type: String,
-    require: true,
+    required: true,
   },
   title: {
     type: String,
-    require: true,
+    required: true,
     lowercase: true,
     trim: true,
   },
   desc: {
     type: String,
-    require: true,
+    required: true,
     lowercase: true,
     trim: true,
   },
   type: {
     type: String,
-    require: true,
+    required: true,
   },
   tags: {
     type: Array,
-    require: true,
+    required: true,
   },
   post_color: {
     type: String,

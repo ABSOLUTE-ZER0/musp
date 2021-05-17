@@ -7,6 +7,7 @@ import About from "../pages/others/About";
 import Verify from "../pages/auth/Verify";
 import Event from "../pages/event/Event";
 import Library from "../pages/library/Library";
+import LibrarySearch from "../pages/library/LibrarySearch";
 import FormDetails from "../pages/home/FormDetails";
 import { connect } from "react-redux";
 
@@ -40,6 +41,7 @@ function Routes({ auth, checkAuth }) {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/library' component={Library} />
+            <Route exact path='/library/search' component={LibrarySearch} />
             <Route exact path='/event' component={Event} />
             <Route exact path='/about' component={About} />
             <Route exact path='/login' component={Auth} />

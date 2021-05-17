@@ -102,8 +102,9 @@ const FormDetails = ({
           <p>{form.title}</p>
           <div>
             {form.tags &&
-              form.tags.map((tags) => (
+              form.tags.map((tags,index) => (
                 <div
+                  key={index}
                   style={{
                     color: `${form.post_color
                       .substring(0, form.post_color.length - 1)
@@ -186,8 +187,8 @@ const FormDetails = ({
           </div>
           <div className='formDetail__all-comments-div'>
             <h1>Comments</h1>
-            {form.comments.slice(0).reverse().map((comment) => (
-              <Comment comment={comment} post_color={form.post_color} />
+            {form.comments.slice(0).reverse().map((comment,index) => (
+              <Comment key={index} comment={comment} post_color={form.post_color} />
             ))}
           </div>
         </div>

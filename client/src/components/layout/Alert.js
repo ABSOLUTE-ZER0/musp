@@ -7,7 +7,7 @@ import "../../css/layout/Alert.css"
 const Alert = ({ alert }) => {
   if (alert.msg) {
     return (
-      <div key={alert.id} className={`alert__main-div alert-${alert.type}`}>
+      <div key={alert.id} className={`alert__main-div alert-${alert.type} one-edge-shadow`}>
         <i className='fas fa-info-circle'> {alert.msg} </i>
       </div>
     );

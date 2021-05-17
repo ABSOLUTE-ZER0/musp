@@ -1,28 +1,46 @@
 const mongoose = require("mongoose");
 
 const bookSchema = mongoose.Schema({
-  name: {
+  bookId: {
     type: String,
-    require: true
+    required: true
   },
-  author: {
+  title: {
     type: String,
-    require: true
+    required: true
   },
-  imageURL: {
+  authors: {
+    type: Array,
+  },
+  bookImage: {
     type: String
   },
-  desc: {
-    type: String,
-    require: true
+  publisher: {
+    type: String
+  },
+  publishedDate: {
+    type: String
+  },
+  description: {
+    type: String
+  },
+  pageCount: {
+    type: String
+  },
+  averageRating: {
+    type: String
   },
   avaliability: {
     type: Boolean,
-    require: true
+    required: true,
+    default: true
   },
   borrowedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users"
+  },
+  borrowedName: {
+    type: String
   },
   borrowStartDate: {
     type: Date

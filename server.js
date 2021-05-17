@@ -17,9 +17,6 @@ app.use(
   })
 );
 
-
-
-
 // DEFINE ROUTES
 
 app.use("/auth", require("./routes/auth"));

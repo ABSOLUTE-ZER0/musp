@@ -22,16 +22,16 @@ const AddPostModal = ({ modal, removeModal, user, setAlert, addForm }) => {
     post_color: "var(--general)",
   });
 
+
   const handleInput = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
 
   const submitPost = async () => {
     let tags = post.tags.split(",");
-    for (let index = 0; index < tags.length; index++) {
-      tags[index] = tags[index].trim()
-    }
-    tags = tags.filter(item => item !== "")
+    tags.map((tag, index) => (tags[index] = tags[index].trim()));
+    tags = tags.filter((item) => item !== "");
+
     const postData = {
       title: post.title,
       desc: post.description,
@@ -109,7 +109,11 @@ const AddPostModal = ({ modal, removeModal, user, setAlert, addForm }) => {
                 as='select'
                 style={{ backgroundColor: post.post_color }}
                 onChange={(e) => {
-                  setPost({ ...post, post_color: `var(--${e.target.value})`, type: e.target.value });
+                  setPost({
+                    ...post,
+                    post_color: `var(--${e.target.value})`,
+                    type: e.target.value,
+                  });
                 }}>
                 <option>general</option>
                 <option>management</option>

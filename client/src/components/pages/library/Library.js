@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from "../../layout/Header";
+import Carouser from "../../layout/LibraryCarousel";
 
 const Library = () => {
   return (
     <div>
       <Header page="header__library" />
-      <h1>Congrats!! authorized successfully</h1>
+      <Carouser className="library__carousel" />
     </div>
   );
 }

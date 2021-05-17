@@ -35,6 +35,7 @@ const Home = ({
   setAlert,
 }) => {
   const [type, setType] = useState(null);
+  const [searchAlert, setSearchAlert] = useState(false);
   const [search, setSearch] = useState("");
   useEffect(() => {
     async function fetchData() {
@@ -64,10 +65,12 @@ const Home = ({
     const res = await searchPost(filter, type);
     res && await setForms(res.data);
     if (res && res.data.length === 0) {
+      setSearchAlert(true)
       setAlert(
         "No such post found! Create a new question with your query",
         "warning"
       );
+      setTimeout(() => setSearchAlert(false), 5000);
     }
   };
 
@@ -75,10 +78,12 @@ const Home = ({
     const res = await searchPost(search, type);
     res && setForms(res.data);
     if (res && res.data.length === 0) {
+      setSearchAlert(true)
       setAlert(
         "No such post found! Create a new question with your query",
         "warning"
       );
+      setTimeout(() => setSearchAlert(false), 5000);
     }
   };
 
@@ -174,8 +179,8 @@ const Home = ({
           </div>
         </div>
         <div className='home__form-div'>
-          <Alert />
-          <div className='home__search-div'>
+          {searchAlert && <Alert />}
+          <div className='home__search-div one-edge-shadow-1'>
             <input
               value={search}
               onChange={searchForm}

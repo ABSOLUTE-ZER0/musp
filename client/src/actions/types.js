@@ -37,4 +37,12 @@ export const COMMENT_ADDED = 'COMMENT_ADDED';
 // modal 
 
 export const ADD_POST_MODAL = 'ADD_POST_MODAL';
+export const LIBRARY_SEARCH_MODAL = 'LIBRARY_SEARCH_MODAL';
 export const REMOVE_MODAL = 'REMOVE_MODAL';
+
+// library
+
+
+export const GET_BOOKS = 'GET_BOOKS';
+export const BOOKS_LOADED = 'BOOKS_LOADED';
+export const GET_BOOKS_FAIL = 'GET_BOOKS_FAIL';
