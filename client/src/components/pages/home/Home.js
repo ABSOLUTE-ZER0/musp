@@ -20,6 +20,7 @@ import Alert from "../../layout/Alert";
 import "../../../css/home/Home.css";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import Loader from "../../layout/Loader"
 
 const Home = ({
   auth,
@@ -191,9 +192,9 @@ const Home = ({
               Search
             </button>
           </div>
-          {form.forms &&
-            form.forms.map((form) => (
-              <Link to={`/post/${form._id}`} className='home__link'>
+          {
+            form.formsIsLoading ? <Loader /> : form.forms && form.forms.map((form,index) => (
+              <Link key={index} to={`/post/${form._id}`} className='home__link'>
                 <Form key={form._id} form={form} />
               </Link>
             ))}

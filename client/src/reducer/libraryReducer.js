@@ -6,7 +6,10 @@ import {
 
 const initialState = {
   books: null,
-  book: null
+  totalBooks: null,
+  book: null,
+  booksIsLoading: false,
+  error: null
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -15,15 +18,19 @@ export default (state = initialState, action) => {
     case BOOKS_LOADED:
       return {
         ...state,
-        books: action.payload,
+        books: action.payload.items,
+        totalBooks: action.payload.totalItems,
+        booksIsLoading: false
       };
       case GET_BOOKS:
         return {
           ...state,
           books: null,
+          booksIsLoading: true
         };
     case GET_BOOKS_FAIL:
       return {
+        error: action.payload,
         books: null,
         book: null
       };

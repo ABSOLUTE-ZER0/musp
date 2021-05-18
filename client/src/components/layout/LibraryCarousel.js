@@ -8,7 +8,7 @@ import "../../css/layout/LibraryCarousel.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { setAlert } from "../../actions/alertActions";
-import { searchBooks } from "../../actions/libraryActions";
+import { openSearchPage } from "../../actions/libraryActions";
 import Alert from "./Alert"
 
 import {
@@ -21,14 +21,12 @@ const LibraryCarousel = ({
   modal: { librarySearchModal },
   showLibrarySearchModal,
   setAlert,
-  searchBooks
+  openSearchPage
 }) => {
   const [search, setSearch] = useState("");
 
   const searchClicked = async () => {
-    const res = await searchBooks(search)
-
-    console.log(res);
+    const res = await openSearchPage(search)
 
     if (res && res.errors){
       setAlert(res.errors[0].msg,"warning")
@@ -96,7 +94,7 @@ const LibraryCarousel = ({
           <h1>Search for your book here</h1>
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={async (e) => await setSearch(e.target.value)}
             placeholder='Search...'
           />
           <div>
@@ -122,7 +120,7 @@ LibraryCarousel.propTypes = {
   removeModal: PropTypes.func.isRequired,
   showLibrarySearchModal: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
-  searchBooks: PropTypes.func.isRequired,
+  openSearchPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -133,5 +131,5 @@ export default connect(mapStateToProps, {
   removeModal,
   showLibrarySearchModal,
   setAlert,
-  searchBooks,
+  openSearchPage,
 })(LibraryCarousel);

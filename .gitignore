@@ -3,6 +3,7 @@ node_modules
 /dist
 email.html
 build
+scratch
 
 # local env files
 .env.local

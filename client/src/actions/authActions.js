@@ -125,7 +125,6 @@ export const loadUser = () => async (dispatch, getState) => {
     
     
     if(res.data.errors || res.data.token !== token){
-      history.push("/login")
       return dispatch({
         type: AUTH_ERROR,
         payload: res.data.errors
@@ -146,7 +145,6 @@ export const loadUser = () => async (dispatch, getState) => {
     }
 
   } catch (error) {
-    history.push("/login")
   }
 };
 

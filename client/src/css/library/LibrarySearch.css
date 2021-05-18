@@ -1,0 +1,62 @@
+.libSearch__main-div {
+  margin-top: 12rem;
+  font-family: "Exo 2";
+}
+
+.libSearch__books-div {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.libSearch__book {
+  padding: 4rem;
+  flex: 25%;
+  color: rgb(0, 0, 0);
+}
+
+.libSearch__book:hover {
+  text-decoration: none;
+  color: rgb(255, 60, 60);
+  transform: scale(1.03);
+  transition: transform 100ms;
+}
+
+.libSearch__button-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.libSearch__button {
+  background-color: transparent;
+  font-size: 2rem;
+  border: 0;
+}
+
+.libSearch__search-div {
+  padding: 5rem 0;
+}
+
+.libSearch__search-div > input {
+  padding: 0.5rem 2rem;
+  width: 100%;
+  border-radius: 1rem;
+  border: 0;
+  color: rgb(255, 255, 255);
+  outline: 0;
+  background-color: rgb(94, 94, 94);
+  font-size: 2.5rem;
+}
+
+.libSearch__search-div > button {
+  padding: 0.5rem 2rem;
+  margin-top: 2rem;
+  width: 20rem;
+  border-radius: 1rem;
+  border: 0;
+  color: rgb(255, 255, 255);
+  outline: 0;
+  background-color: rgb(255, 100, 100);
+  font-size: 2rem;
+  margin-left: auto;
+  display: block;
+}

@@ -41,7 +41,7 @@ function Routes({ auth, checkAuth }) {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/library' component={Library} />
-            <Route exact path='/library/search' component={LibrarySearch} />
+            <Route exact path='/library/search/:searchParam/:pageParam' component={LibrarySearch} />
             <Route exact path='/event' component={Event} />
             <Route exact path='/about' component={About} />
             <Route exact path='/login' component={Auth} />
