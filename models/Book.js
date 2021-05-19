@@ -7,15 +7,14 @@ const bookSchema = mongoose.Schema({
   },
   title: {
     type: String,
-    required: true
+  },
+  subtitle: {
+    type: String,
   },
   authors: {
     type: Array,
   },
   bookImage: {
-    type: String
-  },
-  publisher: {
     type: String
   },
   publishedDate: {
@@ -28,12 +27,15 @@ const bookSchema = mongoose.Schema({
     type: String
   },
   averageRating: {
-    type: String
+    type: String,
+    default: "N.A."
+  },
+  borrowedCount:{
+    type: Number,
+    default: 0
   },
   avaliability: {
     type: Boolean,
-    required: true,
-    default: true
   },
   borrowedBy: {
     type: mongoose.Schema.Types.ObjectId,

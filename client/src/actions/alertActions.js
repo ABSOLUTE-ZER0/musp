@@ -9,3 +9,9 @@ export const setAlert = (msg, type) => (dispatch) => {
   setTimeout(() => dispatch({ type: REMOVE_ALERT }), 5000);
 };
 
+export const removeAlert = () => (dispatch) => {
+  dispatch({
+    type: REMOVE_ALERT
+  });
+};
+

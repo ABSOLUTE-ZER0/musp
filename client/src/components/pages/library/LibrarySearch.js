@@ -3,14 +3,13 @@ import { useParams } from "react-router";
 import Header from "../../layout/Header";
 import Book from "../../layout/Book";
 import { connect } from "react-redux";
-import { searchBooks } from "../../../actions/libraryActions";
 import { loadUser } from "../../../actions/authActions";
 import Loader from "../../layout/Loader";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { openSearchPage } from "../../../actions/libraryActions";
-import { setAlert } from "../../../actions/alertActions";
-import Alert from "../../layout/Alert"
+import { openSearchPage , searchBooks } from "../../../actions/libraryActions";
+import { setAlert, removeAlert } from "../../../actions/alertActions";
+import Alert from "../../layout/Alert";
 import "../../../css/library/LibrarySearch.css";
 
 const LibrarySearch = ({
@@ -20,15 +19,17 @@ const LibrarySearch = ({
   loadUser,
   library,
   openSearchPage,
-  setAlert
+  setAlert,
+  removeAlert,
 }) => {
   let { searchParam, pageParam } = useParams();
   const [search, setSearch] = useState(searchParam);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       await loadUser();
-      await searchBooks(searchParam, pageParam);
+      setError(await searchBooks(searchParam, pageParam));
     }
     fetchData();
 
@@ -46,20 +47,17 @@ const LibrarySearch = ({
   };
 
   const searchClicked = () => {
-    if(search!==""){
+    if (search !== "") {
       openSearchPage(search, 0);
     } else {
-      setAlert("Enter something to search!","warning")
+      setAlert("Enter something to search!", "warning");
     }
   };
 
   const inputTyped = (e) => {
-    const value = e.target.value 
-    setSearch(value)
+    const value = e.target.value;
+    setSearch(value);
   };
-
-
-
 
   if (library.totalBooks) {
     if (
@@ -90,16 +88,17 @@ const LibrarySearch = ({
           </div>
           {library.totalBooks && (
             <div className='libSearch__button-div'>
-              {pageParam > 0 && (
+              {library.totalBooks > 20 && pageParam > 0 && (
                 <button onClick={prevPageLick} className='libSearch__button'>
                   <i className='fas fa-chevron-left'></i> Prev
                 </button>
               )}
-              {parseInt(pageParam) < parseInt(library.totalBooks) / 20 && (
-                <button onClick={nextPageLick} className='libSearch__button'>
-                  Next <i className='fas fa-chevron-right'></i>
-                </button>
-              )}
+              {library.totalBooks > 20 &&
+                parseInt(pageParam) < parseInt(library.totalBooks) / 20 - 1 && (
+                  <button onClick={nextPageLick} className='libSearch__button'>
+                    Next <i className='fas fa-chevron-right'></i>
+                  </button>
+                )}
             </div>
           )}
         </div>
@@ -120,18 +119,20 @@ const LibrarySearch = ({
         </div>
         {library.totalBooks && (
           <div className='libSearch__button-div'>
-            {pageParam > 0 && (
+            {library.totalBooks > 20 && pageParam > 0 && (
               <button onClick={prevPageLick} className='libSearch__button'>
                 <i className='fas fa-chevron-left'></i> Prev
               </button>
             )}
-            {parseInt(pageParam) < parseInt(library.totalBooks) / 20 && (
-              <button onClick={nextPageLick} className='libSearch__button'>
-                Next <i className='fas fa-chevron-right'></i>
-              </button>
-            )}
+            {library.totalBooks > 20 &&
+              parseInt(pageParam) < parseInt(library.totalBooks) / 20 - 1 && (
+                <button onClick={nextPageLick} className='libSearch__button'>
+                  Next <i className='fas fa-chevron-right'></i>
+                </button>
+              )}
           </div>
         )}
+        {error && <h2 style={{ textAlign: "center" }}>{error.msg}</h2>}
       </div>
     </div>
   );
@@ -142,10 +143,10 @@ LibrarySearch.propTypes = {
   loadUser: PropTypes.func.isRequired,
   openSearchPage: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
+  removeAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  modal: state.modal,
   auth: state.auth,
   library: state.library,
 });
@@ -154,5 +155,6 @@ export default connect(mapStateToProps, {
   searchBooks,
   loadUser,
   openSearchPage,
-  setAlert
+  setAlert,
+  removeAlert,
 })(LibrarySearch);

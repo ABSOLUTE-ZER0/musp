@@ -46,3 +46,6 @@ export const REMOVE_MODAL = 'REMOVE_MODAL';
 export const GET_BOOKS = 'GET_BOOKS';
 export const BOOKS_LOADED = 'BOOKS_LOADED';
 export const GET_BOOKS_FAIL = 'GET_BOOKS_FAIL';
+export const GET_BOOK = 'GET_BOOK';
+export const BOOK_LOADED = 'BOOK_LOADED';
+export const GET_BOOK_FAIL = 'GET_BOOK_FAIL';

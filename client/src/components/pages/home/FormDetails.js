@@ -32,7 +32,7 @@ const FormDetails = ({
   const { id } = useParams();
   const [author, setAuthor] = useState(null);
   const [date, setDate] = useState(null);
-  const [desc, setDesc] = useState(null);
+  const [desc, setDesc] = useState("");
   const [upvoted, setUpvote] = useState(null);
   const [favourite, setFavourite] = useState(null);
 
@@ -131,7 +131,7 @@ const FormDetails = ({
               <p className='formDetail__desc'>{form.desc}</p>
             </div>
           </div>
-          <div style={{display:"flex"}}>
+          <div style={{display:"flex" , userSelect: "none"}}>
             <div
               onClick={clickedUpvote}
               className={classNames("formDetail__upvote-div", {
