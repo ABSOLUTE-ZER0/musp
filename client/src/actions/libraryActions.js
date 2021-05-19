@@ -28,7 +28,7 @@ export const searchBooks =
         config.headers["x-auth-token"] = token;
       }
 
-      const res = await API.post("/library/search", { search, page }, config);
+      const res = await API.post("/api/library/search", { search, page }, config);
 
       if (res && res.data.msg) {
         dispatch({

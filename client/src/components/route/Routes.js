@@ -46,7 +46,7 @@ function Routes({ auth, checkAuth }) {
             <Route exact path='/about' component={About} />
             <Route exact path='/login' component={Auth} />
             <Route exact path='/verify' component={Verify} />
-            <Route path='/post/:id' component={FormDetails} />
+            <Route exact path='/post/:id' component={FormDetails} />
           </Switch>
         )}
 

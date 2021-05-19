@@ -19,11 +19,11 @@ app.use(
 
 // DEFINE ROUTES
 
-app.use("/auth", require("./routes/auth"));
-app.use("/user", require("./routes/user"));
-app.use("/post", require("./routes/post"));
-app.use("/library", require("./routes/library"));
-app.use("/timetable", require("./routes/timetable"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/user", require("./routes/user"));
+app.use("/api/post", require("./routes/post"));
+app.use("/api/library", require("./routes/library"));
+app.use("/api/timetable", require("./routes/timetable"));
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static("client/build"))

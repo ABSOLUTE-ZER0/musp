@@ -3,5 +3,5 @@
   "jwtSecret": "TryGuessingThisSucker",
   "appMailId": "mec.studentportal@gmail.com",
   "appMailPassword": "absolute0",
-  "apiURL": "https://boiling-headland-01485.herokuapp.com"
+  "apiURL": "https://musp.herokuapp.com"
 }

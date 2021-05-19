@@ -21,7 +21,7 @@ const history = createBrowserHistory({
 
 export const addUser = (userData) => async (dispatch) => {
   try {
-    const res = await API.post("/user", userData);
+    const res = await API.post("/api/user", userData);
     if (res.data.errors) {
       return res.data;
     }
@@ -43,7 +43,7 @@ export const addUser = (userData) => async (dispatch) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const verify = await API.post("/user/verify", null, config);
+    const verify = await API.post("/api/user/verify", null, config);
 
     if (verify.data.errors) {
       dispatch({
@@ -70,7 +70,7 @@ export const addUserFail = (userData) => async (dispatch) => {
 
 export const loginUser = (userData) => async (dispatch) => {
   try {
-    const res = await API.post("/auth", userData);
+    const res = await API.post("/api/auth", userData);
     if (res.data.errors) {
       return res.data;
     }
@@ -114,7 +114,7 @@ export const loadUser = () => async (dispatch, getState) => {
     }
     
     
-    const res = await API.get("/auth", config);
+    const res = await API.get("/api/auth", config);
     
     localStorage.setItem("token", token)
     
@@ -185,7 +185,7 @@ export const getUserById = (id) => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.get(`/user/${id}`, config);
+    const res = await API.get(`/api/user/${id}`, config);
 
     return res.data;
 
@@ -214,7 +214,7 @@ export const checkAuth = () => async (dispatch, getState) => {
       config.headers["x-auth-token"] = token;
     }
     
-    const res = await API.get("/auth", config);
+    const res = await API.get("/api/auth", config);
     
     if(res.data.errors || res.data.token !== token){
       return "auth"

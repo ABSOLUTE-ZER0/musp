@@ -195,7 +195,7 @@ const Home = ({
           {
             form.formsIsLoading ? <Loader /> : form.forms && form.forms.map((form,index) => (
               <Link key={index} to={`/post/${form._id}`} className='home__link'>
-                <Form key={form._id} form={form} />
+                <Form form={form} />
               </Link>
             ))}
         </div>

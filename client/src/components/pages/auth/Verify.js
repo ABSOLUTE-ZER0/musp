@@ -27,7 +27,7 @@ const Verify = ({  setAlert }) => {
       config.headers["x-auth-token"] = token;
     }
 
-    const res = await API.post("/user/verify", null, config);
+    const res = await API.post("/api/user/verify", null, config);
 
     if (res.data.errors) {
       setAlert(res.data.errors[0].msg, "warning");
