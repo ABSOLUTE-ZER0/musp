@@ -19,7 +19,8 @@ const FormComments = ({ comment, post_color, getUserById }) => {
   }, [getUserById]);
 
   if (comment && !date) {
-    setDate(dateFormat(Date(comment.date), "fullDate"));
+    const temp = new Date(comment.date)
+    setDate(dateFormat(temp, "fullDate"));
   }
 
   return (
