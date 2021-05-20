@@ -3,5 +3,5 @@
   "jwtSecret": "TryGuessingThisSucker",
   "appMailId": "mec.studentportal@gmail.com",
   "appMailPassword": "absolute0",
-  "apiURL": "https://musp.herokuapp.com"
+  "apiURL": "https://musp.herokuapp.com/api"
 }
