@@ -60,7 +60,7 @@ const BookDetails = ({
 
   const handleBorrow = () => {
     const date = new Date();
-    if (book.borrowedBy === user._id) {
+    if (book.borrowedBy === user._id  && !book.avaliability) {
       if (book.borrowEndDate > date) {
         showBorrowModal("reBorrow");
       } else {
