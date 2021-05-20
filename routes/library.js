@@ -59,7 +59,7 @@ router.get("/borrow/:id", auth, async (req, res) => {
             description: googleBook.volumeInfo.description,
             pageCount: googleBook.volumeInfo.pageCount,
             averageRating: googleBook.volumeInfo.averageRating,
-            bookImage: googleBook.volumeInfo.imageLinks.thumbnail,
+            bookImage: googleBook.volumeInfo.imageLinks && googleBook.volumeInfo.imageLinks.thumbnail,
             avaliability: true,
           });
 

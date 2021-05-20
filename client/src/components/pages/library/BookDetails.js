@@ -28,7 +28,7 @@ const BookDetails = ({ getBook, library: { book } }) => {
             <div className='bookDetails__book-background'>
               <img
                 src={book.bookImage}
-                alt=''
+                alt='Book Img'
               />
             </div>
           </div>
