@@ -1,0 +1,11 @@
+.borrowModal__modal > div > div > .modal-header > .modal-title {
+  font-size: 2rem;
+}
+
+.borrowModal__modal > div > div > .modal-body {
+  font-size: 1.5rem;
+}
+
+.borrowModal__modal > div > div > .modal-footer > button {
+  font-size: 1.5rem;
+}

@@ -96,3 +96,37 @@ export const getBook = (id) => async (dispatch) => {
     return error;
   }
 };
+
+export const borrowBook = (id) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const headers = {
+      duration: 14
+    }
+
+    const res = await API.post(
+      `/api/library/borrow/${id}`,
+      headers,
+      config
+    );
+
+    if (res && res.data.msg) {
+      return res.data;
+    }
+
+
+  } catch (error) {
+    return error;
+  }
+};

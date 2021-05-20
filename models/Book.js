@@ -41,7 +41,7 @@ const bookSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users"
   },
-  borrowedName: {
+  borrowerName: {
     type: String
   },
   borrowStartDate: {

@@ -41,6 +41,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         book: action.payload,
+        books: null
       };
     case GET_BOOK:
       return {

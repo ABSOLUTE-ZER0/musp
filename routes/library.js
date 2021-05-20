@@ -20,6 +20,8 @@ router.get("/borrow/:id", auth, async (req, res) => {
     let bookId = req.params.id;
     global.googleBook = "";
 
+    const uri = encodeURI(`/books/v1/volumes/${bookId}?key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo`)
+
     const book = await Book.findOne({ bookId: bookId });
 
     if (book) {
@@ -28,7 +30,7 @@ router.get("/borrow/:id", auth, async (req, res) => {
       const request = https.request(
         {
           host: "www.googleapis.com",
-          path: `/books/v1/volumes/${bookId}?key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo`,
+          path: uri,
           method: "GET",
         },
         function (response) {
@@ -59,7 +61,7 @@ router.get("/borrow/:id", auth, async (req, res) => {
             description: googleBook.volumeInfo.description,
             pageCount: googleBook.volumeInfo.pageCount,
             averageRating: googleBook.volumeInfo.averageRating,
-            bookImage: googleBook.volumeInfo.imageLinks && googleBook.volumeInfo.imageLinks.thumbnail,
+            bookImage: googleBook.volumeInfo.imageLinks ? googleBook.volumeInfo.imageLinks.thumbnail : null,
             avaliability: true,
           });
 
@@ -69,7 +71,7 @@ router.get("/borrow/:id", auth, async (req, res) => {
         } catch (error) {
           console.log(error);
         }
-      }, 500);
+      }, 1000);
     }
   } catch (err) {
     console.error(err.message);
@@ -85,8 +87,7 @@ router.post(
     [
       check("duration", "Please enter a duration in between 0 and 14 days!")
         .notEmpty()
-        .isInt({ min: 0, max: 14 }),
-      check("search", "Please enter somthing!").notEmpty(),
+        .isInt({ min: 0, max: 14 })
     ],
     auth,
   ],
@@ -111,7 +112,7 @@ router.post(
       };
 
       const user = await User.findById(req.user.id).select("-password");
-      const book = await Book.findOne({ bookId: bookId });
+      let book = await Book.findOne({ bookId: bookId });
 
       if (book) {
         if (!book.avaliability) {
@@ -119,16 +120,14 @@ router.post(
             msg: "This book is not available for borrowing at the given movement! Try again later",
           });
         }
-        book = {
-          avaliability: false,
-          borrowedBy: user.id,
-          borrowerName: user.name,
-          borrowedCount: book.borrowedCount + 1,
-          borrowStartDate: date.getTime(),
-          borrowEndDate: date.addDays(duration),
-        };
+          book.avaliability= false,
+          book.borrowedBy= user.id,
+          book.borrowerName= user.name,
+          book.borrowedCount= book.borrowedCount + 1,
+          book.borrowStartDate= date.getTime(),
+          book.borrowEndDate= date.addDays(duration),
 
-        book.save();
+        book.save()
 
         res.json(book);
       }
@@ -159,11 +158,13 @@ router.post(
       page = page * 20;
 
       global.temp = "";
+      const uri = encodeURI(`/books/v1/volumes?q=${search}&key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo&maxResults=20&startIndex=${page}&fields=totalItems,items(id,volumeInfo(title,subtitle,authors,publishedDate,description,pageCount,imageLinks(thumbnail),averageRating))`)
+
 
       const request = https.request(
         {
           host: "www.googleapis.com",
-          path: `/books/v1/volumes?q=${search}&key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo&maxResults=20&startIndex=${page}&fields=totalItems,items(id,volumeInfo(title,subtitle,authors,publishedDate,description,pageCount,imageLinks(thumbnail),averageRating))`,
+          path: uri,
           method: "GET",
         },
         function (response) {

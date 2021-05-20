@@ -1,16 +1,18 @@
 .bookDetails__main-div {
   margin-top: 9rem;
+  font-family: "Exo 2";
 }
 
 .bookDetails__background {
   width: 100vw;
-  background: linear-gradient(
+  background: url("../../images/library/tj1tful13egdb8yor6fdwnimageSREZ.png");
+  /* background: linear-gradient(
     315deg,
     rgba(117, 15, 188, 1) 0%,
     rgba(117, 15, 188, 1) 40%,
     rgba(255, 255, 255, 1) 40%,
     rgba(255, 255, 255, 1) 100%
-  );
+  ); */
   height: 80rem;
   background-size: cover;
   position: relative;
@@ -32,9 +34,23 @@
   width: 31rem;
   height: 59.5rem;
   clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 94.2%);
+  user-select: none;
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 25rem;
+  margin-left: 8rem;
+  font-weight: 600;
 }
 
-.bookDetails__book-background::before {
+.bookDetails__book-background.before > img {
+  text-align: none;
+  font-size: 0;
+  margin-top: 0;
+  margin-left: 0;
+  font-weight: 0;
+}
+
+.bookDetails__book-background.before::before {
   content: "";
   position: absolute;
   width: 32rem;
@@ -48,4 +64,60 @@
 .bookDetails__book-background:hover {
   transform: scale(1.1) translateX(-5rem);
   transition: transform 300ms;
+}
+
+.bookDetails__details {
+  padding-top: 15rem;
+  padding-left: 15rem;
+  line-height: 1.5;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bookDetails__rating {
+  margin-left: auto;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.bookDetails__title {
+  font-size: 4rem;
+  width: 100%;
+  letter-spacing: 2px;
+  font-family: fantasy;
+}
+
+.bookDetails__subtitle {
+  font-weight: 900;
+  width: 100%;
+}
+
+.bookDetails__desc {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-family: "Kalam", cursive;
+  max-height: 20rem;
+  overflow: hidden;
+}
+
+.bookDetails__avaliability {
+  margin-top: 3rem;
+  font-size: 2rem;
+  width: 100%;
+  font-weight: 700;
+}
+
+.bookDetails__borrow-btn {
+  margin-top: 3rem;
+  font-size: 2rem;
+  width: 30rem;
+  padding: 0.5rem 1rem;
+  border: 0;
+  background-color: rgb(255, 56, 56);
+  border-radius: 5rem;
+  color: white;
 }
