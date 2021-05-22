@@ -146,7 +146,7 @@ router.post(
       );
 
       setTimeout(() => {
-        let uri = "http://localhost:3000/login/forgot/" + token;
+        let uri = "https://musp.herokuapp.com/login/forgot/" + token;
 
         const mailData = {
           from: config.get("appMailId"),
