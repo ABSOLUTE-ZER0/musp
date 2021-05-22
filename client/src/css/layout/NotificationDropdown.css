@@ -1,0 +1,122 @@
+.notificationDropdown__profile-img {
+  border-radius: 50%;
+  height: 3.5rem;
+  width: 3.5rem;
+  color: white;
+  margin: 1rem;
+  margin-left: 2rem;
+  font-size: 2rem;
+  line-height: 1.8;
+  flex: auto;
+  text-align: center;
+  font-family: cursive;
+  user-select: none;
+  text-transform: capitalize;
+}
+
+.notificationDropdown__div {
+  display: flex;
+  width: 50rem;
+  padding: 1rem 0;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+}
+
+.notificationDropdown__message {
+  margin-top: 1rem;
+  position: relative;
+  font-size: 1.3rem;
+  flex: 90%;
+  padding-right: 5rem;
+}
+.notificationDropdown__div.read {
+  background-color: rgb(226, 226, 226);
+  font-weight: normal;
+}
+
+.notificationDropdown__div:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.notificationDropdown__div.clicked {
+  flex-flow: column;
+  padding: 1rem 0;
+  background-color: rgb(226, 226, 226);
+  font-weight: normal;
+}
+
+.notificationDropdown__message.clicked {
+  padding: 0.5rem 2rem;
+  width: fit-content;
+}
+
+.notificationDropdown__date {
+  padding: 0;
+  margin: 0;
+}
+
+.notificationDropdown__sender-name {
+  margin: 0;
+  margin-top: 0.75rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.notificationDropdown__clicked-profile-div {
+  display: flex;
+}
+
+.notificationDropdown__clicked-name-div {
+  flex: 87%;
+}
+
+.notificationDropdown__close {
+  position: absolute;
+  right: 2rem;
+  font-size: 2rem;
+  top: 0;
+  background-color: transparent;
+  border: 0;
+  color: red;
+  z-index: 1;
+}
+
+.notificationDropdown__unred-mark {
+  position: absolute;
+  left: 1rem;
+  font-size: 1rem;
+  top: 0;
+  background-color: transparent;
+  border: 0;
+  color: red;
+  z-index: 1;
+}
+
+.notificationDropdown__button-div {
+  text-align: right;
+  padding: 0 2rem 1rem;
+  background-color: rgb(226, 226, 226);
+}
+
+.notificationDropdown__button-div > button {
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  color: white;
+  margin-right: 1rem;
+  position: relative;
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.notificationDropdown__button-reject {
+  background-color: rgb(255, 94, 94);
+}
+
+.notificationDropdown__button-accept {
+  background-color: rgb(0, 180, 45);
+}
+
+.notificationDropdown__button-understood {
+  background-color: rgb(0, 88, 189);
+}

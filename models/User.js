@@ -10,6 +10,9 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  notifications: {
+    type: Array,
+  },
   password: {
     type: String,
     required: true,

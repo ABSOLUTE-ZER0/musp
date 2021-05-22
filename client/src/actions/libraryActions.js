@@ -112,20 +112,128 @@ export const borrowBook = (id) => async (dispatch) => {
     }
 
     const headers = {
-      duration: 14
-    }
+      duration: 14,
+    };
 
-    const res = await API.post(
-      `/api/library/borrow/${id}`,
-      headers,
-      config
-    );
+    const res = await API.post(`/api/library/borrow/${id}`, headers, config);
 
     if (res && res.data.msg) {
       return res.data;
     }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const lendBook = (id, name, bookName) => async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const body = {
+      id,
+      bookName,
+      type: "request",
+      message: `Hey there! I'm ${name}, if you are not using the book "${bookName}" at the moment, would you lend me that book for a day or two!`,
+    };
+    
+    await API.post(`/api/user/message`, body, config);
+    
+  } catch (error) {
+    return error;
+  }
+};
 
 
+export const replyLendBook = (id, name, bookName, responce) => async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    let body = {}
+
+    if(responce === "REJECTED"){
+      body = {
+        id,
+        bookName,
+        type: "responce",
+        message:  `Your request to lend the book "${bookName}" from  ${name} was REJECTED.`,
+      };
+    } else{
+      body = {
+        id,
+        type: "responce",
+        bookName,
+        message:  `Your request to lend the book "${bookName}" from  ${name} was ACCEPTED. Please contact ${name} in-person and collect your book`,
+      };
+    }
+    
+    const res = await API.post(`/api/user/message`, body, config);
+    console.log(res,body);
+  } catch (error) {
+    return error;
+  }
+};
+
+
+
+export const readMessage = (id) => async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    await API.post(`/api/user/message/read/${id}`, {}, config);
+  } catch (error) {
+    return error;
+  }
+};
+
+
+
+export const deleteMessage = (id) => async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    
+    await API.post(`/api/user/message/delete/${id}`, {}, config);
+    
   } catch (error) {
     return error;
   }

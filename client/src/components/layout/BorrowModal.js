@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { removeModal } from "../../actions/modalActions";
+import { lendBook } from "../../actions/libraryActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "../../css/layout/BorrowModal.css";
@@ -12,7 +13,7 @@ const history = createBrowserHistory({
   forceRefresh: true,
 });
 
-const BorrowModal = ({ modal, removeModal, borrowedName, id }) => {
+const BorrowModal = ({ modal, removeModal, library: {book}, lendBook, user}) => {
   const [show, setShow] = useState(null);
 
   if (modal.borrow && !show) {
@@ -22,8 +23,14 @@ const BorrowModal = ({ modal, removeModal, borrowedName, id }) => {
   const handleClose = () => {
     removeModal();
     setShow(null);
-    history.push(`/library/book/${id}`);
+    history.push(`/library/book/${book.bookId}`);
   };
+
+  const requestToLend = async() => {
+    lendBook(book.borrowedBy , user.name , book.title)
+    removeModal();
+    history.push(`/library/book/${book.bookId}`);
+  }
 
   return (
     <div>
@@ -82,7 +89,7 @@ const BorrowModal = ({ modal, removeModal, borrowedName, id }) => {
           <Modal.Title>Request to lend</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          The following book is already borrowed by {borrowedName}. You can send
+          The following book is already borrowed by {book.borrowerName}. You can send
           him a message from here requesting him to lend you the book for a day
           or two!
         </Modal.Body>
@@ -90,7 +97,7 @@ const BorrowModal = ({ modal, removeModal, borrowedName, id }) => {
           <Button onClick={handleClose} variant='danger'>
             Close
           </Button>
-          <Button variant='primary'>Request to lend</Button>
+          <Button onClick={requestToLend} variant='primary'>Request to lend</Button>
         </Modal.Footer>
       </Modal>
 
@@ -125,6 +132,8 @@ BorrowModal.propTypes = {
 
 const mapStateToProps = (state) => ({
   modal: state.modal,
+  library: state.library,
+  user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { removeModal })(BorrowModal);
+export default connect(mapStateToProps, { removeModal, lendBook })(BorrowModal);

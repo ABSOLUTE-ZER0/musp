@@ -6,6 +6,7 @@ const transporter = require("../config/transporter");
 const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
+var mongoose = require("mongoose");
 
 const User = require("../models/User");
 
@@ -18,27 +19,6 @@ router.get("/", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// get user by id
-
-router.get("/:id", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-function getRandomColor() {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color!="#FFFFFF" ? color : getRandomColor();
-}
 
 router.post(
   "/",
@@ -81,7 +61,7 @@ router.post(
         email,
         password,
         token: null,
-        color: getRandomColor()
+        color: getRandomColor(),
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -154,16 +134,168 @@ router.post("/verify", auth, async (req, res) => {
   }
 });
 
+// send a message
+
+router.post(
+  "/message",
+  [
+    [
+      check("id", "Please enter the recievers id").notEmpty(),
+      check("message", "Please enter the message").notEmpty(),
+    ],
+    auth,
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    try {
+      const recieverId = req.body.id;
+      const bookName = req.body.bookName;
+      const type = req.body.type;
+      const senderId = req.user.id;
+
+      if (senderId === recieverId) {
+        const error = [{ msg: "Cannot send message to yourself!" }];
+        return res.status(400).json({
+          errors: error,
+        });
+      }
+      const message = req.body.message;
+      let reciever = await User.findOne({ _id: recieverId }).select(
+        "-password"
+      ); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+      let sender = await User.findOne({ _id: senderId }).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+      if (!reciever) {
+        const error = [{ msg: "User doesn't exists" }];
+        return res.status(400).json({
+          errors: error,
+        });
+      }
+
+      const notification = {
+        id: mongoose.Types.ObjectId(),
+        senderId,
+        senderName: sender.name,
+        bookName,
+        message,
+        type,
+        date: Date(),
+        read: false,
+      };
+
+      reciever.notifications.push(notification);
+
+      reciever.save();
+
+      res.json(reciever.notifications);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// message read
+
+router.post(
+  "/message/read/:id",
+  [[check("id", "Please enter the message id").notEmpty()], auth],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    try {
+      const id = req.user.id;
+      const notificationid = req.params.id;
+
+      let user = await User.findOne({ _id: id }).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+      if (!user) {
+        const error = [{ msg: "User doesn't exists" }];
+        return res.status(400).json({
+          errors: error,
+        });
+      }
+
+      user.notifications.forEach((notification, i) => {
+        if (notification.id == notificationid) {
+          user.notifications[i].read = true;
+          user.notifications[i].senderName = user.notifications[i].senderName;
+        }
+      });
+      
+      user.markModified(`notifications`);
+      await user.save();
+
+      res.json(user.notifications);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// delete message
+
+router.post(
+  "/message/delete/:id",
+  [[check("id", "Please enter the message id").notEmpty()], auth],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    try {
+      const id = req.user.id;
+      const notificationid = req.params.id;
+
+      let user = await User.findOne({ _id: id }).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+      if (!user) {
+        const error = [{ msg: "User doesn't exists" }];
+        return res.status(400).json({
+          errors: error,
+        });
+      }
+
+      user.notifications = user.notifications.filter(
+        (notification) => notification.id != notificationid
+      );
+
+      user.save();
+
+      res.json(user.notifications);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// verify user
+
 router.get("/verify/:id", async (req, res) => {
   try {
     const decoded = jwt.verify(req.params.id, config.get("jwtSecret"));
 
     const userId = decoded.user;
     const user = await User.findById(userId.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
-
     if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
     }
-
     user.verified = true;
 
     user.save();
@@ -173,6 +305,8 @@ router.get("/verify/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// delete user
 
 router.get("/delete/:id", async (req, res) => {
   try {
@@ -195,5 +329,33 @@ router.get("/delete/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// get user by id
+
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+function getRandomColor() {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color != "#FFFFFF" ? color : getRandomColor();
+}
 
 module.exports = router;

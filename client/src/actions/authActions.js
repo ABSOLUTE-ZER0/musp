@@ -223,6 +223,10 @@ export const checkAuth = () => async (dispatch, getState) => {
     if(!res.data.verified){
       return "verify"
     } else{
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
       return "clear"
     }
   }

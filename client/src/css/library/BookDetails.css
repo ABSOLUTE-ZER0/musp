@@ -4,7 +4,7 @@
 }
 
 .bookDetails__background {
-  width: 100vw;
+  width: 100%;
   background: url("../../images/library/tj1tful13egdb8yor6fdwnimageSREZ.png");
   /* background: linear-gradient(
     315deg,
@@ -76,14 +76,6 @@
   justify-content: center;
 }
 
-.bookDetails__rating {
-  margin-left: auto;
-  width: 100%;
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: right;
-}
-
 .bookDetails__title {
   font-size: 4rem;
   width: 100%;
@@ -94,6 +86,12 @@
 .bookDetails__subtitle {
   font-weight: 900;
   width: 100%;
+}
+
+.bookDetails__author {
+  text-align: right;
+  width: 100%;
+  font-size: 2rem;
 }
 
 .bookDetails__desc {
@@ -120,4 +118,67 @@
   background-color: rgb(255, 56, 56);
   border-radius: 5rem;
   color: white;
+}
+
+.bookDetails__sub-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 5rem;
+}
+
+.bookDetails__sub-title > span {
+  background-color: black;
+  width: fit-content;
+  padding: 0.8rem 0;
+  color: white;
+  overflow: visible;
+}
+
+.bookDetails__sub-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid red;
+  width: fit-content;
+  margin-top: 10rem;
+  color: rgb(0, 0, 0);
+}
+
+.bookDetails__features {
+  display: flex;
+  margin: 5rem 0;
+  border: 1px solid rgb(141, 141, 141);
+  text-align: center;
+  align-items: center;
+}
+
+.bookDetails__features > div {
+  flex: 1;
+  padding: 2rem 0;
+  font-size: 2rem;
+  border: 1px solid rgb(141, 141, 141);
+}
+.bookDetails__features > div > div {
+  flex: 1;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.bookDetails__about-div {
+  margin-top: 5rem;
+}
+
+.bookDetails__about-common {
+  display: flex;
+  margin: 2rem;
+}
+
+.bookDetails__about1 {
+  flex: 30%;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.bookDetails__about2 {
+  flex: 70%;
+  font-size: 1.5rem;
 }
