@@ -40,9 +40,7 @@ const Verify = ({  setAlert }) => {
     <div> 
     <Header page="none" />
     <div className='verify__main-div container'>
-    <div className='verify__alert-div'>
       <Alert />
-    </div>
     <h1 className='verify__title'>Email verification</h1>
     <div className='verify__sub-div'>
       <div className='verify__text-div'>

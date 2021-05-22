@@ -80,7 +80,7 @@ router.post(
         payload,
         config.get("jwtSecret"),
         {
-          expiresIn: 100000,
+          expiresIn: 1440,
         },
         async (err, token) => {
           if (err) throw err;
@@ -299,7 +299,7 @@ router.get("/verify/:id", async (req, res) => {
     user.verified = true;
 
     user.save();
-    res.json("User successfully verified!");
+    res.redirect("https://musp.herokuapp.com/")
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
