@@ -5,6 +5,8 @@ import Home from "../pages/home/Home";
 import Auth from "../pages/auth/Auth";
 import About from "../pages/others/About";
 import Verify from "../pages/auth/Verify";
+import ForgotPasswordRequest from "../pages/auth/ForgotPasswordRequest";
+import ForgotPasswordResponce from "../pages/auth/ForgotPasswordResponce";
 import Event from "../pages/event/Event";
 import Library from "../pages/library/Library";
 import LibrarySearch from "../pages/library/LibrarySearch";
@@ -28,6 +30,8 @@ function Routes({ auth, checkAuth }) {
       <Router>
       {type === "auth" && (
           <Switch>
+            <Route exact path='/login/forgot' component={ForgotPasswordRequest} />
+            <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />
             <Route path='/*' component={Auth} />
           </Switch>
         )}

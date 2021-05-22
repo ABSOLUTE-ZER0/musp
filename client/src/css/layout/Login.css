@@ -80,3 +80,10 @@
   background-color: rgb(255, 255, 255);
   color: #750fbc;
 }
+
+.login__forgot {
+  text-align: right;
+  font-size: 1.5rem;
+  display: block;
+  margin-top: 3rem;
+}

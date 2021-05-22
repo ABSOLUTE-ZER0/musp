@@ -8,7 +8,8 @@ import {
   VERIFY_USER,
   VERIFY_USER_FAIL,
   AUTH_ERROR,
-  SET_ALERT
+  SET_ALERT,
+  FORGOT_PASSWORD_FAIL
 } from "../actions/types";
 
 
@@ -89,6 +90,54 @@ export const loginUser = (userData) => async (dispatch) => {
     });
   }
 };
+
+
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    const res = await API.post("/api/auth/forgot", {email});
+    if (res.data.errors) {
+      return res.data;
+    }
+    
+    dispatch({
+      type: FORGOT_PASSWORD_FAIL,
+      payload: res.data,
+    });
+
+    return res
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAIL,
+      payload: error,
+    });
+  }
+};
+
+
+
+export const resetPassword = (id,password) => async (dispatch) => {
+  try {
+    const res = await API.post(`/api/auth/forgot/${id}`, {password});
+    if (res.data.errors) {
+      return res.data;
+    }
+    
+    dispatch({
+      type: FORGOT_PASSWORD_FAIL,
+      payload: res.data,
+    });
+
+    history.push("/login")
+    return res
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAIL,
+      payload: error,
+    });
+  }
+};
+
+
 
 export const loginFail = (userData) => async (dispatch) => {
     dispatch({

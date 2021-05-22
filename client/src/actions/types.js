@@ -11,6 +11,8 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const ADD_USER_FAIL = 'ADD_USER_FAIL';
 export const VERIFY_USER = 'VERIFY_USER';
 export const VERIFY_USER_FAIL = 'VERIFY_USER_FAIL';
+export const FORGOT_PASSWORD_FAIL = 'FORGOT_PASSWORD_FAIL';
+
 
 // alert 
 

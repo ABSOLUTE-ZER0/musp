@@ -1,5 +1,6 @@
 import "../../css/layout/Login.css";
 
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -13,18 +14,17 @@ const Login = ({ loginUser, setAlert, loginFail }) => {
     password: "",
   });
 
-
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-      const res = await loginUser(user);
-      if (res && res.errors) {
-        setAlert(res.errors[0].msg, "warning");
-        loginFail(res.errors[0].msg);
-      }
+    const res = await loginUser(user);
+    if (res && res.errors) {
+      setAlert(res.errors[0].msg, "warning");
+      loginFail(res.errors[0].msg);
+    }
   };
 
   return (
@@ -35,7 +35,7 @@ const Login = ({ loginUser, setAlert, loginFail }) => {
           <p>MUSP</p>
         </i>
       </div>
-      <input type="hidden" value="something"/>
+      <input type='hidden' value='something' />
       <form>
         <h3 className='login__title text-shadow-smooth'>Login</h3>
 
@@ -65,9 +65,15 @@ const Login = ({ loginUser, setAlert, loginFail }) => {
           />
         </div>
 
-        <button to="/" onClick={onSubmit} type='submit' className='login__button box-shadow'>
+        <button
+          onClick={onSubmit}
+          type='submit'
+          className='login__button box-shadow'>
           Login
         </button>
+        <span className='login__forgot'>
+          <Link to={`/login/forgot`}>Forgot Password ?</Link>
+        </span>
       </form>
     </div>
   );
@@ -79,7 +85,4 @@ Login.propTypes = {
   loginFail: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { loginUser, setAlert, loginFail }
-)(Login);
+export default connect(null, { loginUser, setAlert, loginFail })(Login);
