@@ -38,6 +38,8 @@ function Routes({ auth, checkAuth }) {
         {type === "verify" && (
           <Switch>
             <Route exact path='/login' component={Auth} />
+            <Route exact path='/login/forgot' component={ForgotPasswordRequest} />
+            <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />
             <Route exact path='/*' component={Verify} />
           </Switch>
         )}
@@ -51,6 +53,8 @@ function Routes({ auth, checkAuth }) {
             <Route exact path='/event' component={Event} />
             <Route exact path='/about' component={About} />
             <Route exact path='/login' component={Auth} />
+            <Route exact path='/login/forgot' component={ForgotPasswordRequest} />
+            <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />
             <Route exact path='/verify' component={Verify} />
             <Route exact path='/post/:id' component={FormDetails} />
           </Switch>
