@@ -80,6 +80,7 @@
 .auth__conditional-page {
   height: 100%;
   width: 35vw;
+  position: relative;
 }
 
 .auth__button {

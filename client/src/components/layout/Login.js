@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { loginUser, loginFail } from "../../actions/authActions";
 import { setAlert } from "../../actions/alertActions";
 import Alert from "./Alert";
+import Footer from "./FooterSmall";
 
 const Login = ({ loginUser, setAlert, loginFail }) => {
   const [user, setUser] = useState({
@@ -28,53 +29,56 @@ const Login = ({ loginUser, setAlert, loginFail }) => {
   };
 
   return (
-    <div className='login__main-div'>
-      <Alert />
-      <div className='login__brand'>
-        <i className='fas fa-hands-helping'>
-          <p>MUSP</p>
-        </i>
+    <div className="login__body">
+      <div className='login__main-div'>
+        <Alert />
+        <div className='login__brand'>
+          <i className='fas fa-hands-helping'>
+            <p>MUSP</p>
+          </i>
+        </div>
+        <input type='hidden' value='something' />
+        <form>
+          <h3 className='login__title text-shadow-smooth'>Login</h3>
+
+          <div className='login__input-div'>
+            <i className='far fa-envelope' />
+            <input
+              className='login__input'
+              type='email'
+              name='email'
+              onChange={handleInput}
+              placeholder='Email'
+              value={user.email}
+              autoComplete='off'
+            />
+          </div>
+
+          <div className='login__input-div'>
+            <i className='fas fa-lock' />
+            <input
+              className='login__input'
+              type='password'
+              name='password'
+              onChange={handleInput}
+              placeholder='Password'
+              value={user.password}
+              autoComplete='new-password'
+            />
+          </div>
+
+          <button
+            onClick={onSubmit}
+            type='submit'
+            className='login__button box-shadow'>
+            Login
+          </button>
+          <span className='login__forgot'>
+            <Link to={`/login/forgot`}>Forgot Password ?</Link>
+          </span>
+        </form>
       </div>
-      <input type='hidden' value='something' />
-      <form>
-        <h3 className='login__title text-shadow-smooth'>Login</h3>
-
-        <div className='login__input-div'>
-          <i className='far fa-envelope' />
-          <input
-            className='login__input'
-            type='email'
-            name='email'
-            onChange={handleInput}
-            placeholder='Email'
-            value={user.email}
-            autoComplete='off'
-          />
-        </div>
-
-        <div className='login__input-div'>
-          <i className='fas fa-lock' />
-          <input
-            className='login__input'
-            type='password'
-            name='password'
-            onChange={handleInput}
-            placeholder='Password'
-            value={user.password}
-            autoComplete='new-password'
-          />
-        </div>
-
-        <button
-          onClick={onSubmit}
-          type='submit'
-          className='login__button box-shadow'>
-          Login
-        </button>
-        <span className='login__forgot'>
-          <Link to={`/login/forgot`}>Forgot Password ?</Link>
-        </span>
-      </form>
+      <Footer />
     </div>
   );
 };

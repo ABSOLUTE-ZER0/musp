@@ -1,9 +1,19 @@
+.login__bosy {
+  margin: 5rem 8rem;
+  color: #750fbc;
+  font-family: cursive;
+  position: relative;
+  cursor: default;
+  height: 100%;
+}
+
 .login__main-div {
   margin: 5rem 8rem;
   color: #750fbc;
   font-family: cursive;
   position: relative;
   cursor: default;
+  height: 100%;
 }
 
 .login__brand {

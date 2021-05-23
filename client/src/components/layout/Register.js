@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { addUser, addUserFail } from "../../actions/authActions";
 import { setAlert } from "../../actions/alertActions";
 import Alert from "./Alert";
+import Footer from "./FooterSmall";
 
 
 const Registration = ({ addUser, setAlert,addUserFail }) => {
@@ -41,7 +42,8 @@ const Registration = ({ addUser, setAlert,addUserFail }) => {
   };
 
   return (
-    <div className='register__main-div'>
+    <div className="register__body">
+      <div className='register__main-div'>
       <Alert />
       <div className='register__brand'>
         <i className='fas fa-hands-helping'>
@@ -107,6 +109,8 @@ const Registration = ({ addUser, setAlert,addUserFail }) => {
           Register
         </button>
       </form>
+    </div>
+    <Footer />
     </div>
   );
 };

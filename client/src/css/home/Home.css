@@ -29,6 +29,7 @@
   background-color: white;
   margin: 0 1rem;
   border-radius: 1rem;
+  min-height: 70vh;
   height: fit-content;
 }
 

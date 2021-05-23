@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 import { Container } from "react-bootstrap";
 import AddPostModal from "../../layout/AddPostModal";
 import Alert from "../../layout/Alert";
+import FooterLarge from "../../layout/FooterLarge";
 
 import "../../../css/home/Home.css";
 import classNames from "classnames";
@@ -200,6 +201,7 @@ const Home = ({
             ))}
         </div>
       </Container>
+      <FooterLarge />
     </div>
   );
 };

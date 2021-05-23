@@ -1,0 +1,25 @@
+.footerSmall {
+  padding: 28px 0;
+  position: absolute;
+  height: fit-content;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background-color: #ffffff;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerSmall span,
+.footerSmall__menu a {
+  color: #878787;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.footerSmall__menu > a:hover {
+  color: #414141;
+  text-decoration: none;
+}

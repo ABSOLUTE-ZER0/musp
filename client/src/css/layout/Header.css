@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 100;
   font-family: "Exo 2";
   max-height: 9rem;
   user-select: none;
