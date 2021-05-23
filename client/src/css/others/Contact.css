@@ -1,0 +1,136 @@
+.contact__main-div {
+  margin-top: 4rem;
+  font-family: "Exo 2";
+}
+.contact__main-col {
+  text-align: left;
+  line-height: 1rem;
+}
+
+.contact__img {
+  height: 40rem;
+  background-image: url("../../images/contact.jpg");
+  transform: scale(0.6);
+  background-size: cover;
+}
+
+.contact__details-div {
+  text-align: center;
+}
+
+.contact__title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: black;
+  text-shadow: 1px 1px grey;
+  margin: 4rem 0 0.5rem;
+  width: fit-content;
+}
+
+.contact__desc {
+  font-weight: bold;
+  color: rgb(46, 46, 46);
+  font-size: 1.5rem;
+}
+
+.contact__input {
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem 1rem 0.5rem;
+  border: 0;
+  margin: 2rem 0 0;
+}
+
+.contact__input-div {
+  position: relative;
+  border-bottom: 2px solid #a3a3a38e;
+  display: flex;
+  transform: scale(0.98);
+}
+
+.contact__input:focus {
+  outline: none;
+}
+
+.contact__input::placeholder {
+  color: #a3a3a3;
+}
+
+.contact__input-div:focus-within {
+  border-bottom: 2px solid orangered;
+  transform: scale(1);
+  transition: transform 150ms;
+}
+
+.contact__button-div {
+  text-align: right;
+  margin-top: 2rem;
+}
+
+.contact__input-col {
+  margin-left: auto;
+  display: block;
+  border: 2px solid orangered;
+  padding: 1rem 3rem 1rem;
+  border-radius: 1rem;
+}
+
+.contact__submit-btn {
+  background-color: orangered;
+  color: white;
+  font-size: 1.3rem;
+  width: 30%;
+}
+
+.contact__submit-btn:hover {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid orangered;
+  color: orangered;
+  width: 30%;
+}
+
+.contact__details-div > div > p {
+  font-size: 1.5rem;
+}
+
+.contact__title1 {
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+  margin: 2rem 0 0.5rem;
+}
+
+.contact__title2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: orange;
+  margin: 2rem 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .contact__main-col {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .contact__desc {
+    width: 100%;
+  }
+
+  .contact__title {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.5rem;
+    width: 100%;
+  }
+
+  .contact__input-col {
+    border: 2px solid orangered;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    margin: 1rem;
+  }
+
+  .contact__img {
+    height: 8rem;
+    margin-bottom: 0rem;
+  }
+}

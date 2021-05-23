@@ -17,12 +17,12 @@ const FooterLarge = () => {
                   <h4 class='mb-3 mb-lg-4 bold-text '>
                     <b>MENU</b>
                   </h4>
-                  <ul class='list-unstyled'>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Blog</li>
-                    <li>Portfolio</li>
-                  </ul>
+                  <div class='footerLarger__link-div'>
+                    <p><a href="/">Home</a></p>
+                    <p><a href="/library">Library</a></p>
+                    <p><a href="/faq">FAQs</a></p>
+                    <p><a href="/contact">Contact</a></p>
+                  </div>
                 </div>
                 <div class='col-xl-2 col-md-4 col-sm-4 col-12'>
                   <h4 class='mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5'>

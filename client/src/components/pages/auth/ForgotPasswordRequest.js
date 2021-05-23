@@ -17,7 +17,7 @@ const ForgotPasswordRequest = ({ forgotPassword, setAlert }) => {
       setAlert(res.errors[0].msg, "warning");
     }
     if (res.data && res.data.msg === "mail sent!") {
-      setAlert("Check your email for the password reset link!", "warning");
+      setAlert("Check your email for the password reset link!", "success");
     }
   };
 

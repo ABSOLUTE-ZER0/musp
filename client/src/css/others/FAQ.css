@@ -1,0 +1,220 @@
+.faq__main-div {
+  overflow-x: hidden;
+  margin-top: 10rem;
+  font-family: "Exo 2";
+}
+.faq__main-container {
+  padding: 3em 10%;
+}
+
+.faq__title > h1 {
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-family: fantasy;
+  letter-spacing: 2px;
+  font-size: 2.5em;
+  margin-top: 20px;
+  pointer-events: none;
+  word-spacing: 3px;
+  width: 100%;
+  margin-left: -1em;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq__steps-div {
+  display: flex;
+  padding-top: 3em;
+  position: relative;
+}
+
+.faq__steps-div:nth-child(even) {
+  flex-flow: row-reverse;
+}
+
+.faq__steps-div:nth-child(odd) {
+  flex-flow: row;
+}
+
+.faq__steps-question-div {
+  width: 35vw;
+  padding: 1em 0;
+  display: flex;
+  align-items: center;
+}
+
+.faq__steps-question {
+  flex: 1;
+  font-weight: bold;
+}
+
+.faq__steps-question > p {
+  font-size: 2rem;
+  margin: 0;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  font-family: fantasy;
+  letter-spacing: 4px;
+  color: white;
+}
+
+.faq__steps-div:nth-child(odd) > .faq__steps-question-div {
+  box-shadow: inset -11px 0px 8px -9px #888;
+  margin-right: 2.5vw;
+}
+
+.faq__steps-div:nth-child(even) > .faq__steps-question-div {
+  box-shadow: inset 11px 0px 8px -9px #888;
+  text-align: right;
+  margin-left: 2.5vw;
+}
+
+.faq__steps-div:nth-child(odd)
+  > .faq__steps-question-div
+  > .faq__steps-question {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.faq__steps-div:nth-child(even)
+  > .faq__steps-question-div
+  > .faq__steps-question {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.faq__steps-content-div {
+  width: 35vw;
+  padding: 2em 4em;
+  font-size: 1.3rem;
+  color: black;
+  font-weight: bold;
+}
+
+.faq__steps-div:nth-child(even) > .faq__steps-content-div {
+  box-shadow: inset -11px 0px 8px -9px #888;
+  margin-right: 2.5vw;
+}
+
+.faq__steps-div:nth-child(odd) > .faq__steps-content-div {
+  box-shadow: inset 11px 0px 8px -9px #888;
+  margin-left: 2.5vw;
+}
+
+.faq__steps-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-clip: text;
+  color: transparent;
+}
+
+.faq__steps-p {
+  margin-top: 1em;
+  text-align: left;
+}
+
+.faq__steps-div:nth-child(1) > div > .faq__steps-question {
+  background-image: var(--g3-gredient);
+}
+
+.faq__steps-div:nth-child(2) > div > .faq__steps-question {
+  background-image: var(--g4-gredient);
+}
+
+.faq__steps-div:nth-child(3) > div > .faq__steps-question {
+  background-image: var(--g1-gredient);
+}
+
+.faq__steps-div:nth-child(4) > div > .faq__steps-question {
+  background-image: var(--g2-gredient);
+}
+
+.faq__steps-div:nth-child(5) > div > .faq__steps-question {
+  background-image: var(--g4-gredient);
+}
+
+.faq__steps-div:nth-child(6) > div > .faq__steps-question {
+  background-image: var(--g1-gredient);
+}
+
+.faq__steps-div:nth-child(7) > div > .faq__steps-question {
+  background-image: var(--g4-gredient);
+}
+
+.faq__steps-div:nth-child(8) > div > .faq__steps-question {
+  background-image: var(--g2-gredient);
+}
+
+.faq__steps-div:nth-child(9) > div > .faq__steps-question {
+  background-image: var(--g1-gredient);
+}
+
+.faq__steps-div:nth-child(10) > div > .faq__steps-question {
+  background-image: var(--g3-gredient);
+}
+
+.faq__steps-div:nth-child(11) > div > .faq__steps-question {
+  background-image: var(--g2-gredient);
+}
+
+.faq__steps-div:nth-child(1) > .faq__steps-content-div > h1 {
+  background-image: var(--g3-gredient);
+}
+
+.faq__steps-div:nth-child(2) > .faq__steps-content-div > h1 {
+  background-image: var(--g4-gredient);
+}
+
+.faq__steps-div:nth-child(3) > .faq__steps-content-div > h1 {
+  background-image: var(--g1-gredient);
+}
+
+.faq__steps-div:nth-child(4) > .faq__steps-content-div > h1 {
+  background-image: var(--g2-gredient);
+}
+
+.faq__steps-div:nth-child(5) > .faq__steps-content-div > h1 {
+  background-image: var(--g4-gredient);
+}
+
+.faq__steps-div:nth-child(6) > .faq__steps-content-div > h1 {
+  background-image: var(--g1-gredient);
+}
+
+.faq__steps-div:nth-child(7) > .faq__steps-content-div > h1 {
+  background-image: var(--g4-gredient);
+}
+
+.faq__steps-div:nth-child(8) > .faq__steps-content-div > h1 {
+  background-image: var(--g2-gredient);
+}
+
+.faq__steps-div:nth-child(9) > .faq__steps-content-div > h1 {
+  background-image: var(--g1-gredient);
+}
+
+.faq__steps-div:nth-child(10) > .faq__steps-content-div > h1 {
+  background-image: var(--g3-gredient);
+}
+
+.faq__steps-div:nth-child(11) > .faq__steps-content-div > h1 {
+  background-image: var(--g2-gredient);
+}
+
+@media (max-width: 768px) {
+  .faq__main-div {
+    font-size: 0.8em;
+  }
+
+  .faq__card.how-card {
+    margin: 50px 0;
+    flex-flow: column !important;
+  }
+
+  .faq__card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 100%;
+  }
+}

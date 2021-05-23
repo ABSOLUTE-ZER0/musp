@@ -3,7 +3,7 @@ import { checkAuth } from "../../actions/authActions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../pages/home/Home";
 import Auth from "../pages/auth/Auth";
-import About from "../pages/others/About";
+import Contact from "../pages/others/Contact";
 import Verify from "../pages/auth/Verify";
 import ForgotPasswordRequest from "../pages/auth/ForgotPasswordRequest";
 import ForgotPasswordResponce from "../pages/auth/ForgotPasswordResponce";
@@ -13,6 +13,7 @@ import LibrarySearch from "../pages/library/LibrarySearch";
 import BookDetails from "../pages/library/BookDetails";
 import FormDetails from "../pages/home/FormDetails";
 import NotFound404 from "../pages/others/NotFound404";
+import FAQ from "../pages/others/FAQ";
 import { connect } from "react-redux";
 
 function Routes({ auth, checkAuth }) {
@@ -33,6 +34,8 @@ function Routes({ auth, checkAuth }) {
           <Switch>
             <Route exact path='/login/forgot' component={ForgotPasswordRequest} />
             <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />
+            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/faq' component={FAQ} />
             <Route path='/*' component={Auth} />
           </Switch>
         )}
@@ -41,6 +44,8 @@ function Routes({ auth, checkAuth }) {
             <Route exact path='/login' component={Auth} />
             <Route exact path='/login/forgot' component={ForgotPasswordRequest} />
             <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />
+            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/faq' component={FAQ} />
             <Route exact path='/*' component={Verify} />
           </Switch>
         )}
@@ -52,7 +57,8 @@ function Routes({ auth, checkAuth }) {
             <Route exact path='/library/search/:searchParam/:pageParam' component={LibrarySearch} />
             <Route exact path='/library/book/:id' component={BookDetails} />
             <Route exact path='/event' component={Event} />
-            <Route exact path='/about' component={About} />
+            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/faq' component={FAQ} />
             <Route exact path='/login' component={Auth} />
             <Route exact path='/login/forgot' component={ForgotPasswordRequest} />
             <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />

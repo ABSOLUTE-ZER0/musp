@@ -4,11 +4,12 @@
   overflow: hidden;
   font-family: "Rubik", sans-serif;
   margin-top: 250px;
-  background: #262626;
-  color: #627482 !important;
+  background: #d1d1d1;
+  color: #000000d0 !important;
   margin-bottom: 0;
   padding-bottom: 0;
   font-size: 1.3rem;
+  cursor: default;
 }
 
 small {
@@ -18,7 +19,7 @@ small {
 }
 
 .bold-text {
-  color: #989c9e !important;
+  color: #000000c7 !important;
 }
 
 .mt-55 {
@@ -39,4 +40,19 @@ small {
   font-size: calc(
     10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))
   ) !important;
+}
+
+.footerLarger__link-div {
+  display: flex;
+  flex-flow: column;
+}
+
+.footerLarger__link-div > p > a {
+  color: #000000d0;
+}
+
+.footerLarger__link-div > p > a:hover {
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
 }

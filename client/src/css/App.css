@@ -10,6 +10,39 @@
   --homeworkSolid: rgb(33, 199, 0);
   --frustrationSolid: rgb(255, 174, 0);
   --casualSolid: rgb(212, 0, 255);
+
+  --g1-gredient: linear-gradient(
+    to right,
+    #32a5f8,
+    #2c92fb,
+    #487cf8,
+    #6b61ed,
+    #8b3bda
+  );
+  --g2-gredient: linear-gradient(
+    to right,
+    #f48071,
+    #f57277,
+    #f3657f,
+    #ef5889,
+    #e74d96
+  );
+  --g3-gredient: linear-gradient(
+    to right,
+    #ffb772,
+    #ffac6e,
+    #ffa06b,
+    #ff946a,
+    #ff886b
+  );
+  --g4-gredient: linear-gradient(
+    to right,
+    #06df98,
+    #00d2a5,
+    #00c4ad,
+    #00b5af,
+    #01a6ac
+  );
 }
 
 html {
