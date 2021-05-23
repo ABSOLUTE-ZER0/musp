@@ -12,6 +12,7 @@ import Library from "../pages/library/Library";
 import LibrarySearch from "../pages/library/LibrarySearch";
 import BookDetails from "../pages/library/BookDetails";
 import FormDetails from "../pages/home/FormDetails";
+import NotFound404 from "../pages/others/NotFound404";
 import { connect } from "react-redux";
 
 function Routes({ auth, checkAuth }) {
@@ -57,6 +58,7 @@ function Routes({ auth, checkAuth }) {
             <Route exact path='/login/forgot/:id' component={ForgotPasswordResponce} />
             <Route exact path='/verify' component={Verify} />
             <Route exact path='/post/:id' component={FormDetails} />
+            <Route exact path='/*' component={NotFound404} />
           </Switch>
         )}
 

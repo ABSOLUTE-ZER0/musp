@@ -209,6 +209,17 @@ router.get("/:id", auth, async (req, res) => {
   try {
     const id = req.params.id;
     const post = await Post.findById(id).sort({ date: "descending" });
+
+    if(!post){
+      const error = [
+        {
+          msg: "Post not found!",
+        },
+      ];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
     res.json(post);
   } catch (err) {
     console.error(err.message);

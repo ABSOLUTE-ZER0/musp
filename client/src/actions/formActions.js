@@ -135,11 +135,19 @@ export const loadForm = (id) => async (dispatch, getState) => {
       type: FORM_LOADED,
       payload: res.data,
     });
+
+    if(res.data.errors){
+      dispatch({
+        type: FORM_LOADING_FAIL
+      });
+      history.push("/form-not-found")
+    }
     return res.data;
   } catch (error) {
     dispatch({
       type: FORM_LOADING_FAIL
     });
+    history.push("/form-not-found")
   }
 };
 

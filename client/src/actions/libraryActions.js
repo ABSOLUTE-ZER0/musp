@@ -76,11 +76,14 @@ export const getBook = (id) => async (dispatch) => {
 
     const res = await API.get(`/api/library/borrow/${id}`, config);
 
+    console.log(res);
+
     if (res && res.data.msg) {
       dispatch({
         type: GET_BOOK_FAIL,
         payload: res.data,
       });
+      history.push("/book-not-found")
       return res.data;
     }
 
@@ -93,6 +96,7 @@ export const getBook = (id) => async (dispatch) => {
       type: GET_BOOK_FAIL,
       payload: error,
     });
+    history.push("/book-not-found")
     return error;
   }
 };
