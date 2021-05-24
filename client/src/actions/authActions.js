@@ -283,3 +283,34 @@ export const checkAuth = () => async (dispatch, getState) => {
     return "auth"
   }
 };
+
+
+
+export const setOnline = () => async (dispatch, getState) => {
+  try {
+
+    const token = getState().auth.token;
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.get("/api/auth", config);
+
+
+    if(res.data.token === token && res.data.checkOnline){
+      await API.get(`/api/auth/login`, config);
+    console.log(res.data);
+    }
+
+    return res.data.token
+  } catch (error) {
+    console.log(error);
+  }
+};

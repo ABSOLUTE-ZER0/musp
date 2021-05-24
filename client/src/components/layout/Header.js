@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { Dropdown } from "react-bootstrap";
@@ -10,6 +10,19 @@ import "../../css/layout/Header.css";
 
 const Header = ({ page, auth }) => {
   const [navPage, setNavPage] = useState(page);
+  const [unread, setUnread] = useState(0);
+
+  useEffect(() => {
+    let count = 0
+    auth.user.notifications.forEach((notification) => {
+      if (!notification.read) {
+        count++
+        console.log(notification);
+      }
+      setUnread(count)
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.user.notifications]);
 
   const changePage = (e) => {
     setNavPage(e.target.id);
@@ -83,13 +96,21 @@ const Header = ({ page, auth }) => {
               variant=''
               id='dropdown-basic'>
               <div>
+                {unread > 0 && <i className='fas fa-circle header__unread-count'>
+                  {" "}
+                  <span>{unread}</span>{" "}
+                </i>}
                 <i className='far fa-bell'></i>
                 <p>Notification</p>
               </div>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu className='header__notification-dropdown'>
-              {auth.user && auth.user.notifications.length > 0 ? (
+            <Dropdown.Menu className='header__notification-dropdown box-shadow-1'>
+              <div className='header__notification-title'>
+                <h2>notifications</h2>
+              </div>
+              <hr style={{ margin: "0" }}></hr>
+              {auth.user.notifications.length > 0 ? (
                 auth.user.notifications.map((notification, index) => (
                   <NotificationDropdown
                     notification={notification}
@@ -97,7 +118,7 @@ const Header = ({ page, auth }) => {
                   />
                 ))
               ) : (
-                <div className="header__no-notifications-div">
+                <div className='header__no-notifications-div'>
                   <h3>No Notifications!</h3>
                 </div>
               )}

@@ -31,6 +31,12 @@ const userSchema = mongoose.Schema({
   },
   color: {
     type: String
+  },
+  isOnline: {
+    type: Boolean
+  },
+  checkOnline: {
+    type: Boolean
   }
 });
 

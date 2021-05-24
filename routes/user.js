@@ -99,6 +99,14 @@ router.post(
 router.post("/verify", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+    
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+    
     if (user.verified) {
       const error = [{ msg: "This account has already been verified" }];
       return res.status(400).json({
@@ -357,5 +365,7 @@ function getRandomColor() {
   }
   return color != "#FFFFFF" ? color : getRandomColor();
 }
+
+
 
 module.exports = router;

@@ -64,7 +64,6 @@ const NotificationDropdown = ({
       )}
       {!notification.read && (
         <button className='notificationDropdown__unred-mark'>
-          <i className='fas fa-circle'></i>
         </button>
       )}
       <div

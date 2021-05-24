@@ -24,7 +24,9 @@ const BookDetails = ({
   useEffect(() => {
     async function fetchData() {
       await getBook(id);
-      await loadUser();
+      if (!user) {
+        await loadUser();
+      }
     }
     fetchData();
 

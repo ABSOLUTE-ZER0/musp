@@ -81,6 +81,7 @@ router.post(
             token,
           });
           user.token = token;
+          user.isOnline = true;
           await user.save();
         }
       );
@@ -91,15 +92,60 @@ router.post(
   }
 );
 
+// logout user
+
+router.post("/logout", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    user.token = null;
+    user.isOnline = false;
+
+    console.log(user.name);
+    await user.save();
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+// set login
+
+router.get("/login", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    user.checkOnline = false;
+    user.isOnline = true;
+    console.log(user.isOnline);
+    await user.save();
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // forgot password send mail
 
 router.post(
   "/forgot",
   [
-    check(
-      "email",
-      "Please enter a valid email to reset your password"
-    )
+    check("email", "Please enter a valid email to reset your password")
       .isEmail()
       .contains("@mechyd.ac.in"),
   ],
@@ -202,7 +248,9 @@ router.post(
       }
 
       if (user.token !== req.params.id) {
-        const error = [{ msg: "Invalid token, reset link can only be used once" }];
+        const error = [
+          { msg: "Invalid token, reset link can only be used once" },
+        ];
         return res.status(400).json({
           errors: error,
         });

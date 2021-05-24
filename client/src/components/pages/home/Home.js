@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../layout/Header";
 import Form from "../../layout/Form";
-import { loadUser } from "../../../actions/authActions";
 import { showAppPostModal } from "../../../actions/modalActions";
 import { setAlert } from "../../../actions/alertActions";
 import {
@@ -27,7 +26,6 @@ const Home = ({
   auth,
   modal,
   form,
-  loadUser,
   loadForms,
   filterForm,
   showAppPostModal,
@@ -41,12 +39,11 @@ const Home = ({
   const [search, setSearch] = useState("");
   useEffect(() => {
     async function fetchData() {
-      await loadUser();
       await loadForms();
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadUser]);
+  }, [loadForms]);
 
   const filterPost = async (e) => {
     const type = { type: e.target.name };
@@ -207,7 +204,6 @@ const Home = ({
 };
 
 Home.propTypes = {
-  loadUser: PropTypes.func.isRequired,
   loadForms: PropTypes.func.isRequired,
   filterForm: PropTypes.func.isRequired,
   showAppPostModal: PropTypes.func.isRequired,
@@ -226,7 +222,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  loadUser,
   loadForms,
   filterForm,
   showAppPostModal,

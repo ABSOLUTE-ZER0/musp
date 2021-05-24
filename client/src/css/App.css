@@ -63,6 +63,10 @@ body {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.418);
 }
 
+.box-shadow-1 {
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.418);
+}
+
 .one-edge-shadow {
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.705);
 }

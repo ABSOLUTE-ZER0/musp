@@ -28,7 +28,9 @@ const LibrarySearch = ({
 
   useEffect(() => {
     async function fetchData() {
-      await loadUser();
+      if (!user) {
+        await loadUser();
+      }
       setError(await searchBooks(searchParam, pageParam));
     }
     fetchData();
