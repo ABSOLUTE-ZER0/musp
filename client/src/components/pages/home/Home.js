@@ -20,7 +20,7 @@ import FooterLarge from "../../layout/FooterLarge";
 import "../../../css/home/Home.css";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import Loader from "../../layout/Loader"
+import Loader from "../../layout/Loader";
 
 const Home = ({
   auth,
@@ -35,6 +35,7 @@ const Home = ({
   setAlert,
 }) => {
   const [type, setType] = useState(null);
+  const [mainType, setMainType] = useState(null);
   const [searchAlert, setSearchAlert] = useState(false);
   const [search, setSearch] = useState("");
   useEffect(() => {
@@ -48,11 +49,13 @@ const Home = ({
   const filterPost = async (e) => {
     const type = { type: e.target.name };
     setType(e.target.name);
+    setMainType(null)
     const res = await filterForm(type);
     setForms(res);
   };
 
   const getFavourites = async () => {
+    setMainType("fav");
     setType(null);
     const res = await getfavouritePost();
     setForms(res.data);
@@ -60,11 +63,11 @@ const Home = ({
 
   const searchForm = async (e) => {
     setSearch(e.target.value);
-    const filter = e.target.value
+    const filter = e.target.value;
     const res = await searchPost(filter, type);
-    res && await setForms(res.data);
+    res && (await setForms(res.data));
     if (res && res.data.length === 0) {
-      setSearchAlert(true)
+      setSearchAlert(true);
       setAlert(
         "No such post found! Create a new question with your query",
         "warning"
@@ -77,7 +80,7 @@ const Home = ({
     const res = await searchPost(search, type);
     res && setForms(res.data);
     if (res && res.data.length === 0) {
-      setSearchAlert(true)
+      setSearchAlert(true);
       setAlert(
         "No such post found! Create a new question with your query",
         "warning"
@@ -100,16 +103,21 @@ const Home = ({
           </button>
           <div>
             <button
-              className='home__all-form home__button'
+            className={classNames('home__all-form home__button', {
+                activeMain: mainType === "all",
+              })}
               onClick={async () => {
                 setType(null);
+                setMainType("all");
                 setForms(await filterForm());
               }}>
               <i className='far fa-comments'></i>All Questions
             </button>
             <button
               onClick={getFavourites}
-              className='home__favourite-form home__button'>
+              className={classNames('home__favourite-form home__button', {
+                activeMain: mainType === "fav",
+              })}>
               <i className='fas fa-star'></i>Favourite
             </button>
             {modal.addPostModal ? <AddPostModal user={auth.user} /> : null}
@@ -190,12 +198,16 @@ const Home = ({
               Search
             </button>
           </div>
-          {
-            form.formsIsLoading ? <Loader /> : form.forms && form.forms.map((form,index) => (
+          {form.formsIsLoading ? (
+            <Loader />
+          ) : (
+            form.forms &&
+            form.forms.map((form, index) => (
               <Link key={index} to={`/post/${form._id}`} className='home__link'>
                 <Form form={form} />
               </Link>
-            ))}
+            ))
+          )}
         </div>
       </Container>
       <FooterLarge />

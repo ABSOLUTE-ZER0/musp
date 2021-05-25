@@ -29,11 +29,9 @@ setInterval(async function () {
       (users[i].checkOnline = true), users[i].save();
     });
 
-    console.log("set online checker");
-
     // check user online status, set online status
 
-    setTimeout(async() => {
+    setTimeout(async () => {
       try {
         const users = await User.find({}).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
         users.forEach((user, i) => {
@@ -41,7 +39,6 @@ setInterval(async function () {
             users[i].isOnline = false;
             users[i].save();
           }
-          console.log("set online");
         });
       } catch (err) {
         console.error(err.message);

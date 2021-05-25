@@ -30,7 +30,6 @@ function Routes({ auth, checkAuth, setOnline }) {
 
     const interval = setInterval(async () => {
       await setOnline();
-      console.log("Logs every minute");
     }, MINUTE_MS);
 
     return () => clearInterval(interval);

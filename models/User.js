@@ -37,6 +37,9 @@ const userSchema = mongoose.Schema({
   },
   checkOnline: {
     type: Boolean
+  },
+  lastOnline: {
+    type: Date
   }
 });
 

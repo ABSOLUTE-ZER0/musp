@@ -132,7 +132,7 @@ router.get("/login", auth, async (req, res) => {
 
     user.checkOnline = false;
     user.isOnline = true;
-    console.log(user.isOnline);
+    user.lastOnline = new Date();
     await user.save();
   } catch (err) {
     console.error(err.message);
