@@ -1,0 +1,10 @@
+.profileDropdown__body {
+  padding: 1rem;
+  width: 30rem;
+}
+
+.profileDropdown__signout {
+  height: fit-content;
+  font-size: 1.5rem;
+  width: 100%;
+}

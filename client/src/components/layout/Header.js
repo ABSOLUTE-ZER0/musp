@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { Dropdown } from "react-bootstrap";
 import NotificationDropdown from "../layout/NotificationDropdown";
+import ProfileDropdown from "../layout/ProfileDropdown";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -13,13 +14,13 @@ const Header = ({ page, auth }) => {
   const [unread, setUnread] = useState(0);
 
   useEffect(() => {
-    let count = 0
+    let count = 0;
     auth.user.notifications.forEach((notification) => {
       if (!notification.read) {
-        count++
+        count++;
         console.log(notification);
       }
-      setUnread(count)
+      setUnread(count);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.user.notifications]);
@@ -96,10 +97,12 @@ const Header = ({ page, auth }) => {
               variant=''
               id='dropdown-basic'>
               <div>
-                {unread > 0 && <i className='fas fa-circle header__unread-count'>
-                  {" "}
-                  <span>{unread}</span>{" "}
-                </i>}
+                {unread > 0 && (
+                  <i className='fas fa-circle header__unread-count'>
+                    {" "}
+                    <span>{unread}</span>{" "}
+                  </i>
+                )}
                 <i className='far fa-bell'></i>
                 <p>Notification</p>
               </div>
@@ -136,10 +139,8 @@ const Header = ({ page, auth }) => {
               </div>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item href='#/action-1'>Action</Dropdown.Item>
-              <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
-              <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
+            <Dropdown.Menu className='header__profile-dropdown box-shadow-1'>
+              <ProfileDropdown />
             </Dropdown.Menu>
           </Dropdown>
         </div>

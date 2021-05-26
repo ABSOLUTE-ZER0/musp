@@ -59,7 +59,7 @@ function Routes({ auth, checkAuth, setOnline }) {
           )}
           {type === "verify" && (
             <Switch>
-              <Route exact path='/login' component={Auth} />
+              <Route exact path='/' component={Auth} />
               <Route
                 exact
                 path='/login/forgot'
@@ -89,18 +89,6 @@ function Routes({ auth, checkAuth, setOnline }) {
               <Route exact path='/event' component={Event} />
               <Route exact path='/contact' component={Contact} />
               <Route exact path='/faq' component={FAQ} />
-              <Route exact path='/login' component={Auth} />
-              <Route
-                exact
-                path='/login/forgot'
-                component={ForgotPasswordRequest}
-              />
-              <Route
-                exact
-                path='/login/forgot/:id'
-                component={ForgotPasswordResponce}
-              />
-              <Route exact path='/verify' component={Verify} />
               <Route exact path='/post/:id' component={FormDetails} />
               <Route exact path='/*' component={NotFound404} />
             </Switch>

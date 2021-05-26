@@ -117,9 +117,9 @@ router.post("/logout", auth, async (req, res) => {
 });
 
 
-// set login
+// set online
 
-router.get("/login", auth, async (req, res) => {
+router.get("/online", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
 

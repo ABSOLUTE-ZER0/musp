@@ -116,7 +116,12 @@
 .header__notification-dropdown {
   max-height: 60vh;
   overflow-y: auto;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+  padding: 0;
+}
+
+.header__profile-dropdown {
+  border-radius: 0.5rem;
   padding: 0;
 }
 

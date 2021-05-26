@@ -9,7 +9,8 @@ import {
   VERIFY_USER_FAIL,
   AUTH_ERROR,
   SET_ALERT,
-  FORGOT_PASSWORD_FAIL
+  FORGOT_PASSWORD_FAIL,
+  LOGOUT_SUCCESS
 } from "../actions/types";
 
 
@@ -305,11 +306,41 @@ export const setOnline = () => async (dispatch, getState) => {
 
 
     if(res.data.token === token && res.data.checkOnline){
-      await API.get(`/api/auth/login`, config);
+      await API.get(`/api/auth/online`, config);
     console.log(res.data);
     }
 
     return res.data.token
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const logout = () => async (dispatch, getState) => {
+  try {
+
+    const token = getState().auth.token;
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    await API.get(`/api/auth/logout`, config);
+
+    
+    checkAuth()
+    
+    history.push("/")
+    dispatch({
+      type: LOGOUT_SUCCESS
+    });
   } catch (error) {
     console.log(error);
   }
