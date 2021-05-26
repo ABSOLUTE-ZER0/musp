@@ -54,7 +54,7 @@ const FAQ = () => {
                       following:
                       <ol>
                         <li>
-                          Go to <strong><a href="https://musp.herokuapp.com/login">https://musp.herokuapp.com/login</a></strong> then click
+                          Go to <strong><a href="https://musp.herokuapp.com">https://musp.herokuapp.com</a></strong> then click
                           'Forgot password'
                         </li>
                         <li>

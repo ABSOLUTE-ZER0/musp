@@ -35,7 +35,7 @@ const Home = ({
   setAlert,
 }) => {
   const [type, setType] = useState(null);
-  const [mainType, setMainType] = useState(null);
+  const [mainType, setMainType] = useState("all");
   const [searchAlert, setSearchAlert] = useState(false);
   const [search, setSearch] = useState("");
   useEffect(() => {

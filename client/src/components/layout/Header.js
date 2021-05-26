@@ -103,7 +103,7 @@ const Header = ({ page, auth }) => {
                     <span>{unread}</span>{" "}
                   </i>
                 )}
-                <i className='far fa-bell'></i>
+                <i className='fas fa-bell'></i>
                 <p>Notification</p>
               </div>
             </Dropdown.Toggle>
@@ -134,7 +134,7 @@ const Header = ({ page, auth }) => {
               variant=''
               id='dropdown-basic'>
               <div>
-                <i className='far fa-user'></i>
+                <i className='fas fa-user'></i>
                 <p>Profile</p>
               </div>
             </Dropdown.Toggle>

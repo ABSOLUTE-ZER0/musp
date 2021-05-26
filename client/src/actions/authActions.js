@@ -128,7 +128,7 @@ export const resetPassword = (id,password) => async (dispatch) => {
       payload: res.data,
     });
 
-    history.push("/login")
+    history.push("/")
     return res
   } catch (error) {
     dispatch({

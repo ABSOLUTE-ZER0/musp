@@ -111,7 +111,7 @@ const NotFound404 = () => {
           It looks like one of the developers fell asleep
         </div>
         <div className="error__button-div">
-        <a href="/login" className='error__button error__button--active'>LOGIN</a>
+        <a href="/" className='error__button error__button--active'>LOGIN</a>
         <a href="/contact" className='error__button'>CONTACT</a>
         </div>
       </div>

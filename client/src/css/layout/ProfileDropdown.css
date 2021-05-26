@@ -1,10 +1,45 @@
 .profileDropdown__body {
   padding: 1rem;
   width: 30rem;
+  font-family: "Exo 2";
 }
 
 .profileDropdown__signout {
   height: fit-content;
   font-size: 1.5rem;
   width: 100%;
+}
+
+.profileDropdown__profile-img {
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  color: white;
+  margin: 1rem;
+  font-size: 2.5rem;
+  text-align: center;
+  font-family: cursive;
+  user-select: none;
+}
+
+.profileDropdown__profile{
+  display: flex;
+}
+
+.profileDropdown__profile-name{
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profileDropdown__link{
+  font-size: 1.2rem;
+  color: black;
+  text-decoration: none;
+}
+
+.profileDropdown__link:hover{
+font-weight: 900;
+text-decoration: none;
+color: black;
 }

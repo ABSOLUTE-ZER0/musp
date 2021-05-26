@@ -4,6 +4,7 @@ node_modules
 email.html
 build
 scratch
+TODO
 
 # local env files
 .env.local

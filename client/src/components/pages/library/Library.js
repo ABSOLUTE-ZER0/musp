@@ -9,7 +9,7 @@ const Library = () => {
       <Header page="header__library" />
       <Carouser className="library__carousel" />
       <div className="library__main-div container">
-
+        <h1>Frequently borrowed books</h1>
       </div>
       <FooterLarge />
     </div>
