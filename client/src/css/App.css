@@ -45,6 +45,27 @@
   );
 }
 
+/*
+ *  STYLE 7
+ */
+
+*::-webkit-scrollbar {
+  width: 7px;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgb(0, 0, 0) 0%,
+    rgba(117, 15, 188) 30%,
+    rgb(158, 89, 207) 50%,
+    rgba(117, 15, 188) 70%,
+    rgb(0, 0, 0) 100%
+  );
+}
+
 html {
   background-color: #ffffff;
   font-size: 0.625em;
@@ -57,6 +78,7 @@ textarea {
 
 body {
   background-color: #ffffff;
+  overflow: overlay;
 }
 
 .box-shadow {

@@ -1,0 +1,81 @@
+.library__popular-div {
+  display: block;
+  width: 50rem;
+  padding-top: 28rem;
+  height: 140rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: rotate(-90deg) translateY(-50rem);
+  transform-origin: right top;
+}
+
+.library__popular-books-div {
+  display: block;
+  padding: 5px;
+  width: 25rem;
+  overflow: hidden;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.library__popular-books-main-div {
+  display: flex;
+  margin: 0 auto;
+  margin-left: 10rem;
+  width: 35rem;
+  transform-origin: right top;
+  height: 35rem;
+  transform: rotate(90deg);
+  justify-content: flex-end;
+  color: black;
+  align-items: center;
+  transition: transform 100ms;
+}
+
+.library__popular-books-main-div:hover {
+  color: black;
+  text-decoration: none;
+  transform: rotate(90deg) scale(1.05);
+  transition: transform 100ms;
+}
+
+.library__popular-books-div > img {
+  width: 100%;
+  height: 35rem;
+  display: block;
+  text-align: center;
+  background-color: rgb(126, 126, 126);
+  color: white;
+  font-size: 2rem;
+}
+
+.library__popular-books-div > h4 {
+  font-size: 1.3rem;
+}
+
+.library__popular-books-div > p {
+  font-size: 1.3rem;
+}
+
+.horizontal-scroll-wrapper {
+  display: block;
+  width: 80px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: rotate(-90deg) translateY(-80px);
+  transform-origin: right top;
+}
+.horizontal-scroll-wrapper > div {
+  display: block;
+  padding: 5px;
+  background: #cab;
+  transform: rotate(90deg);
+  transform-origin: right top;
+}
+
+.library__popular-div::-webkit-scrollbar {
+  display: none;
+}

@@ -52,4 +52,5 @@ export const GET_BOOKS_FAIL = 'GET_BOOKS_FAIL';
 export const GET_BOOK = 'GET_BOOK';
 export const BOOK_LOADED = 'BOOK_LOADED';
 export const GET_BOOK_FAIL = 'GET_BOOK_FAIL';
+export const POPULAR_BOOKS_LOADED = 'POPULAR_BOOKS_LOADED';
 

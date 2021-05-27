@@ -196,4 +196,26 @@ router.post(
   }
 );
 
+
+
+// get top books
+
+router.get(
+  "/popular",
+  auth,
+  async (req, res) => {
+
+    try {
+
+      const book = await Book.find({}).sort({ borrowedCount : -1}).limit(10);
+      if (book) {
+        res.json(book);
+      }
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
 module.exports = router;

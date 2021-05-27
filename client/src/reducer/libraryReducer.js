@@ -5,6 +5,7 @@ import {
   GET_BOOK_FAIL,
   GET_BOOK,
   BOOK_LOADED,
+  POPULAR_BOOKS_LOADED
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +26,12 @@ export default (state = initialState, action) => {
         totalBooks: action.payload.totalItems,
         booksIsLoading: false,
       };
+      case POPULAR_BOOKS_LOADED:
+        return {
+          ...state,
+          books: action.payload,
+          booksIsLoading: false,
+        };
     case GET_BOOKS:
       return {
         ...state,

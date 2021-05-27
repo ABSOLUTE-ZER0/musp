@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Modal } from "react-bootstrap";
 import img1 from "../../images/library/Optimized-library1.jpg";
 import img2 from "../../images/library/Optimized-library2.jpg";
 import img3 from "../../images/library/Optimized-library3.jpg";
@@ -38,89 +38,88 @@ const LibraryCarousel = ({
   };
 
   return (
-    <div className="libraryCarousel__carousel-div">
-      <Carousel className="libraryCarousel__carousel">
+    <div className='libraryCarousel__carousel-div'>
+      <Carousel className='libraryCarousel__carousel'>
         <Carousel.Item>
           <img
-            className="d-block w-100 libraryCarousel__img"
+            className='d-block w-100 libraryCarousel__img'
             src={img1}
-            alt="First slide"
+            alt='First slide'
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            className="d-block w-100 libraryCarousel__img"
+            className='d-block w-100 libraryCarousel__img'
             src={img2}
-            alt="First slide"
+            alt='First slide'
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            className="d-block w-100 libraryCarousel__img"
+            className='d-block w-100 libraryCarousel__img'
             src={img3}
-            alt="First slide"
+            alt='First slide'
           />
         </Carousel.Item>
 
         <Carousel.Item>
           <img
-            className="d-block w-100 libraryCarousel__img"
+            className='d-block w-100 libraryCarousel__img'
             src={img4}
-            alt="First slide"
+            alt='First slide'
           />
         </Carousel.Item>
       </Carousel>
-      <div className="libraryCarousel__overlay">
-        <h3 className="libraryCarousel__overlay-title">
+      <div className='libraryCarousel__overlay'>
+        <h3 className='libraryCarousel__overlay-title'>
           Welcome to MU Library
         </h3>
-        <h5 className="libraryCarousel__overlay-subtitle">
+        <h5 className='libraryCarousel__overlay-subtitle'>
           Borrowing made easy and efficient!!
         </h5>
         <button
           onClick={() => {
             showLibrarySearchModal();
           }}
-          className="libraryCarousel__overlay-button"
-        >
+          className='libraryCarousel__overlay-button'>
           Start browsing
         </button>
       </div>
-      {librarySearchModal && (
-        <div className="libraryCarousel__search">
+
+      <Modal
+        dialogClassName='libraryCarousel__search-dialog-modal'
+        show={librarySearchModal}
+        onHide={removeModal}
+        contentClassName='libraryCarousel__search'>
+        <div className='libraryCarousel__alert-div'>
+          <Alert />
+        </div>
+        <button
+          onClick={() => removeModal()}
+          className='libraryCarousel__search-close'>
+          <i className='fas fa-times'></i>
+        </button>
+        <h1>Search for your book here</h1>
+        <input
+          value={search}
+          onChange={async (e) => await setSearch(e.target.value)}
+          placeholder='Search...'
+        />
+        <div>
           <button
             onClick={() => removeModal()}
-            className="libraryCarousel__search-close"
-          >
-            <i className="fas fa-times"></i>
+            className='libraryCarousel__close-button'>
+            Close
           </button>
-          <div className="library__alert-div">
-            <Alert />
-          </div>
-          <h1>Search for your book here</h1>
-          <input
-            value={search}
-            onChange={async (e) => await setSearch(e.target.value)}
-            placeholder="Search..."
-          />
-          <div>
-            <button
-              onClick={() => removeModal()}
-              className="libraryCarousel__close-button"
-            >
-              Close
-            </button>
-            <button
-              onClick={searchClicked}
-              className="libraryCarousel__search-button"
-            >
-              Search
-            </button>
-          </div>
+          <button
+            onClick={searchClicked}
+            className='libraryCarousel__search-button'>
+            Search
+          </button>
         </div>
-      )}
+      </Modal>
     </div>
   );
 };
