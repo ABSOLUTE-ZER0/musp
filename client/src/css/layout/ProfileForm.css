@@ -95,3 +95,10 @@
   left: -25px;
   transition: all 200ms;
 }
+
+.profileForm__no-posts {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: 5rem;
+}

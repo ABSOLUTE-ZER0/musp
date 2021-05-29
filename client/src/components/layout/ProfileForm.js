@@ -4,9 +4,10 @@ import Form from "./Form";
 import "../../css/layout/ProfileForm.css";
 import dateFormat from "dateformat";
 
-const ProfileForm = ({ forms,user }) => {
+const ProfileForm = ({ forms, user }) => {
   return (
-    <div className='profileForm__main-div'>
+    <div>
+      <div className='profileForm__main-div'>
         <ul class='timeline'>
           {forms.map((form, index) => (
             <li>
@@ -20,15 +21,23 @@ const ProfileForm = ({ forms,user }) => {
                   <a>&nbsp;</a>
                 </div>
               </div>
-              <div className="timeline-body">
-              <Link key={index} to={`/post/${form._id}`} className='home__link'>
-                <Form form={form} user={user} />
-              </Link>
+              <div className='timeline-body'>
+                <Link
+                  key={index}
+                  to={`/post/${form._id}`}
+                  className='home__link'>
+                  <Form form={form} user={user} />
+                </Link>
               </div>
-                
             </li>
           ))}
         </ul>
+      </div>
+      {forms.length === 0 && (
+        <div>
+          <h3 className="profileForm__no-posts">{user.name} has not created any posts!</h3>
+        </div>
+      )}
     </div>
   );
 };
