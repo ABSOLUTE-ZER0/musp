@@ -74,6 +74,23 @@ router.get("/favourite", auth, async (req, res) => {
   }
 });
 
+
+
+// get user created post
+
+router.get("/created/:id", auth, async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const posts = await Post.find({author: userId});
+
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
 // create a post
 
 router.post(

@@ -244,7 +244,7 @@ export const deleteMessage = (id) => async () => {
   }
 };
 
-export const getPopularBooks = (id) => async (dispatch) => {
+export const getPopularBooks = () => async (dispatch) => {
   try {
 
     dispatch({ type: GET_BOOKS });
@@ -264,6 +264,40 @@ export const getPopularBooks = (id) => async (dispatch) => {
     const res = await API.get(`/api/library/popular`, config);
 
     console.log(res);
+
+    dispatch({
+      type: POPULAR_BOOKS_LOADED,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_BOOK_FAIL,
+      payload: error,
+    });
+    history.push("/book-not-found")
+    return error;
+  }
+};
+
+
+export const getBorrowedBooks = (id) => async (dispatch) => {
+  try {
+
+    dispatch({ type: GET_BOOKS });
+
+    const token = localStorage.getItem("token");
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.get(`/api/library/borrowed/${id}`, config);
 
     dispatch({
       type: POPULAR_BOOKS_LOADED,

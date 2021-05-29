@@ -6,6 +6,92 @@ const User = require("../models/User");
 var https = require("https");
 const { check, validationResult } = require("express-validator");
 
+// get user borrowed books
+
+router.get("/borrowed/:id", auth, async (req, res) => {
+  try {
+    const id = req.params.id
+    const books = await Book.find({borrowedBy: id});
+    res.json(books);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// search for books
+
+router.post(
+  "/search",
+  [[check("search", "Please enter somthing!").notEmpty()], auth],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    try {
+      let search = req.body.search;
+      let page = req.body.page;
+
+      page = page * 20;
+
+      global.temp = "";
+      const uri = encodeURI(
+        `/books/v1/volumes?q=${search}&key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo&maxResults=20&startIndex=${page}&fields=totalItems,items(id,volumeInfo(title,subtitle,authors,publishedDate,description,pageCount,imageLinks(thumbnail),averageRating))`
+      );
+
+      const request = https.request(
+        {
+          host: "www.googleapis.com",
+          path: uri,
+          method: "GET",
+        },
+        function (response) {
+          response.setEncoding("utf8");
+          response.on("data", (chunk) => {
+            temp += chunk;
+          });
+        }
+      );
+      request.end();
+
+      setTimeout(() => {
+        try {
+          const books = JSON.parse(temp);
+          if (!books || books.totalItems === 0) {
+            return res.status(400).json({
+              msg: "No book was found! Try again",
+            });
+          }
+          res.json(books);
+        } catch (error) {
+          console.log(error);
+        }
+      }, 2000);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// get top books
+
+router.get("/popular", auth, async (req, res) => {
+  try {
+    const book = await Book.find({}).sort({ borrowedCount: -1 }).limit(10);
+    if (book) {
+      res.json(book);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // get a book to borrow
 
 router.get("/borrow/:id", auth, async (req, res) => {
@@ -20,7 +106,9 @@ router.get("/borrow/:id", auth, async (req, res) => {
     let bookId = req.params.id;
     global.googleBook = "";
 
-    const uri = encodeURI(`/books/v1/volumes/${bookId}?key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo`)
+    const uri = encodeURI(
+      `/books/v1/volumes/${bookId}?key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo`
+    );
 
     const book = await Book.findOne({ bookId: bookId });
 
@@ -61,7 +149,9 @@ router.get("/borrow/:id", auth, async (req, res) => {
             description: googleBook.volumeInfo.description,
             pageCount: googleBook.volumeInfo.pageCount,
             averageRating: googleBook.volumeInfo.averageRating,
-            bookImage: googleBook.volumeInfo.imageLinks ? googleBook.volumeInfo.imageLinks.thumbnail : null,
+            bookImage: googleBook.volumeInfo.imageLinks
+              ? googleBook.volumeInfo.imageLinks.thumbnail
+              : null,
             avaliability: true,
           });
 
@@ -87,7 +177,7 @@ router.post(
     [
       check("duration", "Please enter a duration in between 0 and 14 days!")
         .notEmpty()
-        .isInt({ min: 0, max: 14 })
+        .isInt({ min: 0, max: 14 }),
     ],
     auth,
   ],
@@ -120,95 +210,14 @@ router.post(
             msg: "This book is not available for borrowing at the given movement! Try again later",
           });
         }
-          book.avaliability= false,
-          book.borrowedBy= user.id,
-          book.borrowerName= user.name,
-          book.borrowedCount= book.borrowedCount + 1,
-          book.borrowStartDate= date.getTime(),
-          book.borrowEndDate= date.addDays(duration),
+        (book.avaliability = false),
+          (book.borrowedBy = user.id),
+          (book.borrowerName = user.name),
+          (book.borrowedCount = book.borrowedCount + 1),
+          (book.borrowStartDate = date.getTime()),
+          (book.borrowEndDate = date.addDays(duration)),
+          book.save();
 
-        book.save()
-
-        res.json(book);
-      }
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
-
-// search for books
-
-router.post(
-  "/search",
-  [[check("search", "Please enter somthing!").notEmpty()], auth],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
-    }
-
-    try {
-      let search = req.body.search;
-      let page = req.body.page;
-
-      page = page * 20;
-
-      global.temp = "";
-      const uri = encodeURI(`/books/v1/volumes?q=${search}&key=AIzaSyBB-72oIaeYGiiKxGLvnsznDJvMfXaGNRo&maxResults=20&startIndex=${page}&fields=totalItems,items(id,volumeInfo(title,subtitle,authors,publishedDate,description,pageCount,imageLinks(thumbnail),averageRating))`)
-
-
-      const request = https.request(
-        {
-          host: "www.googleapis.com",
-          path: uri,
-          method: "GET",
-        },
-        function (response) {
-          response.setEncoding("utf8");
-          response.on("data", (chunk) => {
-            temp += chunk;
-          });
-        }
-      );
-      request.end();
-
-      setTimeout(() => {
-        try {
-          const books = JSON.parse(temp);
-          if (!books || books.totalItems === 0) {
-            return res.status(400).json({
-              msg: "No book was found! Try again",
-            });
-          }
-          res.json(books);
-        } catch (error) {
-          console.log(error);
-        }
-      }, 2000);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
-  }
-);
-
-
-
-// get top books
-
-router.get(
-  "/popular",
-  auth,
-  async (req, res) => {
-
-    try {
-
-      const book = await Book.find({}).sort({ borrowedCount : -1}).limit(10);
-      if (book) {
         res.json(book);
       }
     } catch (err) {

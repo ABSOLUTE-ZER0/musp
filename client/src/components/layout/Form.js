@@ -7,14 +7,18 @@ import PropTypes from 'prop-types'
 
 var dateFormat = require("dateformat");
 
-const Form = ({ form , getUserById }) => {
+const Form = ({ form , getUserById, user }) => {
   const descLength = 100;
   const titleLength = 50;
   const [author, setAuthor] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
-      setAuthor(await getUserById(form.author));
+      if(!user){
+        setAuthor(await getUserById(form.author));
+      } else {
+        setAuthor(user)
+      }
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

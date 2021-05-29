@@ -13,6 +13,8 @@ import LibrarySearch from "../pages/library/LibrarySearch";
 import BookDetails from "../pages/library/BookDetails";
 import FormDetails from "../pages/home/FormDetails";
 import NotFound404 from "../pages/others/NotFound404";
+import Profile from "../pages/others/Profile";
+import OtherProfile from "../pages/others/OtherProfile";
 import FAQ from "../pages/others/FAQ";
 import { connect } from "react-redux";
 
@@ -90,6 +92,8 @@ function Routes({ auth, checkAuth, setOnline }) {
               <Route exact path='/contact' component={Contact} />
               <Route exact path='/faq' component={FAQ} />
               <Route exact path='/post/:id' component={FormDetails} />
+              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/profile/:id' component={OtherProfile} />
               <Route exact path='/*' component={NotFound404} />
             </Switch>
           )}

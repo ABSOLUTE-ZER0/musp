@@ -40,7 +40,13 @@ const userSchema = mongoose.Schema({
   },
   lastOnline: {
     type: Date
-  }
+  },
+  followers: {
+    type: Array
+  },  
+  followering: {
+    type: Array
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

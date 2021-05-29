@@ -17,6 +17,7 @@ import PropTypes from "prop-types";
 import "../../../css/home/FormDetail.css";
 import dateFormat from "dateformat";
 import classNames from "classnames";
+import FooterLarge from "../../layout/FooterLarge";
 
 const FormDetails = ({
   form: { form },
@@ -102,7 +103,7 @@ const FormDetails = ({
           <p>{form.title}</p>
           <div>
             {form.tags &&
-              form.tags.map((tags,index) => (
+              form.tags.map((tags, index) => (
                 <div
                   key={index}
                   style={{
@@ -131,7 +132,7 @@ const FormDetails = ({
               <p className='formDetail__desc'>{form.desc}</p>
             </div>
           </div>
-          <div style={{display:"flex" , userSelect: "none"}}>
+          <div style={{ display: "flex", userSelect: "none" }}>
             <div
               onClick={clickedUpvote}
               className={classNames("formDetail__upvote-div", {
@@ -187,11 +188,28 @@ const FormDetails = ({
           </div>
           <div className='formDetail__all-comments-div'>
             <h1>Comments</h1>
-            {form.comments.slice(0).reverse().map((comment,index) => (
-              <Comment key={index} comment={comment} post_color={form.post_color} />
-            ))}
+            {form.comments.length > 0 ? (
+              form.comments
+                .slice(0)
+                .reverse()
+                .map((comment, index) => (
+                  <Comment
+                    key={index}
+                    comment={comment}
+                    post_color={form.post_color}
+                  />
+                ))
+            ) : (
+              <div>
+                <hr></hr>
+                <h3 style={{ marginTop: "5rem", textAlign: "center" }}>
+                  No Comments!
+                </h3>
+              </div>
+            )}
           </div>
         </div>
+        <FooterLarge />
       </div>
     )
   );

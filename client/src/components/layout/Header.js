@@ -18,7 +18,6 @@ const Header = ({ page, auth }) => {
     auth.user.notifications.forEach((notification) => {
       if (!notification.read) {
         count++;
-        console.log(notification);
       }
       setUnread(count);
     });

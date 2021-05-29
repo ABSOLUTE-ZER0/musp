@@ -302,3 +302,41 @@ export const searchPost = (filter , type) => async (dispatch, getState) => {
     });
   }
 };
+
+
+export const createdPost = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LOAD_FORMS });
+    const token = getState().auth.token;
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.get(`/api/post/created/${id}`, config);
+
+    dispatch({
+      type: FORMS_LOADED,
+      payload: res.data,
+    });
+
+    return res;
+  } catch (error) {
+    dispatch({
+      type: POST_COMMENT_FAIL
+    });
+  }
+};
+
+
+
+
+
+
+

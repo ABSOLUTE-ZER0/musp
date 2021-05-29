@@ -1,0 +1,124 @@
+.profile__background-div {
+  background: linear-gradient(
+    180deg,
+    gray 0%,
+    gray 40rem,
+    white 40rem,
+    white 100%
+  );
+}
+
+.profile__main-div {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+  width: 90%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  margin: 0 auto;
+  top: 20rem;
+  font-family: "Exo 2";
+}
+
+.profile__tracker-div {
+  display: flex;
+  width: 30%;
+}
+
+.profile__tracker {
+  text-align: center;
+  flex: 1;
+  margin-top: 2rem;
+}
+
+.profile__tracker > h4 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: rgb(110, 110, 110);
+}
+
+.profile__tracker > p {
+  font-weight: bolder;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.profile__profile-img {
+  border-radius: 50%;
+  position: absolute;
+  height: 15rem;
+  width: 15rem;
+  color: white;
+  top: -7.5rem;
+  left: calc(50% - 7.5rem);
+  text-transform: capitalize;
+  font-size: 9.5rem;
+  text-align: center;
+  font-family: cursive;
+  user-select: none;
+}
+
+.profile__name-div {
+  margin-top: 10rem;
+  text-align: center;
+}
+
+.profile__name-div > h1 {
+  font-size: 3rem;
+  text-transform: capitalize;
+  font-weight: 900;
+}
+
+.profile__name-div > h4 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgb(110, 110, 110);
+}
+
+.profile__name-div > p {
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+}
+
+.profile__page-button-div {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.profile__page-button {
+  display: flex;
+  flex-flow: column;
+  margin: 0 2rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  height: 10rem;
+  width: 10rem;
+  background-color: transparent;
+  color: rgb(85, 85, 85);
+  align-items: center;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  border: 0;
+}
+
+.profile__page-button > i {
+  font-size: 3rem;
+}
+
+.profile__page-button.active {
+  color: rgb(255, 255, 255);
+  transform: scale(1.1);
+  transition: transform 200ms;
+}
+.profile__page-button.active > p,
+.profile__page-button.active > i {
+  mix-blend-mode: difference;
+}
+
+.profile__page-main-div {
+  margin-top: 10rem;
+}

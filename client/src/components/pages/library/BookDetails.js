@@ -10,6 +10,7 @@ import { showBorrowModal } from "../../../actions/modalActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Markup } from "interweave";
+import FooterLarge from "../../layout/FooterLarge";
 
 const BookDetails = ({
   getBook,
@@ -105,8 +106,8 @@ const BookDetails = ({
               <p className='bookDetails__desc'>
                 {" "}
                 <Markup
-                  content={book.description &&
-                    book.description.length > 800
+                  content={
+                    book.description && book.description.length > 800
                       ? book.description.substring(0, 800) + " ..."
                       : book.description
                   }
@@ -184,11 +185,9 @@ const BookDetails = ({
                     <p>Authors</p>
                   </div>
                   <div className='bookDetails__about2'>
-                    {
-                      book.authors.map((author,index) => (
-                        <p key={index}>{index+1 + ". " +author}</p>
-                      ))
-                    }
+                    {book.authors.map((author, index) => (
+                      <p key={index}>{index + 1 + ". " + author}</p>
+                    ))}
                   </div>
                 </div>
 
@@ -231,6 +230,7 @@ const BookDetails = ({
             </div>
           </div>
         </div>
+        <FooterLarge />
       </div>
     )
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Header from "../../layout/Header";
+import FooterLarge from "../../layout/FooterLarge";
 import Book from "../../layout/Book";
 import { connect } from "react-redux";
 import { loadUser } from "../../../actions/authActions";
@@ -136,6 +137,7 @@ const LibrarySearch = ({
         )}
         {error && <h2 style={{ textAlign: "center" }}>{error.msg}</h2>}
       </div>
+      <FooterLarge />
     </div>
   );
 };
