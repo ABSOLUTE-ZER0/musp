@@ -34,7 +34,7 @@ const bookSchema = mongoose.Schema({
     type: Number,
     default: 0
   },
-  avaliability: {
+  availability: {
     type: Boolean,
   },
   borrowedBy: {

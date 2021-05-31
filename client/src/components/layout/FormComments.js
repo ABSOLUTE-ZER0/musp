@@ -29,7 +29,7 @@ const FormComments = ({ comment, post_color, getUserById }) => {
       className='formComments__main-div one-edge-shadow-1'>
       <div>
         <div
-          style={author && { backgroundColor: `${author.color}` }}
+          style={author && { backgroundColor: author.color, color: author.textColor }}
           className='formComments__profile-img'>
           {author && author.name[0]}
         </div>

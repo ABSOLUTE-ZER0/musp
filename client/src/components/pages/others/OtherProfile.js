@@ -59,7 +59,7 @@ const OtherProfile = ({
                 </div>
               </div>
               <div
-                style={{ backgroundColor: `${user.color}` }}
+                style={{ backgroundColor: `${user.color}`, color: user.textColor }}
                 className='profile__profile-img text-shadow box-shadow-1'>
                 <p>{user.name[0]}</p>{" "}
               </div>

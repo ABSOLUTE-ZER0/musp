@@ -120,7 +120,7 @@ const FormDetails = ({
         <div className='container'>
           <div className='formDetail__quetion-div'>
             <div
-              style={{ backgroundColor: `${author.color}` }}
+              style={{ backgroundColor: `${author.color}`, color: author.textColor }}
               className='formDetail__profile-img'>
               <p>{author.name[0]}</p>
             </div>
@@ -163,7 +163,7 @@ const FormDetails = ({
           <Alert />
           <div className='formDetail__comment-div'>
             <div
-              style={{ backgroundColor: `${user.color}` }}
+              style={{ backgroundColor: `${user.color}`, color: author.textColor }}
               className='formDetail__profile-img'>
               <p>{user.name[0]}</p>
             </div>

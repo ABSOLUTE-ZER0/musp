@@ -1,0 +1,97 @@
+.profileSettings__main-div {
+  display: flex;
+}
+
+.profileSettings__options {
+  display: flex;
+  flex-flow: column;
+  flex: 30%;
+  margin-top: 2rem;
+}
+
+.profileSettings__options-button {
+  width: 70%;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  border: 0;
+}
+
+.profileSettings__body {
+  flex: 70%;
+  position: relative;
+}
+
+.profileSettings__body-account {
+  display: flex;
+  flex-flow: column;
+}
+
+.profileSettings__save-btn {
+  margin-top: 2rem;
+  width: 20%;
+  align-self: flex-end;
+  font-size: 1.5rem;
+}
+
+.profileSettings__input-div {
+  position: relative;
+  border-bottom: 2px solid #a3a3a38e;
+  display: flex;
+  transform: scale(0.98);
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.profileSettings__input-div:focus-within {
+  border-bottom: 2px solid #750fbc;
+  transform: scale(1);
+  transition: transform 150ms;
+}
+
+.profileSettings__input-div > i {
+  font-size: 2rem;
+  position: relative;
+  top: 3.2rem;
+}
+
+.profileSettings__input {
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem 1rem 0.5rem;
+  border: 0;
+  margin: 2rem 0 0;
+}
+
+.profileSettings__input:focus {
+  outline: none;
+}
+
+.profileSettings__input::placeholder {
+  color: #a3a3a3;
+}
+
+.profileSettings__label {
+  position: absolute;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.profileSettings__color-picker {
+  position: absolute;
+  bottom: 3rem;
+  left: 15rem;
+}
+
+.profileSettings__color-picker-btn {
+  position: absolute;
+  bottom: 0;
+  left: 15rem;
+  font-size: 1.5rem;
+  width: 22.5rem;
+}
+
+.profileSettings__alert-div {
+  position: absolute;
+  top: -5rem;
+  width: 100%;
+}

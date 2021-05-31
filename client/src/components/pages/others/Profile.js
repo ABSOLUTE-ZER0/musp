@@ -8,6 +8,8 @@ import "../../../css/others/Profile.css";
 import FooterLarge from "../../layout/FooterLarge";
 import classNames from "classnames";
 import ProfileForm from "../../layout/ProfileForm";
+import ProfileBook from "../../layout/ProfileBook";
+import ProfileSettings from "../../layout/ProfileSettings";
 
 const Profile = ({
   auth: { user },
@@ -23,7 +25,6 @@ const Profile = ({
   useEffect(() => {
     getBorrowedBooks(id);
     createdPost(id);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getBorrowedBooks, createdPost]);
 
@@ -70,10 +71,19 @@ const Profile = ({
                   </div>
                 </div>
                 <div
-                  style={{ backgroundColor: `${user.color}` }}
+                  style={{
+                    backgroundColor: `${user.color}`,
+                    color: user.textColor,
+                  }}
                   className='profile__profile-img text-shadow box-shadow-1'>
                   <p>{user.name[0]}</p>{" "}
                 </div>
+                <p
+                  className={
+                    user.isOnline ? "profile__online" : "profile__offline"
+                  }>
+                  <i class="fas fa-circle"></i> {user.isOnline ? "Online" : user.lastOnline}
+                </p>
               </div>
               <div className='profile__name-div'>
                 <h1>{user.name}</h1>
@@ -85,7 +95,10 @@ const Profile = ({
               <hr style={{ marginTop: "5rem" }}></hr>
               <div className='profile__page-button-div'>
                 <button
-                  style={{ backgroundColor: page === "posts" && user.color }}
+                  style={{
+                    backgroundColor: page === "posts" && user.color,
+                    color: page === "posts" && user.textColor,
+                  }}
                   onClick={() => setPage("posts")}
                   className={classNames("profile__page-button", {
                     "active one-edge-shadow": page === "posts",
@@ -94,7 +107,10 @@ const Profile = ({
                   <p>Posts</p>
                 </button>
                 <button
-                  style={{ backgroundColor: page === "books" && user.color }}
+                  style={{
+                    backgroundColor: page === "books" && user.color,
+                    color: page === "books" && user.textColor,
+                  }}
                   onClick={() => setPage("books")}
                   className={classNames("profile__page-button", {
                     "active one-edge-shadow": page === "books",
@@ -103,7 +119,10 @@ const Profile = ({
                   <p>Books</p>
                 </button>
                 <button
-                  style={{ backgroundColor: page === "follow" && user.color }}
+                  style={{
+                    backgroundColor: page === "follow" && user.color,
+                    color: page === "follow" && user.textColor,
+                  }}
                   onClick={() => setPage("follow")}
                   className={classNames("profile__page-button", {
                     "active one-edge-shadow": page === "follow",
@@ -112,7 +131,10 @@ const Profile = ({
                   <p>Follow</p>
                 </button>
                 <button
-                  style={{ backgroundColor: page === "settings" && user.color }}
+                  style={{
+                    backgroundColor: page === "settings" && user.color,
+                    color: page === "settings" && user.textColor,
+                  }}
                   onClick={() => setPage("settings")}
                   className={classNames("profile__page-button", {
                     "active one-edge-shadow": page === "settings",
@@ -123,6 +145,8 @@ const Profile = ({
               </div>
               <div className='profile__page-main-div'>
                 {page === "posts" && <ProfileForm forms={forms} user={user} />}
+                {page === "books" && <ProfileBook books={books} user={user} />}
+                {page === "settings" && <ProfileSettings user={user} />}
               </div>
             </div>
           </div>

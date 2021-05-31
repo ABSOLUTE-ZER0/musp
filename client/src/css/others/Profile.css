@@ -58,8 +58,23 @@
   user-select: none;
 }
 
+.profile__online {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.profile__online > i {
+  color: green;
+}
+
+.profile__offline > i {
+  display: none;
+}
+
 .profile__name-div {
-  margin-top: 10rem;
+  margin-top: 5rem;
   text-align: center;
 }
 
@@ -113,10 +128,6 @@
   color: rgb(255, 255, 255);
   transform: scale(1.1);
   transition: transform 200ms;
-}
-.profile__page-button.active > p,
-.profile__page-button.active > i {
-  mix-blend-mode: difference;
 }
 
 .profile__page-main-div {

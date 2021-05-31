@@ -56,12 +56,16 @@ router.post(
         });
       }
 
+      const color = getRandomColor();
+      const textColor = setColor(color);
+
       user = new User({
         name,
         email,
         password,
         token: null,
-        color: getRandomColor(),
+        color,
+        textColor,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -99,14 +103,14 @@ router.post(
 router.post("/verify", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
-    
+
     if (!user) {
       const error = [{ msg: "User doesn't exists" }];
       return res.status(400).json({
         errors: error,
       });
     }
-    
+
     if (user.verified) {
       const error = [{ msg: "This account has already been verified" }];
       return res.status(400).json({
@@ -136,6 +140,88 @@ router.post("/verify", auth, async (req, res) => {
         msg: "Mail sent!",
       });
     });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// update user
+
+router.post("/update/userdata", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    const userdata = req.body.userdata;
+
+    const { name, color, textColor, bio } = userdata;
+
+    if(name === "" || color === ""|| textColor === ""){
+      const error = [{ msg: "Please Enter something" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    user.name = name;
+    user.color = color;
+    user.textColor = textColor;
+    user.bio = bio;
+
+    user.save();
+
+    res.json("user updated");
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// update password
+
+router.post("/update/password", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    const userdata = req.body.userdata;
+    const { password, oldPassword } = userdata;
+
+    if(password === "" || oldPassword === ""){
+      const error = [{ msg: "Please Enter something" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    const passwordCheck = await bcrypt.compare(oldPassword, user.password);
+
+    if (!passwordCheck) {
+      const error = [{ msg: "Wrong password!" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    user.save();
+
+    res.json("password updated");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -239,7 +325,7 @@ router.post(
           user.notifications[i].senderName = user.notifications[i].senderName;
         }
       });
-      
+
       user.markModified(`notifications`);
       await user.save();
 
@@ -307,7 +393,7 @@ router.get("/verify/:id", async (req, res) => {
     user.verified = true;
 
     user.save();
-    res.redirect("https://musp.herokuapp.com/")
+    res.redirect("https://musp.herokuapp.com/");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -366,6 +452,37 @@ function getRandomColor() {
   return color != "#FFFFFF" ? color : getRandomColor();
 }
 
+function setColor(color) {
+  let r,
+    g,
+    b = 0;
+  if (color.match(/^rgb/)) {
+    // If HEX --> store the red, green, blue values in separate variables
+    color = color.match(
+      /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
+    );
 
+    r = color[1];
+    g = color[2];
+    b = color[3];
+  } else {
+    // If RGB --> Convert it to HEX: http://gist.github.com/983661
+    color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
+
+    r = color >> 16;
+    g = (color >> 8) & 255;
+    b = color & 255;
+  }
+
+  // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+  let hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+
+  // Using the HSP value, determine whether the color is light or dark
+  if (hsp > 127.5) {
+    return "#000";
+  } else {
+    return "#fff";
+  }
+}
 
 module.exports = router;

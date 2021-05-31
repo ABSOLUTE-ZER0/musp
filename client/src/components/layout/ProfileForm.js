@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Form from "./Form";
+import Form2 from "./Form2";
 import "../../css/layout/ProfileForm.css";
 import dateFormat from "dateformat";
 
 const ProfileForm = ({ forms, user }) => {
+
   return (
     <div>
       <div className='profileForm__main-div'>
@@ -21,12 +22,18 @@ const ProfileForm = ({ forms, user }) => {
                   <a>&nbsp;</a>
                 </div>
               </div>
-              <div className='timeline-body'>
+              <div
+                style={{
+                  borderRightColor: `${form.post_color
+                    .substring(0, form.post_color.length - 1)
+                    .concat("Solid)")}`,
+                }}
+                className='timeline-body'>
                 <Link
                   key={index}
                   to={`/post/${form._id}`}
                   className='home__link'>
-                  <Form form={form} user={user} />
+                  <Form2 form={form} user={user} />
                 </Link>
               </div>
             </li>
@@ -35,7 +42,9 @@ const ProfileForm = ({ forms, user }) => {
       </div>
       {forms.length === 0 && (
         <div>
-          <h3 className="profileForm__no-posts">{user.name} has not created any posts!</h3>
+          <h3 className='profileForm__no-posts'>
+            {user.name} has not created any posts!
+          </h3>
         </div>
       )}
     </div>

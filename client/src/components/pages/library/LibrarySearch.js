@@ -9,19 +9,17 @@ import Loader from "../../layout/Loader";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { openSearchPage , searchBooks } from "../../../actions/libraryActions";
-import { setAlert, removeAlert } from "../../../actions/alertActions";
+import { setAlert } from "../../../actions/alertActions";
 import Alert from "../../layout/Alert";
 import "../../../css/library/LibrarySearch.css";
 
 const LibrarySearch = ({
-  modal,
   auth: { user },
   searchBooks,
   loadUser,
   library,
   openSearchPage,
   setAlert,
-  removeAlert,
 }) => {
   let { searchParam, pageParam } = useParams();
   const [search, setSearch] = useState(searchParam);
@@ -160,5 +158,4 @@ export default connect(mapStateToProps, {
   loadUser,
   openSearchPage,
   setAlert,
-  removeAlert,
 })(LibrarySearch);

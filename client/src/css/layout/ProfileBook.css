@@ -1,0 +1,41 @@
+.profileBook__book-div {
+  display: flex;
+  margin: 10rem 0;
+  height: 25rem;
+}
+
+.profileBook__book-img > img {
+  height: 100%;
+  width: 15rem;
+}
+
+.profileBook__book-body {
+  margin: auto 0;
+  font-size: 1.3rem;
+  width: 100%;
+}
+
+.profileBook__book-body > p {
+  display: flex;
+  width: 100%;
+  margin: 0;
+}
+
+.profileBook__book-body > p > p {
+  font-weight: 900;
+  flex: 20%;
+  text-align: right;
+}
+
+.profileBook__book-body > p > span {
+  font-weight: normal;
+  flex: 80%;
+  margin-left: 2rem;
+}
+
+.profileBook__book-link > button {
+  margin-left: 15rem;
+  font-size: 1.5rem;
+  width: 10rem;
+  border: 0;
+}

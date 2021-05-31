@@ -74,7 +74,7 @@ const BookDetails = ({
         showBorrowModal("borrowed");
       }
     } else {
-      if (book.avaliability) {
+      if (book.availability) {
         showBorrowModal("borrow");
         borrowBook(book.bookId);
       } else {
@@ -113,9 +113,9 @@ const BookDetails = ({
                   }
                 />
               </p>
-              <p className='bookDetails__avaliability'>
-                Avaliability:{" "}
-                {book.avaliability ? (
+              <p className='bookDetails__availability'>
+                Availability:{" "}
+                {book.availability ? (
                   <span style={{ color: "green" }}>True</span>
                 ) : (
                   <span style={{ color: "orangered" }}>False</span>
@@ -223,7 +223,7 @@ const BookDetails = ({
                     <p>Availability</p>
                   </div>
                   <div className='bookDetails__about2'>
-                    <p>{book.avaliability ? "true" : "false"}</p>
+                    <p style={{color: book.availability ? "green" : "orangered", fontWeight: "900"}}>{book.availability ? "true" : "false"}</p>
                   </div>
                 </div>
               </div>

@@ -74,7 +74,7 @@ const NotificationDropdown = ({
         })}>
         <div className={click && "notificationDropdown__clicked-profile-div"}>
           <div
-            style={sender && { backgroundColor: `${sender.color}` }}
+            style={sender && { backgroundColor: `${sender.color}`, color: sender.textColor }}
             className='notificationDropdown__profile-img'>
             {sender && <p>{sender.name[0]}</p>}
           </div>

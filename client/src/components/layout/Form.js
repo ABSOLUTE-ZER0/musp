@@ -7,18 +7,14 @@ import PropTypes from 'prop-types'
 
 var dateFormat = require("dateformat");
 
-const Form = ({ form , getUserById, user }) => {
+const Form = ({ form , getUserById }) => {
   const descLength = 100;
   const titleLength = 50;
   const [author, setAuthor] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
-      if(!user){
         setAuthor(await getUserById(form.author));
-      } else {
-        setAuthor(user)
-      }
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,11 +26,16 @@ const Form = ({ form , getUserById, user }) => {
 
   return (
     <div
-      style={{ backgroundColor: form.post_color }}
+     style={{
+        border: `1px solid ${form.post_color
+          .substring(0, form.post_color.length - 1)
+          .concat("Solid)")}`,
+        backgroundColor: form.post_color,
+      }}
       className='form__main-div one-edge-shadow-1'>
       <div>
         <div
-          style={author && { backgroundColor: `${author.color}` }}
+          style={author && { backgroundColor: author.color, color: author.textColor }}
           className='form__profile-img'>
           {author && author.name[0]}
         </div>
@@ -46,7 +47,7 @@ const Form = ({ form , getUserById, user }) => {
               : form.title}
           </p>
           <p className='form__start-date'>
-            {author ? author.name : null} on {date}
+            {author ? author.name : null} ~ {date}
           </p>
           <p className='form__desc'>
             {form.desc.length > descLength

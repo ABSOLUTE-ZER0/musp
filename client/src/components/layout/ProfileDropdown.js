@@ -9,7 +9,7 @@ const ProfileDropdown = ({ auth: { user }, logout }) => {
     <div className="profileDropdown__body">
       <div className="profileDropdown__profile">
         <div
-          style={{ backgroundColor: `${user.color}` }}
+          style={{ backgroundColor: `${user.color}`, color: user.textColor }}
           className="profileDropdown__profile-img"
         >
           <p>{user.name[0]}</p>{" "}

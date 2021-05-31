@@ -10,9 +10,8 @@ import {
   AUTH_ERROR,
   SET_ALERT,
   FORGOT_PASSWORD_FAIL,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
 } from "../actions/types";
-
 
 import { createBrowserHistory } from "history";
 import API from "../api";
@@ -39,7 +38,7 @@ export const addUser = (userData) => async (dispatch) => {
       },
     };
 
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
 
     if (token) {
       config.headers["x-auth-token"] = token;
@@ -50,7 +49,7 @@ export const addUser = (userData) => async (dispatch) => {
     if (verify.data.errors) {
       dispatch({
         type: SET_ALERT,
-        payload: { msg: verify.data.errors[0].msg, type :"warning" },
+        payload: { msg: verify.data.errors[0].msg, type: "warning" },
       });
     }
     history.push("/");
@@ -64,10 +63,10 @@ export const addUser = (userData) => async (dispatch) => {
 };
 
 export const addUserFail = (userData) => async (dispatch) => {
-    dispatch({
-      type: ADD_USER_FAIL,
-      payload: userData,
-    });
+  dispatch({
+    type: ADD_USER_FAIL,
+    payload: userData,
+  });
 };
 
 export const loginUser = (userData) => async (dispatch) => {
@@ -83,7 +82,7 @@ export const loginUser = (userData) => async (dispatch) => {
     });
 
     history.push("/");
-    return res
+    return res;
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -91,21 +90,20 @@ export const loginUser = (userData) => async (dispatch) => {
     });
   }
 };
-
 
 export const forgotPassword = (email) => async (dispatch) => {
   try {
-    const res = await API.post("/api/auth/forgot", {email});
+    const res = await API.post("/api/auth/forgot", { email });
     if (res.data.errors) {
       return res.data;
     }
-    
+
     dispatch({
       type: FORGOT_PASSWORD_FAIL,
       payload: res.data,
     });
 
-    return res
+    return res;
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -114,22 +112,20 @@ export const forgotPassword = (email) => async (dispatch) => {
   }
 };
 
-
-
-export const resetPassword = (id,password) => async (dispatch) => {
+export const resetPassword = (id, password) => async (dispatch) => {
   try {
-    const res = await API.post(`/api/auth/forgot/${id}`, {password});
+    const res = await API.post(`/api/auth/forgot/${id}`, { password });
     if (res.data.errors) {
       return res.data;
     }
-    
+
     dispatch({
       type: FORGOT_PASSWORD_FAIL,
       payload: res.data,
     });
 
-    history.push("/")
-    return res
+    history.push("/");
+    return res;
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -137,14 +133,12 @@ export const resetPassword = (id,password) => async (dispatch) => {
     });
   }
 };
-
-
 
 export const loginFail = (userData) => async (dispatch) => {
-    dispatch({
-      type: LOGIN_FAIL,
-      payload: userData,
-    });
+  dispatch({
+    type: LOGIN_FAIL,
+    payload: userData,
+  });
 };
 
 export const loadUser = () => async (dispatch, getState) => {
@@ -162,53 +156,46 @@ export const loadUser = () => async (dispatch, getState) => {
     if (token) {
       config.headers["x-auth-token"] = token;
     }
-    
-    
+
     const res = await API.get("/api/auth", config);
-    
-    localStorage.setItem("token", token)
-    
+
+    localStorage.setItem("token", token);
+
     dispatch({
       type: USER_LOADED,
       payload: res.data,
     });
-    
-    
-    if(res.data.errors || res.data.token !== token){
+
+    if (res.data.errors || res.data.token !== token) {
       return dispatch({
         type: AUTH_ERROR,
-        payload: res.data.errors
-      })
+        payload: res.data.errors,
+      });
     }
-    
-    
-    if(!res.data.verified){
-      history.push("/verify")
+
+    if (!res.data.verified) {
+      history.push("/verify");
       return dispatch({
-        type: VERIFY_USER_FAIL
-      })
-    } else{
+        type: VERIFY_USER_FAIL,
+      });
+    } else {
       dispatch({
-        type: VERIFY_USER
-      })
+        type: VERIFY_USER,
+      });
       return res.data;
     }
-
-  } catch (error) {
-  }
+  } catch (error) {}
 };
-
 
 export const userVerified = (userdata) => async (dispatch) => {
   try {
-    if(userdata){
+    if (userdata) {
       dispatch({
-        type: VERIFY_USER
+        type: VERIFY_USER,
       });
-    } 
-    else{
+    } else {
       dispatch({
-        type: VERIFY_USER_FAIL
+        type: VERIFY_USER_FAIL,
       });
     }
   } catch (error) {
@@ -218,8 +205,6 @@ export const userVerified = (userdata) => async (dispatch) => {
     });
   }
 };
-
-
 
 export const getUserById = (id) => async (dispatch, getState) => {
   try {
@@ -238,58 +223,51 @@ export const getUserById = (id) => async (dispatch, getState) => {
     const res = await API.get(`/api/user/${id}`, config);
 
     return res.data;
-
   } catch (error) {
-    return error
+    return error;
   }
 };
-
-
 
 export const checkAuth = () => async (dispatch, getState) => {
   try {
     const token = getState().auth.token;
 
-    if(!token){
-      return "auth"
-    } else{
+    if (!token) {
+      return "auth";
+    } else {
+      const config = {
+        headers: {
+          "Content-type": "Application/json",
+        },
+      };
 
-    const config = {
-      headers: {
-        "Content-type": "Application/json",
-      },
-    };
+      if (token) {
+        config.headers["x-auth-token"] = token;
+      }
 
-    if (token) {
-      config.headers["x-auth-token"] = token;
+      const res = await API.get("/api/auth", config);
+
+      if (res.data.errors || res.data.token !== token) {
+        return "auth";
+      }
+
+      if (!res.data.verified) {
+        return "verify";
+      } else {
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+        return "clear";
+      }
     }
-    
-    const res = await API.get("/api/auth", config);
-    
-    if(res.data.errors || res.data.token !== token){
-      return "auth"
-    }
-    
-    if(!res.data.verified){
-      return "verify"
-    } else{
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data,
-      });
-      return "clear"
-    }
-  }
   } catch (error) {
-    return "auth"
+    return "auth";
   }
 };
 
-
-
 export const setOnline = () => async (dispatch, getState) => {
   try {
-
     const token = getState().auth.token;
 
     const config = {
@@ -304,22 +282,19 @@ export const setOnline = () => async (dispatch, getState) => {
 
     const res = await API.get("/api/auth", config);
 
-
-    if(res.data.token === token && res.data.checkOnline){
+    if (res.data.token === token && res.data.checkOnline) {
       await API.get(`/api/auth/online`, config);
-    console.log(res.data);
+      console.log(res.data);
     }
 
-    return res.data.token
+    return res.data.token;
   } catch (error) {
     console.log(error);
   }
 };
 
-
 export const logout = () => async (dispatch, getState) => {
   try {
-
     const token = getState().auth.token;
 
     const config = {
@@ -334,14 +309,77 @@ export const logout = () => async (dispatch, getState) => {
 
     await API.get(`/api/auth/logout`, config);
 
-    
-    checkAuth()
-    
-    history.push("/")
+    checkAuth();
+
+    history.push("/");
     dispatch({
-      type: LOGOUT_SUCCESS
+      type: LOGOUT_SUCCESS,
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updateUser = (userdata) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.post(
+      "/api/user/update/userdata",
+      { userdata },
+      config
+    );
+
+    if (res.data === "user updated") {
+      history.go(0);
+    }
+    return res;
+  } catch (error) {
+    dispatch({
+      type: SET_ALERT,
+      payload: { error, type: "warning" },
+    });
+  }
+};
+
+export const updatePassword = (userdata) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.post(
+      "/api/user/update/password",
+      { userdata },
+      config
+    );
+
+    if (res.data === "password updated") {
+      history.go(0);
+    }
+    return res;
+  } catch (error) {
+    dispatch({
+      type: SET_ALERT,
+      payload: { error, type: "warning" },
+    });
   }
 };

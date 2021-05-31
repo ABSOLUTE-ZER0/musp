@@ -152,7 +152,7 @@ router.get("/borrow/:id", auth, async (req, res) => {
             bookImage: googleBook.volumeInfo.imageLinks
               ? googleBook.volumeInfo.imageLinks.thumbnail
               : null,
-            avaliability: true,
+            availability: true,
           });
 
           googleBook.save();
@@ -205,12 +205,12 @@ router.post(
       let book = await Book.findOne({ bookId: bookId });
 
       if (book) {
-        if (!book.avaliability) {
+        if (!book.availability) {
           return res.status(401).json({
             msg: "This book is not available for borrowing at the given movement! Try again later",
           });
         }
-        (book.avaliability = false),
+        (book.availability = false),
           (book.borrowedBy = user.id),
           (book.borrowerName = user.name),
           (book.borrowedCount = book.borrowedCount + 1),

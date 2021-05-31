@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema({
   notifications: {
     type: Array,
   },
+  bio: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,
@@ -30,6 +33,9 @@ const userSchema = mongoose.Schema({
     default: Date.now,
   },
   color: {
+    type: String
+  },
+  textColor:{
     type: String
   },
   isOnline: {
