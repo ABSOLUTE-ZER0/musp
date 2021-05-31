@@ -10,7 +10,6 @@ import Alert from "./Alert";
 
 import { ChromePicker } from "react-color";
 
-import "react-color-picker/index.css";
 import "../../css/layout/ProfileSettings.css";
 
 const ProfileSettings = ({
