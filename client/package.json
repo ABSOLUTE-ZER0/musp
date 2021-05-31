@@ -53,7 +53,5 @@
     ]
   },
   "proxy": "http://localhost:5000",
-  "devDependencies": {
-    "react-color-picker": "^4.0.2"
-  }
+  "devDependencies": {}
 }
