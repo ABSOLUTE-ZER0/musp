@@ -10,6 +10,7 @@ import classNames from "classnames";
 import ProfileForm from "../../layout/ProfileForm";
 import ProfileBook from "../../layout/ProfileBook";
 import ProfileSettings from "../../layout/ProfileSettings";
+import ProfileFollow from "../../layout/ProfileFollow";
 
 const Profile = ({
   auth: { user },
@@ -146,7 +147,9 @@ const Profile = ({
               <div className='profile__page-main-div'>
                 {page === "posts" && <ProfileForm forms={forms} user={user} />}
                 {page === "books" && <ProfileBook books={books} user={user} />}
+                {page === "follow" && <ProfileFollow />}
                 {page === "settings" && <ProfileSettings user={user} />}
+                
               </div>
             </div>
           </div>

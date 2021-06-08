@@ -83,7 +83,6 @@ const FormDetails = ({
   };
 
   const clickedFavourite = () => {
-    console.log("temp");
     setFavourite(!favourite);
     favouritePost(id);
   };

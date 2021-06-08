@@ -66,8 +66,7 @@ const ProfileSettings = ({
       color: color,
       textColor: textColor,
     };
-    const res = await updateUser(userdata);
-    console.log(res);
+    await updateUser(userdata);
   };
 
   const resetPassword = async () => {

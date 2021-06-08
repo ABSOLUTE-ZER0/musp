@@ -10,9 +10,20 @@ const { check, validationResult } = require("express-validator");
 
 router.get("/borrowed/:id", auth, async (req, res) => {
   try {
-    const id = req.params.id
-    const books = await Book.find({borrowedBy: id});
-    res.json(books);
+    const id = req.params.id;
+    let user = await User.findById(id).select("-password");
+    let result = [];
+
+    for (const book1 of user.borrowedBooks) {
+      let book = await Book.findOne({ bookId: book1.bookId });
+      book = {
+        ...book._doc,
+        userBorrowedOn: book1.borrowStartDate,
+        userReturnedOn: book1.borrowEndDate,
+      }
+        result.push(book);
+    }
+    res.json(result);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -201,7 +212,7 @@ router.post(
         return date;
       };
 
-      const user = await User.findById(req.user.id).select("-password");
+      let user = await User.findById(req.user.id).select("-password");
       let book = await Book.findOne({ bookId: bookId });
 
       if (book) {
@@ -216,7 +227,15 @@ router.post(
           (book.borrowedCount = book.borrowedCount + 1),
           (book.borrowStartDate = date.getTime()),
           (book.borrowEndDate = date.addDays(duration)),
-          book.save();
+          (bookDetails = {
+            bookId,
+            title: book.title,
+            borrowStartDate: date.getTime(),
+            borrowEndDate: date.addDays(duration),
+          });
+        user.borrowedBooks.push(bookDetails);
+        book.save();
+        user.save();
 
         res.json(book);
       }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../layout/Header";
 import Form from "../../layout/Form";
+import UserId from "../../layout/UserId";
 import { showAppPostModal } from "../../../actions/modalActions";
 import { setAlert } from "../../../actions/alertActions";
 import {
@@ -21,6 +22,7 @@ import "../../../css/home/Home.css";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import Loader from "../../layout/Loader";
+import { setUsers } from "../../../actions/authActions";
 
 const Home = ({
   auth,
@@ -33,6 +35,7 @@ const Home = ({
   searchPost,
   getfavouritePost,
   setAlert,
+  setUsers,
 }) => {
   const [type, setType] = useState(null);
   const [mainType, setMainType] = useState("all");
@@ -49,7 +52,7 @@ const Home = ({
   const filterPost = async (e) => {
     const type = { type: e.target.name };
     setType(e.target.name);
-    setMainType(null)
+    setMainType(null);
     const res = await filterForm(type);
     setForms(res);
   };
@@ -61,10 +64,23 @@ const Home = ({
     setForms(res.data);
   };
 
+  const getUsers = async () => {
+    setMainType("users");
+    setType(null);
+    const filter = "";
+    const res = await searchPost(filter, "users");
+    res && setUsers(res.data);
+  };
+
   const searchForm = async (e) => {
     setSearch(e.target.value);
     const filter = e.target.value;
-    const res = await searchPost(filter, type);
+    let res = null
+    if(mainType === "users"){
+    res = await searchPost(filter, "users");
+    res && setUsers(res.data);
+    } else{
+    res = await searchPost(filter, type);
     res && (await setForms(res.data));
     if (res && res.data.length === 0) {
       setSearchAlert(true);
@@ -74,6 +90,8 @@ const Home = ({
       );
       setTimeout(() => setSearchAlert(false), 5000);
     }
+    }
+    
   };
 
   const searchFormButton = async () => {
@@ -103,7 +121,7 @@ const Home = ({
           </button>
           <div>
             <button
-            className={classNames('home__all-form home__button', {
+              className={classNames("home__all-form home__button", {
                 activeMain: mainType === "all",
               })}
               onClick={async () => {
@@ -115,10 +133,17 @@ const Home = ({
             </button>
             <button
               onClick={getFavourites}
-              className={classNames('home__favourite-form home__button', {
+              className={classNames("home__favourite-form home__button", {
                 activeMain: mainType === "fav",
               })}>
               <i className='fas fa-star'></i>Favourite
+            </button>
+            <button
+              onClick={getUsers}
+              className={classNames("home__users-form home__button", {
+                activeMain: mainType === "users",
+              })}>
+              <i className='fas fa-users'></i>Users
             </button>
             {modal.addPostModal ? <AddPostModal user={auth.user} /> : null}
           </div>
@@ -198,7 +223,21 @@ const Home = ({
               Search
             </button>
           </div>
-          {form.formsIsLoading ? (
+          {mainType === "users" ? (
+            auth.isUsersLoading ? (
+              <Loader />
+            ) : (
+              auth.users &&
+              auth.users.map((user, index) => (
+                <Link
+                  key={index}
+                  to={`/profile/${user._id}`}
+                  className='home__link'>
+                  <UserId user={user} />
+                </Link>
+              ))
+            )
+          ) : form.formsIsLoading ? (
             <Loader />
           ) : (
             form.forms &&
@@ -241,4 +280,5 @@ export default connect(mapStateToProps, {
   setForms,
   searchPost,
   setAlert,
+  setUsers,
 })(Home);

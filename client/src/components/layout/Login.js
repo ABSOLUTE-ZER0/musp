@@ -47,6 +47,7 @@ const Login = ({ loginUser, setAlert, loginFail }) => {
               className='login__input'
               type='email'
               name='email'
+              autoFocus
               onChange={handleInput}
               placeholder='Email'
               value={user.email}

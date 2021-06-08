@@ -22,7 +22,6 @@ const AddPostModal = ({ modal, removeModal, user, setAlert, addForm }) => {
     post_color: "var(--general)",
   });
 
-
   const handleInput = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };

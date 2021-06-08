@@ -4,6 +4,7 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 // get all posts
 
@@ -24,29 +25,35 @@ router.post("/search", auth, async (req, res) => {
     let filter = req.body.filter;
     let type = req.body.type;
 
-    filter = filter.toLowerCase()
+    filter = filter.toLowerCase();
 
     const post = await Post.find({
       $or: [
         { title: { $regex: filter } },
         { desc: { $regex: filter } },
         { author_name: { $regex: filter } },
-        { tags: { "$in": [filter] } },
-      ]}).sort({ date: "descending" });
+        { tags: { $in: [filter] } },
+      ],
+    }).sort({ date: "descending" });
 
-    let result = []
-    if(type){
-      post.forEach(form => {
-        if(form.type === type){
-          result.push(form)
+    const users = await User.find({
+      $or: [{ name: { $regex: filter } }],
+    }).select("name email color textColor");
+
+    let result = [];
+
+    if (type === "users") {
+      return res.json(users)
+    } else if (type) {
+      post.forEach((form) => {
+        if (form.type === type) {
+          result.push(form);
         }
       });
-      res.json(result);
-    } else{
-      res.json(post)
+      return res.json(result);
+    } else {
+      return res.json(post);
     }
-    
-
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -74,14 +81,12 @@ router.get("/favourite", auth, async (req, res) => {
   }
 });
 
-
-
 // get user created post
 
 router.get("/created/:id", auth, async (req, res) => {
   try {
     const userId = req.params.id;
-    const posts = await Post.find({author: userId});
+    const posts = await Post.find({ author: userId });
 
     res.json(posts);
   } catch (err) {
@@ -89,7 +94,6 @@ router.get("/created/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 // create a post
 
@@ -227,7 +231,7 @@ router.get("/:id", auth, async (req, res) => {
     const id = req.params.id;
     const post = await Post.findById(id).sort({ date: "descending" });
 
-    if(!post){
+    if (!post) {
       const error = [
         {
           msg: "Post not found!",

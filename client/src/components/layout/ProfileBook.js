@@ -14,15 +14,15 @@ const ProfileBook = ({ books,user }) => {
             </div>
             <div className='profileBook__book-body'>
               <p><p>Title: </p><span>{book.title}</span></p>
-              <p><p>Borrowed by: </p><span>{book.borrowerName}</span></p>
-              <p><p>Borrowed on: </p><span>{dateFormat(book.borrowStartDate, "fullDate")}</span></p>
-              <p><p>Return date: </p><span>{dateFormat(book.borrowEndDate, "fullDate")}</span></p>
+              <p><p>Borrowed on: </p><span>{dateFormat(book.userBorrowedOn, "fullDate")}</span></p>
+              <p><p>Return Date: </p><span>{dateFormat(book.userReturnedOn, "fullDate")}</span></p>
+              <p><p>Current borrower: </p><span>{book.borrowerName ? book.borrowerName : "-"}</span></p>
               <p><p>Availability: </p><span style={{color: book.availability ? "green" : "orangered", fontWeight: "900"}} >{book.availability ? "True" : "False"}</span></p>
               <Link
                 key={index}
                 to={`/library/book/${book.bookId}`}
                 className='profileBook__book-link'>
-                <button className="btn btn-info">View</button>
+                <button className="btn btn-info" style={{marginTop:"1rem",width:"15rem"}}>More Details</button>
               </Link>
             </div>
           </div>

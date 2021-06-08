@@ -104,7 +104,12 @@ const LibraryCarousel = ({
         <h1>Search for your book here</h1>
         <input
           value={search}
-          onChange={async (e) => await setSearch(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              searchClicked();
+            }
+          }}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder='Search...'
         />
         <div>

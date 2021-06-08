@@ -108,7 +108,6 @@ router.post("/logout", auth, async (req, res) => {
     user.token = null;
     user.isOnline = false;
 
-    console.log(user.name);
     await user.save();
   } catch (err) {
     console.error(err.message);

@@ -12,6 +12,9 @@ export const ADD_USER_FAIL = 'ADD_USER_FAIL';
 export const VERIFY_USER = 'VERIFY_USER';
 export const VERIFY_USER_FAIL = 'VERIFY_USER_FAIL';
 export const FORGOT_PASSWORD_FAIL = 'FORGOT_PASSWORD_FAIL';
+export const SET_USERS_FAIL = 'SET_USERS_FAIL';
+export const SET_USERS = 'SET_USERS';
+export const USERS_LOADED = 'USERS_LOADED';
 
 
 // alert 

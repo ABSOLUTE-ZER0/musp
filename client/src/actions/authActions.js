@@ -11,6 +11,9 @@ import {
   SET_ALERT,
   FORGOT_PASSWORD_FAIL,
   LOGOUT_SUCCESS,
+  SET_USERS_FAIL,
+  SET_USERS,
+  USERS_LOADED
 } from "../actions/types";
 
 import { createBrowserHistory } from "history";
@@ -284,12 +287,10 @@ export const setOnline = () => async (dispatch, getState) => {
 
     if (res.data.token === token && res.data.checkOnline) {
       await API.get(`/api/auth/online`, config);
-      console.log(res.data);
     }
 
     return res.data.token;
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -316,7 +317,6 @@ export const logout = () => async (dispatch, getState) => {
       type: LOGOUT_SUCCESS,
     });
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -380,6 +380,24 @@ export const updatePassword = (userdata) => async (dispatch) => {
     dispatch({
       type: SET_ALERT,
       payload: { error, type: "warning" },
+    });
+  }
+};
+
+export const setUsers = (userData) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SET_USERS,
+    });
+    dispatch({
+      type: USERS_LOADED,
+      payload: userData,
+    });
+    return userData;
+  } catch (error) {
+    dispatch({
+      type: SET_USERS_FAIL,
+      payload: error,
     });
   }
 };

@@ -47,6 +47,9 @@ const userSchema = mongoose.Schema({
   lastOnline: {
     type: Date
   },
+  borrowedBooks: {
+    type: Array
+  },
   followers: {
     type: Array
   },  
