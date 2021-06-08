@@ -21,6 +21,7 @@
   font-weight: bold;
   position: relative;
   cursor: pointer;
+  padding-bottom: 3rem;
 }
 
 .notificationDropdown__message {
@@ -69,6 +70,19 @@
 
 .notificationDropdown__clicked-name-div {
   flex: 87%;
+}
+
+.notificationDropdown__sender-link:hover,
+.notificationDropdown__sender-link:hover{
+  text-decoration: none;
+}
+
+.notificationDropdown__time{
+  position: absolute;
+  bottom: 0rem;
+  right: 5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .notificationDropdown__close {

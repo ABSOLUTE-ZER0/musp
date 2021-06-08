@@ -75,23 +75,22 @@ const Home = ({
   const searchForm = async (e) => {
     setSearch(e.target.value);
     const filter = e.target.value;
-    let res = null
-    if(mainType === "users"){
-    res = await searchPost(filter, "users");
-    res && setUsers(res.data);
-    } else{
-    res = await searchPost(filter, type);
-    res && (await setForms(res.data));
-    if (res && res.data.length === 0) {
-      setSearchAlert(true);
-      setAlert(
-        "No such post found! Create a new question with your query",
-        "warning"
-      );
-      setTimeout(() => setSearchAlert(false), 5000);
+    let res = null;
+    if (mainType === "users") {
+      res = await searchPost(filter, "users");
+      res && setUsers(res.data);
+    } else {
+      res = await searchPost(filter, type);
+      res && (await setForms(res.data));
+      if (res && res.data.length === 0) {
+        setSearchAlert(true);
+        setAlert(
+          "No such post found! Create a new question with your query",
+          "warning"
+        );
+        setTimeout(() => setSearchAlert(false), 5000);
+      }
     }
-    }
-    
   };
 
   const searchFormButton = async () => {
@@ -227,15 +226,7 @@ const Home = ({
             auth.isUsersLoading ? (
               <Loader />
             ) : (
-              auth.users &&
-              auth.users.map((user, index) => (
-                <Link
-                  key={index}
-                  to={`/profile/${user._id}`}
-                  className='home__link'>
-                  <UserId user={user} />
-                </Link>
-              ))
+              auth.users && <UserId users={auth.users} />
             )
           ) : form.formsIsLoading ? (
             <Loader />

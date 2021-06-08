@@ -3,6 +3,7 @@ import { getUserById } from "../../actions/authActions";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 var dateFormat = require("dateformat");
 
@@ -28,11 +29,12 @@ const FormComments = ({ comment, post_color, getUserById }) => {
       style={{ backgroundColor: post_color }}
       className='formComments__main-div one-edge-shadow-1'>
       <div>
-        <div
+        <Link
+          to={author && `/profile/${author._id}`}
           style={author && { backgroundColor: author.color, color: author.textColor }}
           className='formComments__profile-img'>
           {author && author.name[0]}
-        </div>
+        </Link>
 
         <div className='formComments__details'>
           <p className='formComments__start-date'>

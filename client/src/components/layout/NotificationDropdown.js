@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import dateFormat from "dateformat";
+import { Link } from "react-router-dom";
 
 const NotificationDropdown = ({
   notification,
@@ -42,29 +43,65 @@ const NotificationDropdown = ({
 
   const reply = async (responce) => {
     replyLendBook(sender._id, user.name, notification.bookName, responce);
-    removeNotification()
+    removeNotification();
   };
 
-  const removeNotification = async() => {
+  const removeNotification = async () => {
     await deleteMessage(notification.id);
     await loadUser();
-    setClick(false)
-  }
+    setClick(false);
+  };
 
   let date = new Date(notification.date);
 
   date = dateFormat(date, "mmmm dS, h:MM");
 
+  const timeCalc = (date_future1) => {
+    const date_now = new Date();
+    const date_future = new Date(date_future1);
+    var d = Math.abs(date_future - date_now) / 1000;
+    var r = {};
+    var s = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+      second: 1,
+    };
+
+    Object.keys(s).every((key) => {
+      let time = Math.floor(d / s[key]);
+      d -= time * s[key];
+
+      if (time > 1) {
+        r = time + " " + key + "s ago";
+        return false;
+      }
+
+      if (time !== 0) {
+        r = time + " " + key + " ago";
+        return false;
+      }
+
+      return r;
+    });
+
+    return r;
+  };
+
   return (
     <div style={{ position: "relative" }}>
       {click && (
-        <button onClick={removeNotification} className='notificationDropdown__close'>
+        <button
+          onClick={removeNotification}
+          className='notificationDropdown__close'>
           <i className='fas fa-times'></i>
         </button>
       )}
       {!notification.read && (
-        <button className='notificationDropdown__unred-mark'>
-        </button>
+        <button className='notificationDropdown__unred-mark'></button>
       )}
       <div
         onClick={clicked}
@@ -74,13 +111,20 @@ const NotificationDropdown = ({
         })}>
         <div className={click && "notificationDropdown__clicked-profile-div"}>
           <div
-            style={sender && { backgroundColor: `${sender.color}`, color: sender.textColor }}
+            style={
+              sender && {
+                backgroundColor: `${sender.color}`,
+                color: sender.textColor,
+              }
+            }
             className='notificationDropdown__profile-img'>
             {sender && <p>{sender.name[0]}</p>}
           </div>
           {click && (
             <div className='notificationDropdown__clicked-name-div'>
-              <p className='notificationDropdown__sender-name'>{sender.name}</p>
+              <p className='notificationDropdown__sender-name'>
+                <Link className="notificationDropdown__sender-link" to={`/profile/${sender._id}`}>{sender.name}</Link>
+              </p>
               <p className='notificationDropdown__date'>{date}</p>
             </div>
           )}
@@ -92,20 +136,32 @@ const NotificationDropdown = ({
           })}>
           {sender && <p>{notification.message}</p>}
         </div>
+
+        {!click && (
+          <div className='notificationDropdown__time'>
+            {sender && <p>{timeCalc(notification.date)}</p>}
+          </div>
+        )}
       </div>
-      {click && notification.type==="request" && (
+      {click && notification.type === "request" && (
         <div className='notificationDropdown__button-div'>
-          <button onClick={() => reply("REJECTED")} className='notificationDropdown__button-reject'>
+          <button
+            onClick={() => reply("REJECTED")}
+            className='notificationDropdown__button-reject'>
             Reject
           </button>
-          <button onClick={() => reply("ACCEPTED")} className='notificationDropdown__button-accept'>
+          <button
+            onClick={() => reply("ACCEPTED")}
+            className='notificationDropdown__button-accept'>
             Accept
           </button>
         </div>
       )}
-      {click && notification.type==="responce" && (
+      {click && notification.type === "responce" && (
         <div className='notificationDropdown__button-div'>
-          <button onClick={removeNotification} className='notificationDropdown__button-understood'>
+          <button
+            onClick={removeNotification}
+            className='notificationDropdown__button-understood'>
             Understood
           </button>
         </div>

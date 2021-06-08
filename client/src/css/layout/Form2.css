@@ -12,3 +12,20 @@
   margin-top: 1.5rem;
   font-weight: 900;
 }
+
+.form2__main-div:hover {
+  background-color: white !important;
+  transform: scale(1.03);
+  transition: all 200ms;
+}
+
+.form2__main-div {
+  display: flex;
+  margin: 0;
+  border-radius: 1.5rem;
+  user-select: none;
+}
+.form2__main-div > div {
+  display: flex;
+  width: 100%;
+}

@@ -21,6 +21,11 @@
   user-select: none;
 }
 
+.formComments__profile-img:hover,
+.formComments__profile-img:focus{
+  text-decoration: none;
+}
+
 .formComments__start-date {
   margin: 0;
   color: rgba(0, 0, 0, 0.623);
@@ -41,7 +46,7 @@
 }
 
 .formComments__desc {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   padding: 0;
   padding-bottom: 2rem;
   margin: 0;
@@ -50,6 +55,6 @@
 
 .formComments__main-div:hover {
   background-color: white !important;
-  transform: scale(1.03);
+  transform: scale(1.01);
   transition: all 200ms;
 }

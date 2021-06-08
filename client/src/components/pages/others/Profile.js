@@ -83,7 +83,8 @@ const Profile = ({
                   className={
                     user.isOnline ? "profile__online" : "profile__offline"
                   }>
-                  <i class="fas fa-circle"></i> {user.isOnline ? "Online" : user.lastOnline}
+                  <i class='fas fa-circle'></i>{" "}
+                  {user.isOnline ? "Online" : user.lastOnline}
                 </p>
               </div>
               <div className='profile__name-div'>
@@ -91,7 +92,11 @@ const Profile = ({
                 <h4>
                   <i className='fas fa-user-graduate'></i> Undergraduate
                 </h4>
-                {user.bio ? <p>{user.bio}</p> : <p>No bio!</p>}
+                {user.bio ? (
+                  <p style={{ whiteSpace: "pre-line" }}>{user.bio}</p>
+                ) : (
+                  <p>No bio!</p>
+                )}
               </div>
               <hr style={{ marginTop: "5rem" }}></hr>
               <div className='profile__page-button-div'>
@@ -149,7 +154,6 @@ const Profile = ({
                 {page === "books" && <ProfileBook books={books} user={user} />}
                 {page === "follow" && <ProfileFollow />}
                 {page === "settings" && <ProfileSettings user={user} />}
-                
               </div>
             </div>
           </div>

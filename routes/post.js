@@ -38,7 +38,7 @@ router.post("/search", auth, async (req, res) => {
 
     const users = await User.find({
       $or: [{ name: { $regex: filter } }],
-    }).select("name email color textColor");
+    }).select("name email followers date isOnline lastOnline");
 
     let result = [];
 

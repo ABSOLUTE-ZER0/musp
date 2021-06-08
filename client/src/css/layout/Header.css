@@ -118,6 +118,7 @@
   overflow-y: auto;
   border-radius: 0.5rem;
   padding: 0;
+  overflow: overlay;
 }
 
 .header__profile-dropdown {
@@ -131,6 +132,10 @@
   text-align: center;
   padding: 2rem;
   font-weight: 700;
+}
+
+.header__notification-title{
+  border-bottom: 1px solid black;
 }
 
 .header__notification-title > h2 {

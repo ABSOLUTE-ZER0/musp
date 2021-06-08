@@ -76,7 +76,7 @@
 }
 
 .timeline .timeline-body {
-  margin-left: 22%;
+  margin-left: 23%;
   max-width: 73rem;
   position: relative;
 }
@@ -87,12 +87,12 @@
   position: absolute;
   border: 10px solid transparent;
   border-right-color: inherit;
-  left: -10px;
+  left: -20px;
   top: 20px;
 }
 
-.timeline .timeline-body:hover:after {
-  left: -20px;
+.timeline .timeline-body:hover::after {
+  left: -30px;
   transition: all 200ms;
 }
 

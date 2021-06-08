@@ -9,7 +9,7 @@ const Form2 = ({ form, user }) => {
           .concat("Solid)")}`,
         backgroundColor: form.post_color,
       }}
-      className='form__main-div one-edge-shadow-1'>
+      className='form2__main-div one-edge-shadow-1'>
       <div>
         <div
           style={user && { backgroundColor: `${user.color}`, color: user.textColor }}

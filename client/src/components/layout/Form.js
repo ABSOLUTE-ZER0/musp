@@ -3,9 +3,7 @@ import { getUserById } from "../../actions/authActions"
 import {useEffect, useState} from "react"
 import { connect } from "react-redux";
 import PropTypes from 'prop-types'
-
-
-var dateFormat = require("dateformat");
+import { Link } from "react-router-dom";
 
 const Form = ({ form , getUserById }) => {
   const descLength = 100;
@@ -19,10 +17,42 @@ const Form = ({ form , getUserById }) => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getUserById]);
+  
+  const timeCalc = (date_future1) => {
+    const date_now = new Date();
+    const date_future = new Date(date_future1);
+    var d = Math.abs(date_future - date_now) / 1000;
+    var r = {};
+    var s = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+      second: 1,
+    };
 
-  let date = new Date(form.date);
+    Object.keys(s).every((key) => {
+      let time = Math.floor(d / s[key]);
+      d -= time * s[key];
 
-  date = dateFormat(date, "fullDate");
+      if (time > 1) {
+        r = time + " " + key + "s ago";
+        return false;
+      }
+
+      if (time !== 0) {
+        r = time + " " + key + " ago";
+        return false;
+      }
+
+      return r;
+    });
+
+    return r;
+  };
+  
 
   return (
     <div
@@ -34,11 +64,12 @@ const Form = ({ form , getUserById }) => {
       }}
       className='form__main-div one-edge-shadow-1'>
       <div>
-        <div
+        <Link
+          to={author && `/profile/${author._id}`}
           style={author && { backgroundColor: author.color, color: author.textColor }}
           className='form__profile-img'>
           {author && author.name[0]}
-        </div>
+        </Link>
 
         <div className='form__details'>
           <p className='form__title'>
@@ -47,7 +78,7 @@ const Form = ({ form , getUserById }) => {
               : form.title}
           </p>
           <p className='form__start-date'>
-            {author ? author.name : null} ~ {date}
+            {author ? author.name : null} ~ {timeCalc(form.date)}
           </p>
           <p className='form__desc'>
             {form.desc.length > descLength

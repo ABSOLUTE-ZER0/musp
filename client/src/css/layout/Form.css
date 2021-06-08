@@ -22,6 +22,11 @@
   flex: 5%;
 }
 
+.form__profile-img:hover,
+.form__profile-img:focus{
+  text-decoration: none;
+}
+
 .form__details {
   flex: 80%;
 }
@@ -66,7 +71,7 @@
 
 .form__main-div:hover {
   background-color: white !important;
-  transform: scale(1.03);
+  transform: scale(1.01);
   transition: all 200ms;
 }
 
