@@ -25,25 +25,25 @@ router.post("/search", auth, async (req, res) => {
     let filter = req.body.filter;
     let type = req.body.type;
 
-    filter = filter.toLowerCase();
+    const filterLower = filter.toLowerCase();
 
     const post = await Post.find({
       $or: [
-        { title: { $regex: filter } },
-        { desc: { $regex: filter } },
-        { author_name: { $regex: filter } },
-        { tags: { $in: [filter] } },
+        { title: { $regex: filterLower } },
+        { desc: { $regex: filterLower } },
+        { author_name: { $regex: filterLower } },
+        { tags: { $in: [filterLower] } },
       ],
     }).sort({ date: "descending" });
 
     const users = await User.find({
-      $or: [{ name: { $regex: filter } }],
+      $or: [{ name: { $regex: filter } }, { email: { $regex: filterLower } }],
     }).select("name email followers date isOnline lastOnline");
 
     let result = [];
 
     if (type === "users") {
-      return res.json(users)
+      return res.json(users);
     } else if (type) {
       post.forEach((form) => {
         if (form.type === type) {

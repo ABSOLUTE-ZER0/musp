@@ -132,6 +132,7 @@ const ProfileSettings = ({
                 Profile Image color
               </label>
               <input
+                style={{cursor:"pointer"}}
                 onClick={() => {
                   setColorPicker(!colorPicker);
                   setColorPicker1(false);
@@ -163,6 +164,7 @@ const ProfileSettings = ({
                 Profile Image Inner Text Color
               </label>
               <input
+                style={{cursor:"pointer"}}
                 onClick={() => {
                   setColorPicker1(!colorPicker1);
                   setColorPicker(false);
