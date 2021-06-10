@@ -401,3 +401,37 @@ export const setUsers = (userData) => async (dispatch) => {
     });
   }
 };
+
+
+
+export const followUser = (id) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.post(
+      "/api/user/follow",
+      { id },
+      config
+    );
+
+    if (res.data === "password updated") {
+      history.go(0);
+    }
+    return res;
+  } catch (error) {
+    dispatch({
+      type: SET_ALERT,
+      payload: { error, type: "warning" },
+    });
+  }
+};

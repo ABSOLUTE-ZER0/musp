@@ -1,0 +1,17 @@
+.profile__offline {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.profile__offline > i {
+  display: none;
+}
+
+.profile__offline > p  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}

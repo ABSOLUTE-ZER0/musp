@@ -5,7 +5,13 @@ import { updateUser, updatePassword } from "../../actions/authActions";
 
 import "../../css/layout/ProfileFollow.css";
 
-const ProfileFollow = ({ user, updateUser, updatePassword, setAlert }) => {
+const ProfileFollow = ({
+  user,
+  updateUser,
+  updatePassword,
+  setAlert,
+  
+}) => {
   const [option, setOption] = useState("following");
   const [search, setSearch] = useState("");
 
@@ -29,7 +35,6 @@ const ProfileFollow = ({ user, updateUser, updatePassword, setAlert }) => {
       </div>
       <div className='profileSettings__body'>
         <div className='profileSettings__alert-div'></div>
-
         {option === "following" && <div>test</div>}
         {option === "followers" && <div>hello</div>}
       </div>

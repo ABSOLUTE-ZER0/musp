@@ -100,6 +100,64 @@ router.post(
   }
 );
 
+// user follow
+
+router.post(
+  "/follow",
+  [auth, check("id", "Please enter a name").not().isEmpty()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    const { id } = req.body;
+
+    try {
+      const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+      const user2 = await User.findById(id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+      if (!user2) {
+        const error = [{ msg: "User does not exists" }];
+        return res.status(400).json({
+          errors: error,
+        });
+      }
+
+      if(user._id === user2._id){
+        const error = [{ msg: "Cannot follow yourself! Smart Ass" }];
+        return res.status(400).json({
+          errors: error,
+        });      }
+
+      if (user.following.includes(user2._id)) {
+        user.following = user.following.filter((item) => item.toString() !== user2._id.toString());
+
+        user2.followers = user2.followers.filter(
+          (item) => item.toString() !== user._id.toString()
+        );
+
+        user.save();
+        user2.save();
+        return res.json(user.following);
+      } else {
+        user.following.push(user2._id);
+        user2.followers.push(user._id);
+
+        user.save();
+        user2.save();
+
+        return res.json("followed");
+      }
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
 router.post("/verify", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
@@ -163,7 +221,7 @@ router.post("/update/userdata", auth, async (req, res) => {
 
     const { name, color, textColor, bio } = userdata;
 
-    if(name === "" || color === ""|| textColor === ""){
+    if (name === "" || color === "" || textColor === "") {
       const error = [{ msg: "Please Enter something" }];
       return res.status(400).json({
         errors: error,
@@ -200,7 +258,7 @@ router.post("/update/password", auth, async (req, res) => {
     const userdata = req.body.userdata;
     const { password, oldPassword } = userdata;
 
-    if(password === "" || oldPassword === ""){
+    if (password === "" || oldPassword === "") {
       const error = [{ msg: "Please Enter something" }];
       return res.status(400).json({
         errors: error,

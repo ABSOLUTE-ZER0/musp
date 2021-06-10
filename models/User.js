@@ -53,7 +53,7 @@ const userSchema = mongoose.Schema({
   followers: {
     type: Array
   },  
-  followering: {
+  following: {
     type: Array
   },
 });
