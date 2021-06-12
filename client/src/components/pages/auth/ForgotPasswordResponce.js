@@ -29,14 +29,14 @@ const ForgotPasswordResponce = ({ resetPassword, setAlert }) => {
   return (
     <div className='fprequest__main'>
       <Header />
-      <div class='container fprequest__main-div'>
+      <div className='container fprequest__main-div'>
         <div className='alert-div'>
           <Alert />
         </div>
-        <i class='fa fa-lock fa-4x'></i>
-        <h2 class='fprequest__title'>Reset Password?</h2>
+        <i className='fa fa-lock fa-4x'></i>
+        <h2 className='fprequest__title'>Reset Password?</h2>
         <p>You can reset your password here.</p>
-        <div class='fprequest__input-div'>
+        <div className='fprequest__input-div'>
           <input
             name='password'
             value={password}
@@ -52,7 +52,7 @@ const ForgotPasswordResponce = ({ resetPassword, setAlert }) => {
           <button
             onClick={onSubmit}
             name='recover-submit'
-            class='btn btn-lg btn-primary btn-block'
+            className='btn btn-lg btn-primary btn-block'
             type='submit'>
             Reset Password
           </button>

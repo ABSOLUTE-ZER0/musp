@@ -24,6 +24,8 @@ const Header = ({ page, auth }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.user.notifications]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+
   const changePage = (e) => {
     setNavPage(e.target.id);
   };
@@ -149,7 +151,6 @@ const Header = ({ page, auth }) => {
 };
 
 Header.propTypes = {
-  getUserById: PropTypes.func.isRequired,
   auth: PropTypes.object,
 };
 

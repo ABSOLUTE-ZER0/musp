@@ -3,11 +3,11 @@ import "../../css/layout/FooterSmall.css";
 
 const FooterSmall = () => {
   return (
-    <footer id='dk-footer' class='footerSmall'>
+    <footer id='dk-footer' className='footerSmall'>
       <div>
         <span>Copyright © 2021, MUSP</span>
       </div>
-      <div class='footerSmall__menu'>
+      <div className='footerSmall__menu'>
         <a href='/'>Home</a>
         <a href='/library'>Library</a>
         <a href='/faq'>FAQs</a>

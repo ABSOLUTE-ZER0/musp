@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/layout/NotificationDropdown.css";
-import { getUserById, loadUser } from "../../actions/authActions";
+import { getUserByIdBasic, loadUser } from "../../actions/authActions";
 import {
   readMessage,
   deleteMessage,
@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 const NotificationDropdown = ({
   notification,
-  getUserById,
+  getUserByIdBasic,
   readMessage,
   loadUser,
   replyLendBook,
@@ -27,9 +27,15 @@ const NotificationDropdown = ({
 
   useEffect(() => {
     async function fetchData() {
-      setSender(await getUserById(notification.senderId));
+      setSender(await getUserByIdBasic(notification.senderId));
     }
+    
     fetchData();
+
+    return () => {
+      setSender(null);
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadUser]);
 
@@ -119,6 +125,7 @@ const NotificationDropdown = ({
             }
             className='notificationDropdown__profile-img'>
             {sender && <p>{sender.name[0]}</p>}
+          {sender && sender.isOnline && <i className="fas fa-circle form__online-circle"></i>}
           </div>
           {click && (
             <div className='notificationDropdown__clicked-name-div'>
@@ -172,7 +179,7 @@ const NotificationDropdown = ({
 };
 
 NotificationDropdown.propTypes = {
-  getUserById: PropTypes.func.isRequired,
+  getUserByIdBasic: PropTypes.func.isRequired,
   readMessage: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
   deleteMessage: PropTypes.func.isRequired,
@@ -187,7 +194,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getUserById,
+  getUserByIdBasic,
   readMessage,
   loadUser,
   deleteMessage,

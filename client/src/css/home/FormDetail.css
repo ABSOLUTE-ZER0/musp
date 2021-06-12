@@ -49,6 +49,7 @@
   text-align: center;
   font-weight: 500;
   user-select: none;
+  position: relative;
 }
 
 .formDetail__profile-img > p {
@@ -142,4 +143,12 @@ textarea.formDetail__comment-box::placeholder {
 
 .formDetail__all-comments-div {
   margin-top: 2rem;
+}
+
+.formDetail__online-circle{
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: rgb(0, 187, 0);
 }

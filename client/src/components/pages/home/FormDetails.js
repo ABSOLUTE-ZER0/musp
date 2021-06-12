@@ -5,7 +5,6 @@ import Alert from "../../layout/Alert";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
 import {
-  loadForm,
   postComment,
   upvotePost,
   favouritePost,
@@ -18,11 +17,10 @@ import "../../../css/home/FormDetail.css";
 import dateFormat from "dateformat";
 import classNames from "classnames";
 import FooterLarge from "../../layout/FooterLarge";
+import { useLocation } from "react-router-dom";
 
 const FormDetails = ({
-  form: { form },
   auth: { user },
-  loadForm,
   getUserById,
   loadUser,
   setAlert,
@@ -37,22 +35,18 @@ const FormDetails = ({
   const [upvoted, setUpvote] = useState(null);
   const [favourite, setFavourite] = useState(null);
 
+  const { form } = useLocation().state;
+
   useEffect(() => {
     async function fetchData() {
-      await loadForm(id);
-      if (!user) {
-        await loadUser();
-      }
+      await loadUser();
+      setAuthor(await getUserById(form.author));
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadForm]);
+  }, [getUserById]);
 
-  const loadAuthor = async () => {
-    setAuthor(await getUserById(form.author));
-  };
-
-  form && !author && loadAuthor();
+  useEffect(() => () => console.log("unmount"), []);
 
   if (form && !date) {
     setDate(dateFormat(Date(form.date), "fullDate"));
@@ -119,9 +113,15 @@ const FormDetails = ({
         <div className='container'>
           <div className='formDetail__quetion-div'>
             <div
-              style={{ backgroundColor: `${author.color}`, color: author.textColor }}
+              style={{
+                backgroundColor: `${author.color}`,
+                color: author.textColor,
+              }}
               className='formDetail__profile-img'>
               <p>{author.name[0]}</p>
+              {author && author.isOnline && (
+                <i className='fas fa-circle formDetail__online-circle'></i>
+              )}
             </div>
             <div>
               <p className='formDetail__start-date'>
@@ -162,7 +162,10 @@ const FormDetails = ({
           <Alert />
           <div className='formDetail__comment-div'>
             <div
-              style={{ backgroundColor: `${user.color}`, color: author.textColor }}
+              style={{
+                backgroundColor: `${user.color}`,
+                color: user.textColor,
+              }}
               className='formDetail__profile-img'>
               <p>{user.name[0]}</p>
             </div>
@@ -217,7 +220,6 @@ const FormDetails = ({
 FormDetails.propTypes = {
   form: PropTypes.object,
   auth: PropTypes.object,
-  loadForm: PropTypes.func.isRequired,
   getUserById: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
@@ -232,7 +234,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  loadForm,
   getUserById,
   loadUser,
   setAlert,

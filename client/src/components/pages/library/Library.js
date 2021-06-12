@@ -18,6 +18,8 @@ const Library = ({ library: { books }, getPopularBooks }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getPopularBooks]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+
   return (
     <div>
       <Header page='header__library' />
@@ -35,8 +37,8 @@ const Library = ({ library: { books }, getPopularBooks }) => {
           <div className='library__popular-div'>
             {books &&
               books.map((book, index) => (
-                <Link to={`/library/book/${book.bookId}`} className='library__popular-books-main-div'>
-                  <div key={index} className='library__popular-books-div'>
+                <Link key={index} to={`/library/book/${book.bookId}`} className='library__popular-books-main-div'>
+                  <div className='library__popular-books-div'>
                     <img src={book.bookImage} alt='book-img' />
                     <h4>
                       {book.title && book.title.length > 30

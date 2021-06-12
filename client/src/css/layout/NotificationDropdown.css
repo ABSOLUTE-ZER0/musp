@@ -12,6 +12,7 @@
   font-family: cursive;
   user-select: none;
   text-transform: capitalize;
+  position: relative;
 }
 
 .notificationDropdown__div {

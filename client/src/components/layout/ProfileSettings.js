@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  updateUser,
-  updatePassword,
-} from "../../actions/authActions";
+import { updateUser, updatePassword } from "../../actions/authActions";
 import { setAlert } from "../../actions/alertActions";
 import Alert from "./Alert";
 
@@ -12,12 +9,7 @@ import { ChromePicker } from "react-color";
 
 import "../../css/layout/ProfileSettings.css";
 
-const ProfileSettings = ({
-  user,
-  updateUser,
-  updatePassword,
-  setAlert,
-}) => {
+const ProfileSettings = ({ user, updateUser, updatePassword, setAlert }) => {
   const [newuser, setNewuser] = useState({
     name: user.name,
     bio: user.bio,
@@ -76,14 +68,16 @@ const ProfileSettings = ({
     };
     if (newuser.password !== newuser.password2) {
       await setAlert("Confirm password does not match", "warning");
-    }
-    else {
-      if(newuser.password.length <=6 ){
-        return await setAlert("Password must contain more than 6 characters", "warning");
-     }
-     if (newuser.password === newuser.oldpassword) {
-      return await setAlert("New password is same as old!", "warning");
-    }
+    } else {
+      if (newuser.password.length <= 6) {
+        return await setAlert(
+          "Password must contain more than 6 characters",
+          "warning"
+        );
+      }
+      if (newuser.password === newuser.oldpassword) {
+        return await setAlert("New password is same as old!", "warning");
+      }
       const res = await updatePassword(finalUser);
       if (res && res.data && res.data.errors) {
         await setAlert(res.data.errors[0].msg, "warning");
@@ -96,20 +90,27 @@ const ProfileSettings = ({
       <div className='profileSettings__options'>
         <button
           onClick={() => setOption("account")}
-          className='btn btn-info profileSettings__options-button'>
+          className={
+            option === "account"
+              ? "btn btn-info profileSettings__options-button"
+              : "btn btn-outline-info profileSettings__options-button"
+          }>
           Account details
         </button>
         <button
           onClick={() => setOption("password")}
-          className='btn btn-info profileSettings__options-button'>
+          className={
+            option === "password"
+              ? "btn btn-info profileSettings__options-button"
+              : "btn btn-outline-info profileSettings__options-button"
+          }>
           Change password
         </button>
       </div>
       <div className='profileSettings__body'>
-      <div className="profileSettings__alert-div">
-      <Alert />
-        
-      </div>
+        <div className='profileSettings__alert-div'>
+          <Alert />
+        </div>
 
         {option === "account" && (
           <div className='profileSettings__body-account'>
@@ -132,7 +133,7 @@ const ProfileSettings = ({
                 Profile Image color
               </label>
               <input
-                style={{cursor:"pointer"}}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   setColorPicker(!colorPicker);
                   setColorPicker1(false);
@@ -140,6 +141,7 @@ const ProfileSettings = ({
                 className='profileSettings__input'
                 type='name'
                 value={color}
+                readOnly
               />
               {colorPicker && (
                 <div>
@@ -164,7 +166,7 @@ const ProfileSettings = ({
                 Profile Image Inner Text Color
               </label>
               <input
-                style={{cursor:"pointer"}}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   setColorPicker1(!colorPicker1);
                   setColorPicker(false);
@@ -172,6 +174,7 @@ const ProfileSettings = ({
                 className='profileSettings__input'
                 type='name'
                 value={textColor}
+                readOnly
               />
               {colorPicker1 && (
                 <div>
@@ -195,13 +198,7 @@ const ProfileSettings = ({
               <label className='profileSettings__label'>Email</label>
               <p
                 className='profileSettings__input'
-                type='email'
-                name='email'
-                disabled
-                onChange={handleInput}
-                placeholder='Email'
-                style={{ cursor: "no-drop" }}
-                autoComplete='off'>
+                style={{ cursor: "default" }}>
                 {user.email}
               </p>
             </div>
@@ -287,7 +284,7 @@ const ProfileSettings = ({
 ProfileSettings.propTypes = {
   updateUser: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
-  updateUserFail: PropTypes.func.isRequired,
+  updatePassword: PropTypes.func.isRequired,
 };
 
 export default connect(null, {

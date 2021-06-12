@@ -29,6 +29,8 @@ const Profile = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getBorrowedBooks, createdPost]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+
   if (!year) {
     let Year = user.email;
     const date = new Date();
@@ -83,7 +85,7 @@ const Profile = ({
                   className={
                     user.isOnline ? "profile__online" : "profile__offline"
                   }>
-                  <i class='fas fa-circle'></i>{" "}
+                  <i className='fas fa-circle'></i>{" "}
                   {user.isOnline ? "Online" : user.lastOnline}
                 </p>
               </div>
@@ -152,7 +154,7 @@ const Profile = ({
               <div className='profile__page-main-div'>
                 {page === "posts" && <ProfileForm forms={forms} user={user} />}
                 {page === "books" && <ProfileBook books={books} user={user} />}
-                {page === "follow" && <ProfileFollow />}
+                {page === "follow" && <ProfileFollow user={user} />}
                 {page === "settings" && <ProfileSettings user={user} />}
               </div>
             </div>

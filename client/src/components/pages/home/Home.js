@@ -49,6 +49,8 @@ const Home = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadForms]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+
   const filterPost = async (e) => {
     const type = { type: e.target.name };
     setType(e.target.name);
@@ -233,7 +235,7 @@ const Home = ({
           ) : (
             form.forms &&
             form.forms.map((form, index) => (
-              <Link key={index} to={`/post/${form._id}`} className='home__link'>
+              <Link key={index} to={{ pathname: `/post/${form._id}` , state: {form:form}}} className='home__link'>
                 <Form form={form} />
               </Link>
             ))

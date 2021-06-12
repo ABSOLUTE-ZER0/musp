@@ -1,5 +1,5 @@
 import "../../css/layout/FormComments.css";
-import { getUserById } from "../../actions/authActions";
+import { getUserByIdBasic } from "../../actions/authActions";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,17 +7,22 @@ import { Link } from "react-router-dom";
 
 var dateFormat = require("dateformat");
 
-const FormComments = ({ comment, post_color, getUserById }) => {
+const FormComments = ({ comment, post_color, getUserByIdBasic }) => {
   const [author, setAuthor] = useState(null);
   const [date, setDate] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      setAuthor(await getUserById(comment.author));
+      setAuthor(await getUserByIdBasic(comment.author));
     }
     fetchData();
+
+    return () => {
+      setAuthor(null);
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getUserById]);
+  }, [getUserByIdBasic]);
 
   if (comment && !date) {
     const temp = new Date(comment.date)
@@ -34,6 +39,7 @@ const FormComments = ({ comment, post_color, getUserById }) => {
           style={author && { backgroundColor: author.color, color: author.textColor }}
           className='formComments__profile-img'>
           {author && author.name[0]}
+          {author && author.isOnline && <i className="fas fa-circle form__online-circle"></i>}
         </Link>
 
         <div className='formComments__details'>
@@ -49,9 +55,9 @@ const FormComments = ({ comment, post_color, getUserById }) => {
 };
 
 FormComments.propTypes = {
-  getUserById: PropTypes.func.isRequired,
+  getUserByIdBasic: PropTypes.func.isRequired,
 };
 
 export default connect(null, {
-  getUserById,
+  getUserByIdBasic,
 })(FormComments);

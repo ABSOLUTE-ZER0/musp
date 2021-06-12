@@ -9,15 +9,15 @@ const ProfileForm = ({ forms, user }) => {
   return (
     <div>
       <div className='profileForm__main-div'>
-        <ul class='timeline'>
+        <ul className='timeline'>
           {forms.map((form, index) => (
-            <li>
+            <li key={index}>
               <div className='profileForm__timeline'>
-                <div class='timeline-time'>
-                  <span class='date'>{dateFormat(form.date, "fullDate")}</span>
-                  <span class='time'>{dateFormat(form.date, "HH:MM")}</span>
+                <div className='timeline-time'>
+                  <span className='date'>{dateFormat(form.date, "fullDate")}</span>
+                  <span className='time'>{dateFormat(form.date, "HH:MM")}</span>
                 </div>
-                <div class='timeline-icon'>
+                <div className='timeline-icon'>
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a>&nbsp;</a>
                 </div>

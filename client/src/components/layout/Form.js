@@ -1,22 +1,26 @@
 import "../../css/layout/Form.css";
-import { getUserById } from "../../actions/authActions"
+import { getUserByIdBasic } from "../../actions/authActions"
 import {useEffect, useState} from "react"
 import { connect } from "react-redux";
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 
-const Form = ({ form , getUserById }) => {
+const Form = ({ form , getUserByIdBasic }) => {
   const descLength = 100;
   const titleLength = 50;
   const [author, setAuthor] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
-        setAuthor(await getUserById(form.author));
+        setAuthor(await getUserByIdBasic(form.author));
     }
     fetchData();
+
+    return () => {
+      setAuthor(null);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getUserById]);
+  }, [getUserByIdBasic]);
   
   const timeCalc = (date_future1) => {
     const date_now = new Date();
@@ -69,6 +73,7 @@ const Form = ({ form , getUserById }) => {
           style={author && { backgroundColor: author.color, color: author.textColor }}
           className='form__profile-img'>
           {author && author.name[0]}
+          {author && author.isOnline && <i className="fas fa-circle form__online-circle"></i>}
         </Link>
 
         <div className='form__details'>
@@ -120,11 +125,11 @@ const Form = ({ form , getUserById }) => {
 
 
 Form.propTypes = {
-  getUserById: PropTypes.func.isRequired,
+  getUserByIdBasic: PropTypes.func.isRequired,
 };
 
 
 export default connect(null, {
-  getUserById,
+  getUserByIdBasic,
 })(Form);
 

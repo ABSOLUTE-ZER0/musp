@@ -34,6 +34,8 @@ const BookDetails = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getBook]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+
   const setBorrowButton = () => {
     const date = new Date();
     if (book.borrowedBy === user._id) {

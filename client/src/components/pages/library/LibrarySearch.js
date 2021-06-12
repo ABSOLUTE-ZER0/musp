@@ -37,6 +37,8 @@ const LibrarySearch = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchBooks]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+
   const nextPageLick = () => {
     pageParam = parseInt(pageParam) + 1;
     openSearchPage(searchParam, pageParam);

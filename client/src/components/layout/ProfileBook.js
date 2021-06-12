@@ -8,7 +8,7 @@ const ProfileBook = ({ books,user }) => {
     <div>
       <div className='profileBook__main-div'>
         {books.map((book, index) => (
-          <div className='profileBook__book-div'>
+          <div key={index} className='profileBook__book-div'>
             <div className='profileBook__book-img'>
               <img alt='book-img' src={book.bookImage}></img>
             </div>

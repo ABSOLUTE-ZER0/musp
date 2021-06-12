@@ -38,6 +38,21 @@ const OtherProfile = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getUserById]);
 
+  const [page, setPage] = useState("posts");
+
+  useEffect(() => {
+    getBorrowedBooks(id);
+    createdPost(id);
+
+    if (id === user._id) {
+      history.push("/profile");
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getBorrowedBooks, createdPost]);
+
+  useEffect( () => () => console.log("unmount"), [] );
+
 
   const timeCalc = (date_future1) => {
     const date_now = new Date();
@@ -73,20 +88,6 @@ const OtherProfile = ({
 
     return r;
   };
-
-
-  const [page, setPage] = useState("posts");
-
-  useEffect(() => {
-    getBorrowedBooks(id);
-    createdPost(id);
-
-    if (id === user._id) {
-      history.push("/profile");
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getBorrowedBooks, createdPost]);
 
   return (
     books &&
@@ -124,7 +125,7 @@ const OtherProfile = ({
                   className={
                     author.isOnline ? "profile__online" : "profile__offline"
                   }>
-                  <i class='fas fa-circle'></i>{" "}
+                  <i className='fas fa-circle'></i>{" "}
                   {author.isOnline ? "Online" : <p>Last Online <span>{timeCalc(author.lastOnline)}</span></p>}
                 </p>
               </div>
@@ -181,7 +182,7 @@ const OtherProfile = ({
               <div className='profile__page-main-div'>
                 {page === "posts" && <ProfileForm forms={forms} user={author} />}
                 {page === "books" && <ProfileBook books={books} user={author} />}
-                {page === "follow" && <ProfileFollow />}
+                {page === "follow" && <ProfileFollow user={author} />}
               </div>
             </div>
           </div>

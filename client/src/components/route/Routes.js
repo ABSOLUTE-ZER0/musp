@@ -38,6 +38,8 @@ function Routes({ auth, checkAuth, setOnline }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkAuth]);
 
+  useEffect( () => () => console.log("unmount"), [] );
+  
   return (
     type && (
       <Fragment>

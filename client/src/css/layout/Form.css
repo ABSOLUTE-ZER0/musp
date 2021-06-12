@@ -20,6 +20,7 @@
   text-align: center;
   font-family: cursive;
   flex: 5%;
+  position: relative;
 }
 
 .form__profile-img:hover,
@@ -95,4 +96,12 @@
 .form__comment-count > div > i {
   margin: 1rem;
   text-align: center;
+}
+
+.form__online-circle{
+  font-size: 1.1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: rgb(0, 187, 0);
 }
