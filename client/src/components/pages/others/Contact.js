@@ -115,7 +115,7 @@ const About = ({ setAlert }) => {
                 <div className='contact__title1'>
                   {" "}
                   <i className='fa fa-envelope' aria-hidden='true'></i> Connect
-                  with Us
+                  with us
                 </div>
                 <p>
                   For Support, information or Queries email us at <br></br>
@@ -127,7 +127,7 @@ const About = ({ setAlert }) => {
               <div>
                 <div className='contact__title1'>
                   <i className='fa fa-phone-square' aria-hidden='true'></i>{" "}
-                  Please call Us at
+                  Please call us at
                 </div>
                 <p>+91 *** *** ****, +91 *** *** ****</p>
               </div>

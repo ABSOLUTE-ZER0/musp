@@ -4,3 +4,8 @@
   margin: 1rem 0;
 }
 
+.profileSettings__body > div > h1{
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 2.5rem;
+}

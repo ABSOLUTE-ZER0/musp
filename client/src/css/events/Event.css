@@ -1,0 +1,142 @@
+.event__main-div{
+  margin-top: 9rem;
+}
+
+.timeline {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+
+.timeline:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  width: 5px;
+  background: #2d353c;
+  left: 20%;
+  margin-left: -2.5px;
+}
+
+.timeline > li {
+  position: relative;
+  min-height: 50px;
+  padding: 20px 0;
+}
+
+.timeline .timeline-time {
+  position: absolute;
+  left: 0;
+  width: 18%;
+  text-align: right;
+  top: 30px;
+}
+
+.timeline .timeline-time .date,
+.timeline .timeline-time .time {
+  display: block;
+  font-weight: 600;
+}
+
+.timeline .timeline-time .date {
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.timeline .timeline-time .time {
+  line-height: 24px;
+  font-size: 20px;
+  color: #242a30;
+}
+
+.timeline .timeline-icon {
+  left: 15%;
+  position: absolute;
+  width: 10%;
+  text-align: center;
+  top: 40px;
+}
+
+.timeline .timeline-icon a {
+  text-decoration: none;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  background: #d9e0e7;
+  line-height: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  border: 5px solid #2d353c;
+  transition: border-color 0.2s linear;
+}
+
+.timeline .timeline-body1 {
+  margin-left: 28%;
+  position: relative;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.timeline .timeline-body1::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border: 10px solid transparent;
+  border-right-color: inherit;
+  left: -20px;
+  top: 20px;
+  color: white;
+}
+
+.event__event-div{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.event__event-details{
+  flex: 60%;
+  user-select: text;
+}
+
+.event__event-img-div{
+  flex: 40%;
+}
+
+.event__event-register{
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: 0;
+  background-color: rgb(108, 186, 255);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.event__event-details{
+  padding: 2rem 4rem;
+}
+
+.event__event-img{
+  width: 100%;
+  height: 100%;
+}
+
+.event__event-details > p{
+  font-size: 1.2rem;
+  margin: 1rem 0 0;
+  background-color: rgb(219, 239, 255);
+  width: fit-content;
+  padding: 0.5rem 2rem;
+  border-radius: 10rem;
+}
+
+.event__event-details > h6{
+  margin: 1rem 0 2rem;
+}

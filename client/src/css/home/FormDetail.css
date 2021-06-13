@@ -152,3 +152,9 @@ textarea.formDetail__comment-box::placeholder {
   right: 0;
   color: rgb(0, 187, 0);
 }
+
+
+.formDetail__profile-img-link:hover,
+.formDetail__profile-img-link:focus{
+  text-decoration: none;
+}

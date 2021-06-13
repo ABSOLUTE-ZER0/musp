@@ -12,6 +12,7 @@ import {
 import { getUserById, loadUser } from "../../../actions/authActions";
 import { setAlert } from "../../../actions/alertActions";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import "../../../css/home/FormDetail.css";
 import dateFormat from "dateformat";
@@ -118,11 +119,14 @@ const FormDetails = ({
                 color: author.textColor,
               }}
               className='formDetail__profile-img'>
-              <p>{author.name[0]}</p>
-              {author && author.isOnline && (
-                <i className='fas fa-circle formDetail__online-circle'></i>
-              )}
+              <Link className='formDetail__profile-img-link' to={author && `/profile/${author._id}`}>
+                <p style={{color: author.textColor}}>{author.name[0]}</p>
+                {author && author.isOnline && (
+                  <i className='fas fa-circle formDetail__online-circle'></i>
+                )}
+              </Link>
             </div>
+
             <div>
               <p className='formDetail__start-date'>
                 <h1>{author ? author.name : null}</h1>

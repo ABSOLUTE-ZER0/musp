@@ -15,6 +15,7 @@ import FormDetails from "../pages/home/FormDetails";
 import NotFound404 from "../pages/others/NotFound404";
 import Profile from "../pages/others/Profile";
 import OtherProfile from "../pages/others/OtherProfile";
+import ScrollToTop from "../layout/ScrollToTop";
 import FAQ from "../pages/others/FAQ";
 import { connect } from "react-redux";
 
@@ -44,6 +45,7 @@ function Routes({ auth, checkAuth, setOnline }) {
     type && (
       <Fragment>
         <Router>
+        <ScrollToTop />
           {type === "auth" && (
             <Switch>
               <Route

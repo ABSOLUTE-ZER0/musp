@@ -5,7 +5,6 @@ import "../../css/layout/ProfileForm.css";
 import dateFormat from "dateformat";
 
 const ProfileForm = ({ forms, user }) => {
-
   return (
     <div>
       <div className='profileForm__main-div'>
@@ -14,7 +13,9 @@ const ProfileForm = ({ forms, user }) => {
             <li key={index}>
               <div className='profileForm__timeline'>
                 <div className='timeline-time'>
-                  <span className='date'>{dateFormat(form.date, "fullDate")}</span>
+                  <span className='date'>
+                    {dateFormat(form.date, "fullDate")}
+                  </span>
                   <span className='time'>{dateFormat(form.date, "HH:MM")}</span>
                 </div>
                 <div className='timeline-icon'>
@@ -31,7 +32,7 @@ const ProfileForm = ({ forms, user }) => {
                 className='timeline-body'>
                 <Link
                   key={index}
-                  to={`/post/${form._id}`}
+                  to={{ pathname: `/post/${form._id}`, state: { form: form } }}
                   className='home__link'>
                   <Form2 form={form} user={user} />
                 </Link>

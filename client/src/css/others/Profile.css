@@ -124,3 +124,20 @@
 .profile__page-main-div {
   margin-top: 10rem;
 }
+
+
+.profile__follow-button{
+  position: absolute;
+  right: 20%;
+  top: 5rem;
+}
+
+.profile__follow-button > button {
+  padding: 0.5rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+}
+
+.profile__follow-button > button:focus{
+  box-shadow: none;
+}

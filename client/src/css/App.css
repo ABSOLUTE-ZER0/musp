@@ -91,6 +91,10 @@ body {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.418);
 }
 
+.box-shadow-3 {
+  box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.305),0rem 0rem 0.5rem rgba(85, 85, 85, 0.418);
+}
+
 .box-shadow-1 {
   box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.418);
 }

@@ -29,8 +29,8 @@ const ProfileFollow = ({ user }) => {
         </button>
       </div>
       <div className='profileSettings__body'>
-        {option === "following" && <div> <FollowList users={user.following} /> </div>}
-        {option === "followers" && <div><FollowList users={user.followers} /></div>}
+        {option === "following" && <div>{user.following.length !== 0 ? <FollowList users={user.following} /> : <h1>Egoistic! Not following anyone</h1>}</div>}
+        {option === "followers" && <div>{user.followers.length !== 0 ? <FollowList users={user.followers} /> : <h1>Poor Soul! No one is following</h1>}</div>}
       </div>
     </div>
   );

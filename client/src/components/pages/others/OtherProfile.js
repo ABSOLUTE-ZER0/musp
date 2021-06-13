@@ -7,13 +7,12 @@ import { connect } from "react-redux";
 import "../../../css/others/OtherProfile.css";
 import FooterLarge from "../../layout/FooterLarge";
 import { useParams } from "react-router";
-import { getUserById } from "../../../actions/authActions";
+import { followUser, getUserById } from "../../../actions/authActions";
 import { createBrowserHistory } from "history";
 import classNames from "classnames";
 import ProfileForm from "../../layout/ProfileForm";
 import ProfileBook from "../../layout/ProfileBook";
 import ProfileFollow from "../../layout/ProfileFollow";
-
 
 const history = createBrowserHistory({
   forceRefresh: true,
@@ -26,13 +25,14 @@ const OtherProfile = ({
   getBorrowedBooks,
   createdPost,
   getUserById,
+  followUser
 }) => {
   const { id } = useParams();
-  const [author,setAuthor] = useState(null)
+  const [author, setAuthor] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-        setAuthor(await getUserById(id));
+      setAuthor(await getUserById(id));
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,8 +51,15 @@ const OtherProfile = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getBorrowedBooks, createdPost]);
 
-  useEffect( () => () => console.log("unmount"), [] );
+  useEffect(() => () => console.log("unmount"), []);
 
+  
+  const [isFollowing, setIsFollowing] = useState(null);
+
+  const onFollow = (id) => {
+    followUser(id);
+    setIsFollowing(!isFollowing);
+  };
 
   const timeCalc = (date_future1) => {
     const date_now = new Date();
@@ -95,7 +102,11 @@ const OtherProfile = ({
     author && (
       <div>
         <Header />
-        <div style={{ background: `linear-gradient( 180deg, ${author.color} 0%, ${author.color} 40rem, white 40rem, white 100% )` }} className='profile__background-div'>
+        <div
+          style={{
+            background: `linear-gradient( 180deg, ${author.color} 0%, ${author.color} 40rem, white 40rem, white 100% )`,
+          }}
+          className='profile__background-div'>
           <div className='profile__main-div one-edge-no-shadow'>
             <div className='container'>
               <div>
@@ -121,12 +132,41 @@ const OtherProfile = ({
                   className='profile__profile-img text-shadow box-shadow-circle-down'>
                   <p>{author.name[0]}</p>{" "}
                 </div>
+                <div className='profile__follow-button'>
+                  {(isFollowing === null
+                    ? setIsFollowing(user.following.includes(author._id))
+                    : true) && isFollowing
+                    ? (
+                        <button
+                          onClick={() => {
+                            onFollow(author._id);
+                          }}
+                          className='btn btn-outline-danger'>
+                          Following
+                        </button>
+                      )
+                    : (
+                        <button
+                          onClick={() => {
+                            onFollow(author._id);
+                          }}
+                          className='btn btn-danger'>
+                          Follow
+                        </button>
+                      )}
+                </div>
                 <p
                   className={
                     author.isOnline ? "profile__online" : "profile__offline"
                   }>
                   <i className='fas fa-circle'></i>{" "}
-                  {author.isOnline ? "Online" : <p>Last Online <span>{timeCalc(author.lastOnline)}</span></p>}
+                  {author.isOnline ? (
+                    "Online"
+                  ) : (
+                    <p>
+                      Last Online <span>{timeCalc(author.lastOnline)}</span>
+                    </p>
+                  )}
                 </p>
               </div>
               <div className='profile__name-div'>
@@ -180,8 +220,12 @@ const OtherProfile = ({
                 </button>
               </div>
               <div className='profile__page-main-div'>
-                {page === "posts" && <ProfileForm forms={forms} user={author} />}
-                {page === "books" && <ProfileBook books={books} user={author} />}
+                {page === "posts" && (
+                  <ProfileForm forms={forms} user={author} />
+                )}
+                {page === "books" && (
+                  <ProfileBook books={books} user={author} />
+                )}
                 {page === "follow" && <ProfileFollow user={author} />}
               </div>
             </div>
@@ -210,4 +254,5 @@ export default connect(mapStateToProps, {
   getBorrowedBooks,
   createdPost,
   getUserById,
+  followUser
 })(OtherProfile);
