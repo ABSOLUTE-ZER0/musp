@@ -254,6 +254,33 @@ export const getUserByIdBasic = (id) => async (dispatch, getState) => {
   }
 };
 
+
+export const getUserByIdFollow = (id) => async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token;
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    if (token) {
+      config.headers["x-auth-token"] = token;
+    }
+
+    const res = await API.get(`/api/user/basicFollow/${id}`, config);
+
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+
+
+
 export const checkAuth = () => async (dispatch, getState) => {
   try {
     const token = getState().auth.token;

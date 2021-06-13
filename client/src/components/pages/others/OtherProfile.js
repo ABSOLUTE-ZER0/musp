@@ -95,7 +95,7 @@ const OtherProfile = ({
     author && (
       <div>
         <Header />
-        <div className='profile__background-div'>
+        <div style={{ background: `linear-gradient( 180deg, ${author.color} 0%, ${author.color} 40rem, white 40rem, white 100% )` }} className='profile__background-div'>
           <div className='profile__main-div one-edge-no-shadow'>
             <div className='container'>
               <div>
@@ -118,7 +118,7 @@ const OtherProfile = ({
                     backgroundColor: `${author.color}`,
                     color: author.textColor,
                   }}
-                  className='profile__profile-img text-shadow box-shadow-1'>
+                  className='profile__profile-img text-shadow box-shadow-circle-down'>
                   <p>{author.name[0]}</p>{" "}
                 </div>
                 <p

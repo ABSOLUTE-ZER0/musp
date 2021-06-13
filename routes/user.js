@@ -521,6 +521,25 @@ router.get("/basic/:id", auth, async (req, res) => {
   }
 });
 
+// get user by id for follow
+
+router.get("/basicFollow/:id", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("name email lastOnline isOnline"); // Even though password is encrypted sending it in a responce is a bad idea so we are removing it
+
+    if (!user) {
+      const error = [{ msg: "User doesn't exists" }];
+      return res.status(400).json({
+        errors: error,
+      });
+    }
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 function getRandomColor() {
   var letters = "0123456789ABCDEF";
   var color = "#";

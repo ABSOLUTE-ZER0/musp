@@ -49,22 +49,24 @@
  *  STYLE 7
  */
 
-*::-webkit-scrollbar {
-  width: 14px;
+ *::-webkit-scrollbar {
+  width: 22px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  border: 6px solid transparent;
+  border-top: 100px solid transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  border: 4px solid transparent;
-  border-radius: 10px;
+  border: 8px solid transparent;
+  border-top: 100px solid transparent;
   padding: 2rem;
   background: linear-gradient(
     180deg,
     rgb(0, 0, 0) 0%,
-    rgb(0, 0, 0) 20%,
     rgba(117, 15, 188) 40%,
-    rgb(197, 164, 221) 50%,
     rgba(117, 15, 188) 60%,
-    rgb(0, 0, 0) 80%,
     rgb(0, 0, 0) 100%
   );
   background-clip: padding-box;
@@ -93,6 +95,10 @@ body {
   box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.418);
 }
 
+.box-shadow-circle-down {
+  box-shadow: 0 0.5rem 0rem rgba(0, 0, 0, 0.082),0 0.3rem 0.2rem rgba(0, 0, 0, 0.234);
+}
+
 .box-shadow-2 {
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.21),
     -2px -2px 5px 0px rgba(0, 0, 0, 0.21), -2px 2px 5px 0px rgba(0, 0, 0, 0.21),
@@ -108,8 +114,7 @@ body {
 }
 
 .one-edge-no-shadow {
-  box-shadow: 0 -2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 -6.7px 5.3px rgba(0, 0, 0, 0.048), 0 -12.5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .text-shadow {

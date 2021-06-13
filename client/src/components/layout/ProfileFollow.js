@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FollowList from "./FollowList";
 
 import "../../css/layout/ProfileFollow.css";
 
@@ -28,8 +29,8 @@ const ProfileFollow = ({ user }) => {
         </button>
       </div>
       <div className='profileSettings__body'>
-        {option === "following" && <div>test</div>}
-        {option === "followers" && <div>hello</div>}
+        {option === "following" && <div> <FollowList users={user.following} /> </div>}
+        {option === "followers" && <div><FollowList users={user.followers} /></div>}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import "../../css/layout/FooterLarge.css";
 
 const FooterLarge = () => {
   return (
-    <div className="footerLarge-body">
+    <div style={{paddingTop: "30rem"}} className="footerLarge-body">
       <div className='footerLarge-container-fluid pb-0 mb-0 justify-content-center text-light '>
         <footer>
           <div className='row my-5 justify-content-center py-5'>
