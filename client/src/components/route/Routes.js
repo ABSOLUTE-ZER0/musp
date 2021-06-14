@@ -65,7 +65,7 @@ function Routes({ auth, checkAuth, setOnline }) {
           )}
           {type === "verify" && (
             <Switch>
-              <Route exact path='/' component={Auth} />
+              <Route exact path='/' component={Verify} />
               <Route
                 exact
                 path='/login/forgot'

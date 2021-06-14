@@ -34,7 +34,7 @@
 
 .verify__resend-text {
   font-size: 2rem;
-  margin-top: 20vh;
+  margin-top: 10rem;
   width: 100%;
   text-align: center;
 }
@@ -52,9 +52,29 @@
   color: white;
 }
 
+.verify__logout-button {
+  background-color: rgb(226, 43, 43);
+  border: 1px solid rgb(226, 43, 43);
+  box-shadow: none;
+  padding: 1rem 2rem;
+  width: 100%;
+  font-size: 3rem;
+  margin: 5rem auto;
+  border-radius: 2rem;
+  text-align: center;
+  color: white;
+}
+
 .verify__resend-button:hover,
 .verify__resend-button:active,
 .verify__resend-button:focus {
   background-color: rgb(255, 255, 255);
   color: blueviolet;
+}
+
+.verify__logout-button:hover,
+.verify__logout-button:active,
+.verify__logout-button:focus {
+  background-color: rgb(255, 255, 255);
+  color: rgb(226, 43, 43);
 }

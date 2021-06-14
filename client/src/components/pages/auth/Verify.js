@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setAlert } from "../../../actions/alertActions";
+import { logout } from "../../../actions/authActions";
 import Alert from "../../layout/Alert";
 
 import "../../../css/auth/Verify.css";
@@ -12,7 +13,7 @@ import API from "../../../api";
 const token = localStorage.getItem("token");
 
 
-const Verify = ({  setAlert }) => {
+const Verify = ({  setAlert, logout }) => {
 
 
   const resend = async (e) => {
@@ -61,6 +62,12 @@ const Verify = ({  setAlert }) => {
         <button className='verify__resend-button' onClick={resend}>
           VERIFY EMAIL
         </button>
+        <p style={{marginTop: "2rem"}} className='verify__resend-text'>
+          Login with another email!
+        </p>
+        <button className='verify__logout-button' onClick={() => logout()}>
+          LOGOUT
+        </button>
       </div>
     </div>
   </div>
@@ -75,4 +82,4 @@ Verify.propTypes = {
 
 
 
-export default connect(null, { setAlert })(Verify);
+export default connect(null, { setAlert, logout })(Verify);

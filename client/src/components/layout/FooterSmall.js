@@ -9,7 +9,7 @@ const FooterSmall = () => {
       </div>
       <div className='footerSmall__menu'>
         <a href='/'>Home</a>
-        <a href='/library'>Library</a>
+        <a href='/verify'>Verify</a>
         <a href='/faq'>FAQs</a>
         <a href='/contact'>Contact</a>
       </div>
