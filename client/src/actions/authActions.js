@@ -84,6 +84,10 @@ export const loginUser = (userData) => async (dispatch) => {
       payload: res.data,
     });
 
+    if(res.data && !res.data.verify){
+      return history.push("/verify")
+    }
+
     history.push("/");
     return res;
   } catch (error) {

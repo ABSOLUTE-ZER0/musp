@@ -15,14 +15,14 @@ const Header = ({ page, auth }) => {
 
   useEffect(() => {
     let count = 0;
-    auth.user.notifications.forEach((notification) => {
+    auth.user && auth.user.notifications.forEach((notification) => {
       if (!notification.read) {
         count++;
       }
       setUnread(count);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.user.notifications]);
+  }, []);
 
   useEffect( () => () => console.log("unmount"), [] );
 
@@ -91,7 +91,7 @@ const Header = ({ page, auth }) => {
           </div>
         </div>
 
-        <div className='header__sub-div'>
+        {auth.user && <div className='header__sub-div'>
           <Dropdown>
             <Dropdown.Toggle
               className='header__sub-nav'
@@ -144,7 +144,7 @@ const Header = ({ page, auth }) => {
               <ProfileDropdown />
             </Dropdown.Menu>
           </Dropdown>
-        </div>
+        </div>}
       </div>
     </div>
   );
