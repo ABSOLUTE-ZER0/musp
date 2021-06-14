@@ -191,7 +191,7 @@ export const postComment = (comment , id) => async (dispatch, getState) => {
       payload: res.data,
     });
 
-    history.push(`/post/${id}`)
+    history.push({pathname: `/post/${id}`, state: {form: res.data}})
 
     return res;
   } catch (error) {
