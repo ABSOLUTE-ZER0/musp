@@ -21,7 +21,7 @@ import { connect } from "react-redux";
 
 function Routes({ auth, checkAuth, setOnline }) {
   const [type, setType] = useState(null);
-
+ 
   useEffect(() => {
     async function fetchData() {
       setType(await checkAuth());
