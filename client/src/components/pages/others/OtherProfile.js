@@ -171,6 +171,7 @@ const OtherProfile = ({
               </div>
               <div className='profile__name-div'>
                 <h1>{author.name}</h1>
+                <h3>{author.email}</h3>
                 <h4>
                   <i className='fas fa-user-graduate'></i> Undergraduate
                 </h4>
